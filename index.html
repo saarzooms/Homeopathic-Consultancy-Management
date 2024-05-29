@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="table-styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+
+    </style>
 </head>
 <body style="background-color: #0b6e4f;">
     <nav class="navbar shadow navbar-expand-lg fixed-top">
@@ -16,19 +20,45 @@
             <div class="d-flex align-items-center justify-content-center w-50 position-relative">
                 <input type="text" class="searchbar w-100" placeholder="Search" aria-label="Search">
             </div>
-            <a href="details.html" class="btn login-button ms-auto position-relative fs-3"><img src="Images And Icons/add_patient.png" style="height: 4vh; opacity: 85%; transform: translateY(-9%);" alt=""></a>
-
-            <a href="profile.html" class="btn login-button position-relative fs-4"><img src="Images And Icons/user-doctor-solid.svg" style="height: 4vh; opacity: 85%; transform: translateY(-9%);" alt=""></a>
+            <a href="details.html" class="btn login-button ms-auto position-relative fs-4">
+                <img src="Images And Icons/add_patient.png" style="height: 4vh; opacity: 85%; transform: translateY(-1%);" alt="">
+            </a>
+            <a href="profile.html" class="btn login-button position-relative fs-4">
+                <img src="Images And Icons/user-doctor-solid.svg" style="height: 4vh; opacity: 85%; transform: translateY(-9%);" alt="">
+            </a>
         </div>
     </nav>
     <br><br><br><br><br>
 
-    <div class="bg-white mx-3 rounded-3  text-align-center p-3 fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed nostrum voluptas fugit doloribus illo fugiat voluptates, aut ad sequi nisi assumenda voluptatem magnam quam autem eveniet pariatur accusantium unde dolorum. lorem
-    
-
-    
+    <div class="bg-white mx-3 rounded-3 text-align-center p-3 fs-6">
+        <div class="table-responsive">
+            <table class="table table-striped p-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Case No.</th>
+                    <th scope="col">File No.</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>111</td>
+                    <td>30-10-2004</td>
+                    <td>Umang Hirani</td>
+                    <td>
+                        <div class="btn-container">
+                            <button class="btn rounded-2 mb-1 mt-1" style="background-color: #d1d3ab;">Edit</button>
+                            <button class="btn rounded-2 mb-1 mt-1" style="background-color: #0b6e4f; color: white;">Checkup</button>
+                        </div>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

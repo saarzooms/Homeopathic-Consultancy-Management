@@ -97,3 +97,15 @@ a {
         font-size: 10px;
     }
 }
+
+
+/*  */
+@media (min-width: 446px) {
+
+.action-button{
+
+    width: 10px;;
+
+}
+
+}
