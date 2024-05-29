@@ -25,3 +25,8 @@ body {
 .input-group-text.fixed-width {
     width: 150px; /* Fixed width for the input-group-text elements */
 }
+.form-control:focus, .form-select:focus {
+    outline: none; /* Ensure no outline on focus */
+    /* Optional: Add your own styles */
+    box-shadow: none; /* Remove any box-shadow if present */
+}

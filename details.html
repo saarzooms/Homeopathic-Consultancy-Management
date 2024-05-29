@@ -9,21 +9,37 @@
 </head>
 <body style="background-color: #0b6e4f">
     
-        <div class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 " style="    background-color: #d1d3ab; overflow-x: auto;
-        ">
-            <div class="input-group m-1 ">
+    <div class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 " style="background-color: #d1d3ab;">
+        <div class="tab">
+            <div class="input-group m-1">
                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Name</span>
-                <input  type="text" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Patient Name">
+                <input type="text" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Patient Name">
             </div>
             <div class="input-group m-1 mt-3">
-                <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Gender</span>
-                <input type="text" class="form-control border-0 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Gender">
+                <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default" >Gender</span>
+                <select class="form-select" aria-label="Gender select" style="border-top-right-radius:8px;border-bottom-right-radius:8px">
+                    <option selected>Choose Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                
             </div>
             <div class="input-group m-1 mt-3">
-                <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Age</span>
-                <input type="number" class="form-control border-0 " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Age">
+                <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Occupation</span>
+                <input type="text" style="border-top-right-radius:8px;border-bottom-right-radius:8px" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Occupation">
+                <span class="input-group-text fixed-width ms-3 p-3 border-0" id="inputGroup-sizing-default" style="border-top-left-radius:8px;border-bottom-left-radius:8px">Contact No.</span>
+                <input type="number" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Contact No.">
             </div>
-            <div class="input-group m-1 mt-3">
+            <!-- <div class="input-group m-1 mt-3">
+                <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default" style="border-top-left-radius:8px;border-bottom-left-radius:8px">DOB</span>
+                <input type="date" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+                <span class="input-group-text fixed-width ms-3 p-3 border-0" id="inputGroup-sizing-default" style="border-top-left-radius:8px;border-bottom-left-radius:8px">Age</span>
+                <input type="number" class="form-control border-0" aria-label="Sizing example input" style="border-top-right-radius:8px;border-bottom-right-radius:8px" aria-describedby="inputGroup-sizing-default" placeholder="Enter Age">
+                
+            </div> -->
+            <div class="input-group m-1 mt-3 ">
                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Complexion</span>
                 <input type="text" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Complexion">
             </div>
@@ -31,32 +47,86 @@
                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Constitution</span>
                 <input type="text" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Constitution">
             </div>
-            <div class="input-group m-1 mt-3 ">
+            <div class="input-group m-1 mt-3">
                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Marital Status</span>
-                <div class="form-control border-0 d-flex align-items-center" style="overflow-y: auto; overflow-x: auto;">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="maritalStatus" id="maritalStatusYes" value="yes">
-                        <label class="form-check-label" id="maritalstatus" for="maritalStatusYes">Married</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="maritalStatus" id="maritalStatusNo" value="no">
-                        <label class="form-check-label" id="maritalstatus" for="maritalStatusNo">Unmarried</label>
-                    </div>
-                </div>
+                <select class="form-select" aria-label="status-select">
+                    <option selected>Choose Marital Status</option>
+                    <option value="married">Married</option>
+                    <option value="unmarried">Unmarried</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widow">Widow</option>
+                </select>
             </div>
             <div class="input-group m-1 mt-3">
                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Address</span>
                 <div class="form-floating">
-                    <textarea class="form-control border-0" placeholder="Leave a comment here" ></textarea>         
-                  </div>
+                    <textarea class="form-control border-0" placeholder="Enter Address"></textarea>         
+                </div>
+            </div>
+            <div class="input-group m-1 mt-3">
+                <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Occupation</span>
+                <input type="text" style="border-top-right-radius:8px;border-bottom-right-radius:8px" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Occupation">
+                <span class="input-group-text fixed-width ms-3 p-3 border-0" id="inputGroup-sizing-default" style="border-top-left-radius:8px;border-bottom-left-radius:8px">Contact No.</span>
+                <input type="number" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Contact No.">
+            </div>
+        </div>
+
+        <div class="tab" style="display:none;">
+        
+            <div class="input-group m-1 mt-3">
+                
             </div>
             <div class="input-group m-1 mt-3">
                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Occupation</span>
                 <input type="text" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Occupation">
             </div>
-        
         </div>
+
+        <div class="tab" style="display:none;">
+            
+        </div>
+
+        <div class="input-group mt-3 m-1">
+            <button class="btn p-3 rounded-3 form-control" id="prev" onclick="nextprev(-1)" style="background-color: #1da453; color: white; display: none;">Previous</button>
+            <button class="btn p-3 rounded-3 form-control" id="next" onclick="nextprev(1)" style="background-color: #1da453; color: white;">Next</button>
+        </div>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        var currentTab = 0;;
+        showTab(currentTab);
+
+        function showTab(n) {
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            if (n == 0) {
+                document.getElementById("prev").style.display = "none";
+                document.getElementById("next").style.marginLeft = "0px";
+            } else {
+                document.getElementById("next").style.marginLeft = "10px";
+                document.getElementById("prev").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("next").innerHTML = "Submit";
+            } else {
+                document.getElementById("next").innerHTML = "Next";
+            }
+        }
+
+        function nextprev(n) {
+            
+            var x = document.getElementsByClassName("tab");
+            x[currentTab].style.display = "none";
+            currentTab = currentTab + n;
+            if (currentTab >= x.length) {
+                alert("Form submitted!");
+                return false;
+            }
+        
+            showTab(currentTab);
+        }
+    </script>
 </body>
 </html>
