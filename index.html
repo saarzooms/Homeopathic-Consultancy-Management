@@ -16,15 +16,22 @@
 <body style="background-color: #0b6e4f;">
     <nav class="navbar shadow navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand me-auto fs-4" id="spmsbranding" href="index.html">IDEAL</a>
-            <div class="d-flex align-items-center justify-content-center w-50 position-relative">
-                <input type="text" class="searchbar w-100" placeholder="Search" aria-label="Search">
+            <a class="navbar-brand me-auto " id="spmsbranding" href="index.html">IDEAL</a>
+            <div class="d-flex align-items-center justify-content-center w-50 position-relative searchbar ">
+                <input type="text" class="searchbar w-100" placeholder="Search" aria-label="Search"> 
+                 
+                <button class="btn rounded-5 " id="searchbutton"> 
+                    <i style="color: white;" class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+
+
             </div>
-            <a href="details.html" class="btn login-button ms-auto position-relative fs-4">
-                <img src="Images And Icons/add_patient.png" style="height: 4vh; opacity: 85%; transform: translateY(-1%);" alt="">
+            <a href="details.html" class="btn login-button  ms-auto position-relative fs-4">
+                <img class="nav-buttons" src="Images And Icons/add_patient.png" style="height: 4vh; opacity: 85%; transform: translateY(-1%);" alt="">
             </a>
-            <a href="profile.html" class="btn login-button position-relative fs-4">
-                <img src="Images And Icons/user-doctor-solid.svg" style="height: 4vh; opacity: 85%; transform: translateY(-9%);" alt="">
+            <a href="profile.html" class="btn login-button  position-relative fs-4">
+                <img class="nav-buttons" src="Images And Icons/user-doctor-solid.svg" style="height: 4vh; opacity: 85%; transform: translateY(-9%);" alt="">
             </a>
         </div>
     </nav>
@@ -37,8 +44,9 @@
                   <tr>
                     <th scope="col">Case No.</th>
                     <th scope="col">File No.</th>
-                    <th scope="col">Date</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Mobile No.</th>
+                    <th scope="col">Last Visited</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -46,15 +54,18 @@
                   <tr>
                     <td>1</td>
                     <td>111</td>
-                    <td>30-10-2004</td>
                     <td>Umang Hirani</td>
+                    <td>7984940336</td>
+                    <td>30-10-2004</td>
                     <td>
                         <div class="btn-container">
-                            <button class="btn rounded-2 mb-1 mt-1" style="background-color: #d1d3ab;">Edit</button>
-                            <button class="btn rounded-2 mb-1 mt-1" style="background-color: #0b6e4f; color: white;">Checkup</button>
+                            <button class="btn rounded-4 mb-1 mt-1 w-100 edit-button action-button" style="background-color: #d1d3ab;"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn rounded-4 mb-1 mt-1 w-100 add-button action-button" style="background-color: #0b6e4f; color: white;"><i class="fa-solid fa-notes-medical"></i></button>
                         </div>
                     </td>
                   </tr>
+
+
                 </tbody>
             </table>
         </div>

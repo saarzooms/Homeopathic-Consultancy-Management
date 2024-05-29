@@ -15,7 +15,8 @@
 }
 
 .navbar {
-    background-color: #d1d3ab;
+    background-image: radial-gradient(circle farthest-side,#d1d3abea 10% ,#d1d3ab 100%);
+
     height: 80px;
     margin: 15px;
     border-radius: 35px;
@@ -35,6 +36,7 @@ a {
 
 #spmsbranding {
     margin-left: 10px;
+    font-size: 27px;
 }
 
 .searchbar {
@@ -45,9 +47,10 @@ a {
     border: none;
     opacity: 100%;
     font-size: 17.5px;
-    padding: 8px 20px;
+    padding: 7px 10px;
     border-radius: 50px;
     transition: 0.3s background-color;
+    margin-left: 10px;
 }
 
 .searchbar:focus {
@@ -83,6 +86,7 @@ a {
     .searchbar {
         /* padding: 3px 6px; */
         font-size: 14px;
+  
     }
 
     .login-button {
@@ -94,8 +98,13 @@ a {
         font-size: 1.5rem;
     }
     #spmsbranding {
-        font-size: 10px;
+        font-size: 20px;
+        /* color: white; */
     }
+    .nav-buttons{
+
+    }
+
 }
 
 
@@ -108,4 +117,27 @@ a {
 
 }
 
+}
+
+#searchbutton{
+    transition: all 0.2s ease;
+    background-image: radial-gradient(rgba(16, 90, 67, 0), #1eb3849f);
+
+
+
+}
+
+#searchbutton:hover{
+    border: solid 2px #d1d3ab85;
+    background-color: rgba(6, 55, 40, 0.529);
+    background-image: radial-gradient(#d1d3ab00, #d1d3ab46,#d1d3ab8b);
+    color: #08a045;
+
+    
+}
+
+.login-button:hover{
+    opacity: 75%;
+    
+    transition: all 0.5s;
 }
