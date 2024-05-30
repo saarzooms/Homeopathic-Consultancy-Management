@@ -1,19 +1,20 @@
 body {
-    background-color: #f8f9fa;
+    background-color: #3e5e7d;
 }
 
 .input-group {
     max-width: 100%;
-    margin: auto;
+    /* margin: auto; */
     border: none;
     
 }
 
-.form-control {
+.form-control  {
     border-radius: 0 0.375rem 0.375rem 0;
+    
 }
 
-.input-group-text {
+.input-group-text ,.name-label {
     border-radius: 0.375rem 0 0 0.375rem;
     background-color: #0b6e4f;
     color: white;
@@ -25,11 +26,19 @@ body {
 .input-group-text.fixed-width {
     width: 150px; /* Fixed width for the input-group-text elements */
 }
+.form-control:focus, .form-select:focus {
+    outline: none; /* Ensure no outline on focus */
+    /* Optional: Add your own styles */
+    box-shadow: none; /* Remove any box-shadow if present */
+}
+.input-group-text:focus{
 
-
-.btn-group .btn-outline-primary {
-    border: none; /* Remove border from the label */
-    padding: 10px 20px; /* Adjust padding as needed */
-    background-color: #ffffff; /* Custom background color */
-    color: #000; /* Custom text color */
+    outline: none; /* Ensure no outline on focus */
+    /* Optional: Add your own styles */
+    box-shadow: none; /* Remove any box-shadow if present */
+}
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
