@@ -42,3 +42,41 @@ body {
     box-shadow: none !important;
     border: none !important;
 }
+
+
+.btn-checker:hover{
+
+    background-color: bisque !important;
+    color: #073426 !important;
+    transition: all 0.5s ease;
+
+
+
+}
+.btn-checker:checked{
+
+    background-color: bisque !important;
+
+
+}
+.btn-checker{
+
+    /* background-color: rgba(255, 228, 196, 0.131); */
+    margin:5px ;
+
+}
+#clear-selection-button:hover{
+
+    background-color: red;
+    color: bisque;
+    
+
+}
+#clear-selection-button{
+
+    background-color: rgba(255, 0, 0, 0.102);
+    margin:5px ;
+    color: red;
+    transition: all 0.5s ease;
+
+}
