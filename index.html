@@ -27,17 +27,19 @@
 
 
             </div>
-            <a href="details.html" class="btn  rounded-5 ms-auto position-relative fs-4">
+            <a href="details.html" id="tooltip" class="btn  rounded-5 ms-auto position-relative fs-4">
+                <span id="tooltiptext">Enter Patient Details</span>
                 <img class="nav-buttons" src="Images And Icons/add_patient.png" style="height: 25px; opacity: 85%; transform: translateY(-7%);" alt="">
             </a>
 
             <!-- Example single danger button -->
 <div class="btn-group border-0 rounded-5">
-    <button type="button" class="btn rounded-5 " data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" id="tooltip" class="btn rounded-5 " data-bs-toggle="dropdown" aria-expanded="false">
+        <span id="tooltiptext">Account</span>
         <img class="nav-buttons" src="Images And Icons/user-doctor-solid.svg" style="height: 25px; opacity: 85%; transform: translateY(-9%);" alt="">
     </button>
     <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
-      <li><a class="dropdown-item p-2 rounded-3" style="text-align: right;" href="#">Profile</a></li>
+      <li><i class="fa-solid fa-user-doctor"></i><a class="dropdown-item p-2 rounded-3" style="text-align: right;" href="profile.html">Profile</a></li>
       <li><a class="dropdown-item p-2 rounded-3" style="text-align: right;" href="#"> <i style="font-size: 13px;" class="fa-solid fa-gear"></i> Settings </i></a></li>
       <!-- <li><a class="dropdown-item" style="text-align: right;" href="#">Something else here</a></li> -->
       <li><hr class="dropdown-divider"></li>
