@@ -27,10 +27,13 @@
 
 
             </div>
-            <a href="details.html" class="btn login-button  ms-auto position-relative fs-4">
+            <a href="details.html" id="tooltip" class="btn login-button  ms-auto position-relative fs-4">
+                <span id="tooltiptext">Enter Patient Details</span>
                 <img class="nav-buttons" src="Images And Icons/add_patient.png" style="height: 4vh; opacity: 85%; transform: translateY(-1%);" alt="">
             </a>
-            <a href="profile.html" class="btn login-button  position-relative fs-4">
+            <a href="profile.html" id="tooltip" class="btn login-button  position-relative fs-4">
+                <span id="tooltiptext">Account</span>
+
                 <img class="nav-buttons" src="Images And Icons/user-doctor-solid.svg" style="height: 4vh; opacity: 85%; transform: translateY(-9%);" alt="">
             </a>
         </div>
@@ -39,7 +42,7 @@
 
     <div class="bg-white mx-3 rounded-3 text-align-center p-3 fs-6">
         <div class="table-responsive">
-            <table class="table table-striped p-3">
+            <table  id="table" class="table table-striped p-3">
                 <thead>
                   <tr>
                     <th scope="col">Case No.</th>
@@ -59,8 +62,8 @@
                     <td>30-10-2004</td>
                     <td>
                         <div class="btn-container">
-                            <button class="btn rounded-4 mb-1 mt-1 w-100 edit-button action-button" style="background-color: #d1d3ab;"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <a class="btn rounded-4 mb-1 mt-1 w-100 add-button action-button" href="checkup-page.html" style="background-color: #0b6e4f; color: white;"><i class="fa-solid fa-notes-medical"></i></a>
+                            <button id="tooltip" class="btn rounded-4 mb-1 mt-1 w-100 edit-button action-button" style="background-color: #d1d3ab;"> <span id="tooltiptext">Edit Patient Details</span> <i class="fa-solid fa-pen-to-square"></i></button>
+                            <a id="tooltip" class="btn rounded-4 mb-1 mt-1 w-100 add-button action-button" href="checkup-page.html" style="background-color: #0b6e4f; color: white;"> <span id="tooltiptext">Patient Checkup</span><i class="fa-solid fa-notes-medical"></i></a>
                         </div>
                     </td>
                   </tr>
