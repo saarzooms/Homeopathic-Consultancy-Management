@@ -50,7 +50,12 @@
                     </div>
 
                 </div>
-                <button class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #019fdee6; color: bisque;">PAYMENT <img src="Images And Icons/arrow-right-solid (1).svg"  style="height: 10px; opacity: 100%; transform: translateY(-15%);"  alt=""></button>
+                <div>
+                    
+                    
+                </div>
+                <button id="payment-button" class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #019fdece; color: bisque;">PAYMENT <img src="Images And Icons/arrow-right-solid (1).svg"  style="height: 10px; opacity: 100%; transform: translateY(-15%);"  alt=""></button>
+                <!-- <a href="payment.html" class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #019fdee6; color: bisque;">PAYMENT <img src="Images And Icons/arrow-right-solid (1).svg"  style="height: 10px; opacity: 100%; transform: translateY(-15%);"  alt=""></a> -->
 
 
             </div>
@@ -102,6 +107,15 @@
     </div>
 
     <script>
+
+
+        
+    document.getElementById("payment-button").onclick = function () {
+        location.href = "payment.html";
+    };
+
+
+
         function addInputFields() {
             var div = document.createElement('div');
             div.setAttribute('class', 'input-group mt-3');
