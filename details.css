@@ -80,3 +80,29 @@ body {
     transition: all 0.5s ease;
 
 }
+
+
+
+@media only screen and (max-width: 768px){
+
+    .img-div {
+/* 
+        margin-bottom: 20px !important;
+        margin-bottom: auto !important;
+        padding-top: 15px !important; */
+        padding-bottom: 15px !important;
+
+
+        /* height: min- !important; */
+
+
+        
+
+
+
+
+        padding-right: 0px !important;
+
+    }
+
+}
