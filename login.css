@@ -1,16 +1,16 @@
-#profile {
+/* #profile {
     background-color: #08a045;
-}
+} */
 
 
 .input-group {
     max-width: 100%;
     border: none;
-}
+} 
 
 .form-control {
     border-radius: 0.375rem;
-    width: 100%; /* Ensure full width of parent */
+    width: 100%; 
 }
 
 .input-group-text, .name-label {
@@ -23,6 +23,37 @@
 }
 
 .right-box .form-floating {
-    width: 100%; /* Ensure the form-floating div takes full width */
-    margin-bottom: 1rem; /* Add some margin between input fields */
+    width: 100%;
+    margin-bottom: 1rem; 
+}
+
+
+@media only screen and (max-width: 768px){
+
+    .left-box{
+        height: 100px;
+        overflow: hidden;
+        /* margin-left: 10px; */
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 00px;
+        border-radius: 20px;
+        /* margin-bottom: 5px; */
+        /* margin-top: 10px; */
+    }
+    #welcome-back{
+        /* margin-top: 0px; */
+        /* text-align: center;
+        margin: -9px; */
+        
+    }
+    /* .right-box{
+        margin: 10px;
+        padding-left: 0px;
+
+    } */
+}
+
+.floating-labels{
+    background-color:transparent;
 }
