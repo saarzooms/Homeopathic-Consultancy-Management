@@ -11,7 +11,7 @@
 <!-- <body style="background-image: linear-gradient(#125e21,#263a2a)"> -->
 <body style="    background-image: radial-gradient(circle farthest-side,#125720 45% ,#263a2a 100%);
 ">
-    <form action="">
+
         <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100" >
 
             <div class="border-0  rounded-4 p-4 bg-white  ">
@@ -31,13 +31,13 @@
     
                             <div id="doctor" class="row align-items-center ">
                                 <div class="form-floating ">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" >
+                                    <input type="text" class="form-control" id="email" placeholder="name@example.com" required>
                                     <label  class="floating-labels" for="floatingInput" style="margin-left: 10px;">Email address</label>
                                 </div>
                                 <div class="form-floating mt-3">
-                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                    <input type="password" class="form-control" id="pass" placeholder="Password" required>
                                     <label class="floating-labels" for="floatingPassword" style="margin-left: 10px;">Password</label>
-                                    <button style="border: none; ; border-radius: 10px; background-color:#263a2a; color:white;width:100%" class="mt-3 p-3 submit-button-login">Login</button>
+                                    <button style="border: none; ; border-radius: 10px; background-color:#263a2a; color:white;width:100%" class="mt-3 p-3 submit-button-login" onclick="submit()">Login</button>
                                 </div>
     
                             </div>
@@ -51,6 +51,21 @@
     
         </div>
     
-    </form>
+    <script>
+        
+        function submit(){
+            var email = document.getElementById("email").value;
+        var pass = document.getElementById("pass").value;
+        
+            var email_final = "admin";
+        var pass_final = "admin";
+            if(email==email_final && pass==pass_final){
+                window.location.href = "index.html";
+            }
+            else{
+                alert ("Invalid Credentials!");
+            }
+        }
+    </script>
 </body>
 </html>
