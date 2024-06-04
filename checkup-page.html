@@ -54,18 +54,20 @@
                     </div>
                 </div>
 
-                <div class="rounded-3 p-3 mt-3" id="input-fields" style="background-color: #d1d3ab;">
+                <div class="rounded-3 p-3 mt-3" style="background-color: #d1d3ab;">
 
                     <div style="max-height: 20vh;overflow-y: auto;" >
 
-                        <div class="input-group" style="max-height: 20vh;overflow-y: scroll;">
-                            <span class="input-group-text w-100 rounded-3 p-3 border-0" id="inputGroup-sizing-default" style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
-                    
-                            <div class="input-group mt-3 input-group-custom">
-                                <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" id="medicine-input" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff7a;color: black;">
-                                <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" id="dose-input" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff85;color: black;">
-                                <button class="form-control p-3 border-0 rounded-3 me-auto" id="remove" onclick="removeInputFields()" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
-                                <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" id="add" style="background-color: #1da453;color: bisque;">+</button>
+                        <div id="input-fields">
+                            <div class="input-group" style="max-height: 20vh;">
+                                <span class="input-group-text w-100 rounded-3 p-3 border-0" id="inputGroup-sizing-default" style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
+                        
+                                <div class="input-group mt-3 input-group-custom">
+                                    <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" id="medicine-input" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff7a;color: black;">
+                                    <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" id="dose-input" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff85;color: black;">
+                                    <button type="button" class="form-control p-3 border-0 rounded-3 me-auto" id="remove" onclick="removeInputFields()" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
+                                    <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" id="add" style="background-color: #1da453;color: bisque;">+</button>
+                                </div>
                             </div>
                         </div>
 
@@ -246,29 +248,24 @@
             location.href = "details.html";
         };
 
+        
         function addInputFields() {
-            var div = document.createElement('div');
-            div.setAttribute('class', 'input-group mt-3');
-            
-            var input1 = document.createElement('input');
-            input1.setAttribute('type', 'text');
-            input1.setAttribute('name', 'medicine[]');
-            input1.setAttribute('class', 'form-control p-3 border-0 rounded-3 me-auto');
-            input1.setAttribute('placeholder', 'Enter Medicine');
-            input1.setAttribute('style', 'background-color: #ffffff7a; color: black; max-width: 49%;');
-            
-            var input2 = document.createElement('input');
-            input2.setAttribute('type', 'text');
-            input2.setAttribute('name', 'dose[]');
-            input2.setAttribute('class', 'form-control p-3 border-0 rounded-3 ms-auto');
-            input2.setAttribute('placeholder', 'Enter Dose');
-            input2.setAttribute('style', 'background-color: #ffffff85; color: black; max-width: 49%;');
-
-            div.appendChild(input1);
-            div.appendChild(input2);
-
-            document.getElementById('input-fields').appendChild(div);
+            var container = document.getElementById('input-fields');
+            var newDiv = document.createElement('div');
+            newDiv.classList.add('input-group', 'mt-3', 'input-group-custom');
+            newDiv.innerHTML = `
+                <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" name="medicine[]" placeholder="Enter Medicine" aria-label="Enter Medicine" style="background-color: #ffffff7a;color: black;">
+                <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" name="dose[]" placeholder="Enter Dose" aria-label="Enter Dose" style="background-color: #ffffff85;color: black;">
+                <button class="form-control p-3 border-0 rounded-3 me-auto" onclick="removeInputFields(this)" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
+                <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" style="background-color: #1da453;color: bisque;">+</button>
+            `;
+            container.appendChild(newDiv);
         }
+
+        function removeInputFields(button) {
+            button.parentElement.remove();
+        }
+    
 
         function removeInputFields() {
             var inputFields = document.getElementById('input-fields').children;
