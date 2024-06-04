@@ -57,17 +57,33 @@
                 <div class="rounded-3 p-3 mt-3" id="input-fields" style="background-color: #d1d3ab;">
                     <div class="input-group">
                         <span class="input-group-text w-100 rounded-3 p-3 border-0" id="inputGroup-sizing-default" style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
-
-                        <div class="input-group mt-3">
-                            <button class="form-control p-3 border-0 rounded-3 me-auto" id="remove" onclick="removeInputFields()" style="background-color: rgba(255, 0, 0, 0.521); max-width: 49%; color: bisque;">-</button>
-                            <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" id="add" style="background-color: #1da453;color: bisque; max-width: 49%;">+</button>
-                        </div>
-                        <div class="input-group mt-3">
-                            <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" id="medicine-input" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff7a;color: black; max-width: 49%;">
-                            <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" id="dose-input" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff85;color: black; max-width: 49%;">
+                
+                        <div class="input-group mt-3 input-group-custom">
+                            <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" id="medicine-input" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff7a;color: black;">
+                            <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" id="dose-input" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff85;color: black;">
+                            <button class="form-control p-3 border-0 rounded-3 me-auto" id="remove" onclick="removeInputFields()" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
+                            <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" id="add" style="background-color: #1da453;color: bisque;">+</button>
                         </div>
                     </div>
                 </div>
+                
+                <style>
+                    .input-group-custom {
+                        display: flex;
+                        gap: 1rem;
+                    }
+                
+                    .input-group-custom button {
+                        flex: 1;
+                        max-width: 10%;
+                    }
+                
+                    .input-group-custom input {
+                        flex: 1;
+                        max-width: 42%;
+                    }
+                </style>
+                
                 <div>
                 </div>
                 <button id="payment-button" class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #019fdece; color: bisque;">PAYMENT <img src="Images And Icons/arrow-right-solid (1).svg" style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt=""></button>
@@ -79,7 +95,9 @@
                     <img src="Images And Icons/clock-rotate-left-solid (3).svg" style="height: 25px; opacity: 95%;" alt="">
                 </div>
 
-                <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
+                <div class="history-div rounded-3" style="max-height: 79.89vh; overflow-y: scroll;">
+                    
+                <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
                     <div class="input-group">
                         <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
                         <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
@@ -95,7 +113,7 @@
                     </div>
                 </div>
 
-                <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
+                <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
                     <div class="input-group">
                         <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
                         <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
@@ -110,6 +128,25 @@
                         </span>
                     </div>
                 </div>
+
+                
+                <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
+                    <div class="input-group">
+                        <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
+                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas asperiores dolores maiores fugit facilis ipsam ab, aliquam voluptate iusto laboriosam, nemo provident quae ad culpa! Aliquam et voluptate facere. Deleniti!</p>
+                        </span>
+                        <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                        </span>
+                    </div>
+                </div>
+                </div>
+
 
             </div>
         </div>
