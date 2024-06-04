@@ -57,10 +57,17 @@
             var email = document.getElementById("email").value;
         var pass = document.getElementById("pass").value;
         
-            var email_final = "admin";
-        var pass_final = "admin";
+            var email_final = "doctor";
+        var pass_final = "doctor";
             if(email==email_final && pass==pass_final){
                 window.location.href = "index.html";
+            }
+            else{
+                alert ("Invalid Credentials!");
+            }
+
+            if(email=="admin" && pass=="admin"){
+                window.location.href = "admin.html";
             }
             else{
                 alert ("Invalid Credentials!");
