@@ -55,16 +55,23 @@
                 </div>
 
                 <div class="rounded-3 p-3 mt-3" id="input-fields" style="background-color: #d1d3ab;">
-                    <div class="input-group">
-                        <span class="input-group-text w-100 rounded-3 p-3 border-0" id="inputGroup-sizing-default" style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
-                
-                        <div class="input-group mt-3 input-group-custom">
-                            <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" id="medicine-input" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff7a;color: black;">
-                            <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" id="dose-input" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff85;color: black;">
-                            <button class="form-control p-3 border-0 rounded-3 me-auto" id="remove" onclick="removeInputFields()" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
-                            <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" id="add" style="background-color: #1da453;color: bisque;">+</button>
+
+                    <div style="max-height: 20vh;overflow-y: auto;" >
+
+                        <div class="input-group" style="max-height: 20vh;overflow-y: scroll;">
+                            <span class="input-group-text w-100 rounded-3 p-3 border-0" id="inputGroup-sizing-default" style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
+                    
+                            <div class="input-group mt-3 input-group-custom">
+                                <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" id="medicine-input" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff7a;color: black;">
+                                <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" id="dose-input" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff85;color: black;">
+                                <button class="form-control p-3 border-0 rounded-3 me-auto" id="remove" onclick="removeInputFields()" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
+                                <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" id="add" style="background-color: #1da453;color: bisque;">+</button>
+                            </div>
                         </div>
+
+
                     </div>
+
                 </div>
                 
                 <style>
@@ -100,10 +107,10 @@
                 <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
                     <div class="input-group">
                         <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
-                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque;">
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas asperiores dolores maiores fugit facilis ipsam ab, aliquam voluptate iusto laboriosam, nemo provident quae ad culpa! Aliquam et voluptate facere. Deleniti!</p>
                         </span>
-                        <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                        <span class="p-3 border-0 rounded-3 w-100 mt-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque;">
                             <p>Medicine No. 1 x 3 Dose</p>
                             <p>Medicine No. 1 x 3 Dose</p>
                             <p>Medicine No. 1 x 3 Dose</p>
@@ -112,14 +119,13 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
                     <div class="input-group">
                         <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
-                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque;">
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas asperiores dolores maiores fugit facilis ipsam ab, aliquam voluptate iusto laboriosam, nemo provident quae ad culpa! Aliquam et voluptate facere. Deleniti!</p>
                         </span>
-                        <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                        <span class="p-3 border-0 rounded-3 w-100 mt-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque;">
                             <p>Medicine No. 1 x 3 Dose</p>
                             <p>Medicine No. 1 x 3 Dose</p>
                             <p>Medicine No. 1 x 3 Dose</p>
@@ -128,23 +134,27 @@
                         </span>
                     </div>
                 </div>
+                <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
+                    <div class="input-group">
+                        <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
+                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque;">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas asperiores dolores maiores fugit facilis ipsam ab, aliquam voluptate iusto laboriosam, nemo provident quae ad culpa! Aliquam et voluptate facere. Deleniti!</p>
+                        </span>
+                        <span class="p-3 border-0 rounded-3 w-100 mt-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque;">
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                            <p>Medicine No. 1 x 3 Dose</p>
+                        </span>
+                    </div>
+                </div>
+                
+
+
 
                 
-                <div class="justify-content-center history-div align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
-                    <div class="input-group">
-                        <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 27px;">30/10/2004</span>
-                        <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas asperiores dolores maiores fugit facilis ipsam ab, aliquam voluptate iusto laboriosam, nemo provident quae ad culpa! Aliquam et voluptate facere. Deleniti!</p>
-                        </span>
-                        <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
-                            <p>Medicine No. 1 x 3 Dose</p>
-                            <p>Medicine No. 1 x 3 Dose</p>
-                            <p>Medicine No. 1 x 3 Dose</p>
-                            <p>Medicine No. 1 x 3 Dose</p>
-                            <p>Medicine No. 1 x 3 Dose</p>
-                        </span>
-                    </div>
-                </div>
+
                 </div>
 
 
