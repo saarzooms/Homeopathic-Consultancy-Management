@@ -9,33 +9,41 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
-   
-    <div class="container d-flex align-items-center justify-content-center rounded-3 p-3 m-5 vh-100 bg-black">
-        <form>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Name:</label>
-              <input type="text" class="form-control" id="recipient-name">
+<body style="background-color: #0b6e4f;">
+    <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <div class="border-0 w-100 rounded-5 p-5  shadow box-area" style="background-color: #d1d3ab;">
+
+            <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <!-- <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text"></textarea> -->
+                    <label >Role</label>
+                    <select class="form-select mt-1" aria-label="Gender select" style="border-top-right-radius:8px;border-bottom-right-radius:8px">
+                        <option selected>Choose Role</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="receptionist">Receptionist</option>
+                        <option value="admin">Admin</option>
+                        <option value="other">Other</option>
+                    </select>
+                  </div>
+                <div class="mb-3">
+                  <label for="mobile" class="col-form-label">Moblie No.</label>
+                  <input type="number" class="form-control" id="mobile">
+        
+                </div>
+
+                <button class="rounded-3 p-3  border-0 w-100" style="background-color: #1da453; color: white; font-weight: 500;">SAVE <i class="fa-solid fa-check"></i></button>
+
+              </form>
+
+           
             </div>
-            <div class="mb-3">
-                <!-- <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea> -->
-                <label >Occupation:</label>
-                <select class="form-select mt-1" aria-label="Gender select" style="border-top-right-radius:8px;border-bottom-right-radius:8px">
-                    <option selected>Choose Occupation</option>
-                    <option value="male">Doctor</option>
-                    <option value="female">Receptionist</option>
-                    <option value="other">Other</option>
-                </select>
-              </div>
-            <div class="mb-3">
-              <label for="mobile" class="col-form-label">Moblie No.</label>
-              <input type="number" class="form-control" id="mobile">
-    
-            </div>
-          </form>
-    
-    </div>
+        </div>
 
 
 </body>
