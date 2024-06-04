@@ -250,7 +250,7 @@
 
       <div class="modal fade" id="labtest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content" style="background-color: d1d3ab;">
+          <div class="modal-content" style="background-color: #ffffff;">
             <div class="modal-header" style="background-color: #0b6e4f;">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Add Lab Test</h5>
               <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
@@ -263,14 +263,18 @@
                   <p>Biopsy</p>
                   <p>Urine Test</p>
                   <p>Stool Test</p>
-                </div>
                 
+                <button type="button" class="btn btn-success" id="labtest" onclick="test()">Add Lab Test</button>
+                <button type="button" id="remove" class="btn" style="background-color: #9d2919; color:white; display:none" onclick="remove()">Remove</button>
+            </div>
+                </div>
+              
               </form>
             </div>
             <div class="modal-footer"  style="background-color: #0b6e4f;">
               <button type="button" class="btn btn-light" data-bs-dismiss="modal" style="background-color: #d1d3ab;">Close</button>
               <button type="button" class="btn" style="background-color: #1da453; color:white">Add</button>
-            </div>
+              
           </div>
         </div>
       </div>
@@ -284,6 +288,34 @@
 button.addEventListener("click", function () {
   document.querySelector("#sidebar").classList.toggle("expand");
 });
+
+function test() {
+  event.preventDefault();
+
+  var container = document.createElement('div');
+  container.setAttribute('class', 'input-group mb-3');
+
+  var input1 = document.createElement('input');
+  input1.setAttribute('type', 'text');
+  input1.setAttribute('name', 'labtest');
+  input1.setAttribute('class', 'form-control p-3 border-0 rounded-3 me-auto ');
+  input1.setAttribute('placeholder', 'Enter New Lab Test');
+
+  var removeButton = document.createElement('button');
+  removeButton.setAttribute('class', 'btn btn-danger');
+  removeButton.setAttribute('type', 'button');
+  removeButton.innerHTML = 'Remove';
+  removeButton.onclick = function() {
+      container.remove();
+  };
+
+  container.appendChild(input1);
+  container.appendChild(removeButton);
+
+  document.querySelector('#labtest .modal-body .mb-3').appendChild(container);
+}
+
+   
     </script>
 </body>
 
