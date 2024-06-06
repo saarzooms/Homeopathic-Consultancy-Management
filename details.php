@@ -538,7 +538,7 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
                                 <textarea name="amelioration" class="form-control border-0"></textarea>         
                             </div>
                         </div>
-                        <div class="input-group  mt-3" id="labtest">
+                        <div class="input-group mt-3" id="labtest">
                             <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Lab Test</span> -->
                             <span class="input-group-text w-100 rounded-3 p-3 border-0 mb-3" id="inputGroup-sizing-default">Lab Tests</span>
 
@@ -601,7 +601,7 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
                 }
                 function addlab(){
     var container = document.createElement('div');
-    container.setAttribute('class', 'input-group mb-3');
+    container.setAttribute('class', 'input-group mt-3');
 
     // Create and add the select dropdown
     var select = document.createElement('select');
