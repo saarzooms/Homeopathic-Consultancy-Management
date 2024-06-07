@@ -74,25 +74,77 @@ try {
             $lab = $_POST['lab'];
             $remarks = $_POST['remarks'];
             $dt = $_POST['dt'];
-
+             
             for($i = 0; $i < count($lab); $i++) {
                 $lab_type = htmlspecialchars($lab[$i]);
                 $date_lab = htmlspecialchars($dt[$i]);
                 $remark = htmlspecialchars($remarks[$i]);
-                
-                $query = "INSERT INTO lab_test (caseno, lab, date, remarks) VALUES (:caseno, :lab, :date, :remarks)";
-                $lab_data = array(
-                    ':caseno' => $last_id,
-                    ':lab' => $lab_type,
-                    ':date' => $date_lab,
-                    ':remarks' => $remark
-                );
+                $target_dir = "uploads/$last_id";
+                if(!is_dir($target_dir)) 
+                {mkdir($target_dir, 77, true);}
 
-                $statement = $connect->prepare($query);
-                if($statement->execute($lab_data)){
-                    $message = '<div class="alert alert-success">Lab Results Added Successfully</div>';
+                $target_file = $target_dir . basename($_FILES["file"]["name"][$i]);
+                
+                
+                // File upload logic
+                $uploadOk = 1;
+                $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                $fileTmpName = $_FILES["file"]["tmp_name"][$i];
+                $fileSize = $_FILES["file"]["size"][$i];
+
+                // Check if file is an image or a pdf
+                $check = getimagesize($fileTmpName);
+                if ($check !== false || $fileType == "pdf") {
+                    $uploadOk = 1;
                 } else {
-                    $message = '<div class="alert alert-danger">Lab Results Not Added</div>';
+                    echo "File is not an image or pdf.";
+                    $uploadOk = 0;
+                }
+
+                // Check if file already exists
+                if (file_exists($target_file)) {
+                    echo "Sorry, file already exists.";
+                    $uploadOk = 0;
+                }
+
+                // Check file size
+                if ($fileSize > 5000000) {
+                    echo "Sorry, your file is too large.";
+                    $uploadOk = 0;
+                }
+
+                // Allow certain file formats
+                if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
+                    && $fileType != "gif" && $fileType != "pdf") {
+                    echo "Sorry, only JPG, JPEG, PNG, GIF & PDF files are allowed.";
+                    $uploadOk = 0;
+                }
+
+
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                    echo "Sorry, your file was not uploaded.";
+                } else {
+                    if (move_uploaded_file($fileTmpName, $target_file)) {
+                        $query = "INSERT INTO lab_test (caseno, lab, date, remarks, file) VALUES (:caseno, :lab, :date, :remarks, :file)
+                                  ON DUPLICATE KEY UPDATE file = VALUES(file)";
+                        $lab_data = array(
+                            ':caseno' => $last_id,
+                            ':lab' => $lab_type,
+                            ':date' => $date_lab,
+                            ':remarks' => $remark,
+                            ':file' => $target_file
+                        );
+
+                        $statement = $connect->prepare($query);
+                        if ($statement->execute($lab_data)) {
+                            echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"][$i])) . " has been uploaded.";
+                        } else {
+                            echo "Sorry, there was an error uploading your file data.";
+                        }
+                    } else {
+                        echo "Sorry, there was an error uploading your file.";
+                    }
                 }
             }
         } else {
@@ -102,6 +154,7 @@ try {
 } catch (PDOException $e) {
     $message = '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
 }
+echo $message;
 ?>
 
 
@@ -120,7 +173,7 @@ try {
         
         <div class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 " style="background-color: #d1d3ab;">
             
-                <form action="details.php" method="POST" id="detailsForm">
+                <form action="details.php" method="POST" id="detailsForm" enctype="multipart/form-data">
                     <div class="tab">
                         <div class="input-group ">
                             <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Name</span>
