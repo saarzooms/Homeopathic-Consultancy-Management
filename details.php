@@ -1,29 +1,24 @@
 <?php
 try {
-    
     $connect = new PDO("mysql:host=localhost;dbname=pdo", "root", "");
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $message = '';
 
-    
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        
         $query = "INSERT INTO test_details (name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
         weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, eye, face, nose, respiratory,
         cardiac, abdomen, menses, other, limb, back, skin, appetite, thirst, stool, urine, sleep, discharge, addiction, desire, aversion,
-        aggravation, amelioration, lab, remarks ) VALUES (:name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
+        aggravation, amelioration) VALUES (:name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
         :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :eye,
         :face, :nose, :respiratory, :cardiac, :abdomen, :menses, :other, :limb, :back, :skin, :appetite, :thirst, :stool, :urine, :sleep, :discharge,
-        :addiction, :desire, :aversion, :aggravation, :amelioration, :lab, :remarks)";
+        :addiction, :desire, :aversion, :aggravation, :amelioration)";
 
-        
-if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
-    
-    $mind = implode(",", $_POST["mind"]);
-} else {
-   
-    $mind = "";
-}
+        if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
+            $mind = implode(",", $_POST["mind"]);
+        } else {
+            $mind = "";
+        }
+
         $user_data = array(
             ':name'           => $_POST["name"],
             ':gender'         => $_POST["gender"],
@@ -69,14 +64,37 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
             ':desire'         => $_POST["desire"],
             ':aversion'       => $_POST["aversion"],
             ':aggravation'    => $_POST["aggravation"],
-            ':amelioration'   => $_POST["amelioration"],
-            ':lab'            => $_POST["lab"],
-            ':remarks'        => $_POST["remarks"]
+            ':amelioration'   => $_POST["amelioration"]
         );
 
         $statement = $connect->prepare($query);
         if ($statement->execute($user_data)) {
             $message = '<div class="alert alert-success">Registration Completed Successfully</div>';
+            $last_id = $connect->lastInsertId();
+            $lab = $_POST['lab'];
+            $remarks = $_POST['remarks'];
+            $dt = $_POST['dt'];
+
+            for($i = 0; $i < count($lab); $i++) {
+                $lab_type = htmlspecialchars($lab[$i]);
+                $date_lab = htmlspecialchars($dt[$i]);
+                $remark = htmlspecialchars($remarks[$i]);
+                
+                $query = "INSERT INTO lab_test (caseno, lab, date, remarks) VALUES (:caseno, :lab, :date, :remarks)";
+                $lab_data = array(
+                    ':caseno' => $last_id,
+                    ':lab' => $lab_type,
+                    ':date' => $date_lab,
+                    ':remarks' => $remark
+                );
+
+                $statement = $connect->prepare($query);
+                if($statement->execute($lab_data)){
+                    $message = '<div class="alert alert-success">Lab Results Added Successfully</div>';
+                } else {
+                    $message = '<div class="alert alert-danger">Lab Results Not Added</div>';
+                }
+            }
         } else {
             $message = '<div class="alert alert-danger">There is an error in Registration</div>';
         }
@@ -85,6 +103,7 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
     $message = '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
 }
 ?>
+
 
 
 
@@ -542,7 +561,7 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
                             <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Lab Test</span> -->
                             <span class="input-group-text w-100 rounded-3 p-3 border-0 mb-3" id="inputGroup-sizing-default">Lab Tests</span>
 
-                            <select style="" name="lab" id="option" class="form-select" aria-label="status-select">
+                            <select style="" name="lab[]" id="option" class="form-select" aria-label="status-select">
                                 <option selected>Select Lab Test</option>
                                 <option value="blood">Blood Test</option>
                                 <option value="stool">Stool Test</option>
@@ -550,18 +569,18 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
                                 <option value="genetic">Genetic Test</option>
                                 <option value="biopsy">Biopsy</option>
                             </select>
-            <input type="date" name="dob" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+            <input type="date" name="dt[]" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
 
-                            <input name="remarks" type="text" class="form-control border-0" id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
+                            <input name="remarks[]" type="text" class="form-control border-0" id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
                             <!-- <input type="file" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Occupation"> -->
                             
             <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default" style="border-top-left-radius:8px;border-bottom-left-radius:8px">DOB</span> -->
             
         
-                            <input class="form-control  p-3 bg-light border-0 " style="width: 50px;" type="file" name="" placeholder="" aria-label="" id="file-upload">
+                            <input class="form-control  p-3 bg-light border-0 " style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
                             
                                 <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
-                                <button class="btn btn-danger" onclick="deletelab()" type="button" id="">Delete</button>
+                                <button class="btn btn-danger" onclick="deletelab()" type="button" id=""><i class="fa-solid fa-trash"></i></button>
                                 <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04">Save</button>
                                 <button class="btn btn-primary" onclick="addlab()" type="button" id="">Add</button>
 
@@ -603,9 +622,8 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
     var container = document.createElement('div');
     container.setAttribute('class', 'input-group mt-3');
 
-    // Create and add the select dropdown
     var select = document.createElement('select');
-    select.setAttribute('name', 'lab');
+    select.setAttribute('name', 'lab[]');
     select.setAttribute('class', 'form-select');
     select.innerHTML = `
         <option selected>Select Lab Test</option>
@@ -617,31 +635,27 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
     `;
     container.appendChild(select);
 
-    // Create and add the date input
     var dateInput = document.createElement('input');
     dateInput.setAttribute('type', 'date');
-    dateInput.setAttribute('name', 'dob');
+    dateInput.setAttribute('name', 'dt[]');
     dateInput.setAttribute('class', 'form-control border-0');
-    dateInput.setAttribute('placeholder', 'Enter DOB');
+    dateInput.setAttribute('placeholder', 'Enter Date');
     container.appendChild(dateInput);
 
-    // Create and add the remarks input
     var remarksInput = document.createElement('input');
     remarksInput.setAttribute('type', 'text');
-    remarksInput.setAttribute('name', 'remarks');
+    remarksInput.setAttribute('name', 'remarks[]');
     remarksInput.setAttribute('class', 'form-control border-0');
     remarksInput.setAttribute('placeholder', 'Remarks');
     remarksInput.style.width = '400px';
     container.appendChild(remarksInput);
 
-    // Create and add the file input
     var fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('name', 'file');
+    fileInput.setAttribute('name', 'file[]');
     fileInput.setAttribute('class', 'form-control p-3 bg-light border-0');
     container.appendChild(fileInput);
 
-    // Create and add the delete button
     var deleteButton = document.createElement('button');
     deleteButton.setAttribute('class', 'btn btn-danger');
     deleteButton.setAttribute('type', 'button');
@@ -651,17 +665,16 @@ if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
     };
     container.appendChild(deleteButton);
 
-    // Create and add the save button
+
     var saveButton = document.createElement('button');
     saveButton.setAttribute('class', 'btn btn-success');
     saveButton.setAttribute('type', 'button');
     saveButton.innerHTML = 'Save';
     saveButton.onclick = function() {
-        // Add your save logic here
+        
     };
     container.appendChild(saveButton);
 
-    // Create and add the add button
     var addButton = document.createElement('button');
     addButton.setAttribute('class', 'btn btn-primary');
     addButton.setAttribute('type', 'button');
