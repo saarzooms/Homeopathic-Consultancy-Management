@@ -67,8 +67,7 @@
                         style="height: 25px; opacity: 85%; transform: translateY(-9%);" alt="">
                 </button>
                 <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
-                    <!-- <li><a class="dropdown-item p-2 rounded-3 w-100" style="text-align: right; " href="profile.html"><i  class="fa-solid fa-user-doctor"></i>..................... Profile</a></li>
-      <li><a class="dropdown-item p-2 rounded-3" style="text-align: right;" href="#"> <i style="font-size: 13px;" class="fa-solid fa-gear"></i> ..................Settings </i></a></li> -->
+                    
 
                     <li><a class="dropdown-item p-2 rounded-3 btn mb-1  profile-setting-button  justify-content-center d-flex "
                             href="doctor-profile.php">

@@ -69,7 +69,7 @@ body {
 }
 
 .sidebar-logo a {
-    color: #FFF;
+    color: #FFF !important;
     font-size: 1.15rem;
     font-weight: 600;
 }
@@ -86,7 +86,7 @@ body {
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
-    color: #FFF;
+    color: #FFF !important;
     display: block;
     font-size: 0.9rem;
     white-space: nowrap;
@@ -96,6 +96,7 @@ a.sidebar-link {
 .sidebar-link i {
     font-size: 1.1rem;
     margin-right: .75rem;
+    color: white;
 }
 
 a.sidebar-link:hover {

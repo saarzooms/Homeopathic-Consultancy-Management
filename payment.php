@@ -81,7 +81,7 @@
             </div>
 
             <div class="justify-content-center align-items-center mb-1 p-3 rounded-3 input-group-text-right" style="background-color: #d1d3ab; color: black !important;">
-                <span>Amount Previously Left to be paid:</span> <b>₹400.00</b>
+                <span>Amount Previously Left to be paid:</span> <b><?php echo "₹400.00" ?></b>
             </div>
 
             <div class="input-group mt-3">
@@ -94,7 +94,7 @@
             </div>
 
             <div class="justify-content-center align-items-center mb-1 p-3 rounded-3 mt-3 input-group-text-right" style="background-color: #d1d3ab; color: black !important;">
-                <span>Amount that will be left to be paid:</span> <b>₹400.00</b>
+                <span>Amount that will be left to be paid:</span> <b><?php echo "₹400.00" ?></b>
             </div>
 
             <button class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #1da453; color: white; font-weight: 500;">SAVE <i class="fa-solid fa-check"></i></button>

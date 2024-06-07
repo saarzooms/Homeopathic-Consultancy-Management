@@ -53,7 +53,7 @@
                             <div class="col-md-8" style="padding: 0px;">
                                 <div class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default"
                                     style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">
-                                    Umang Ketanbhai Hirani</div>
+                                    <?php  echo "Umang Ketanbhai Hirani" ?></div>
                                 <div class="p-3 border-0 rounded-3 w-100" id="inputGroup-sizing-default"
                                     style="background-color: #0b6e4f;color: bisque;">
                                     <div class="row">
@@ -66,9 +66,9 @@
                                         </div>
                                         <div style="text-align: justify;"
                                             class="col-md-7 mt-1 mb-1 align-items-center justify-content-center">
-                                            Case No - 100<br>
-                                            File No - 4<br>
-                                            7984940336
+                                            Case No - <?php echo "100" ?><br>
+                                            File No - <?php echo "4" ?><br>
+                                            <?php echo "7984940336" ?>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
 
                     <div class="history-div rounded-3" style="max-height: 45vh; overflow-y: scroll;">
 
-
+                    
 
 
                         <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">

@@ -89,20 +89,30 @@
                 </a>
             </div>
         </aside>
-    <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="border-0 w-100 rounded-5 p-5  shadow box-area" style="background-color: #d1d3ab;">
+        <!-- <br><br><br><br><br><br><br><br><br><br><br> -->
 
+        <div class="align-items-center mb-1 bg-white h-100 w-100 p-4 rounded-3" style="margin: 20px; display: block;">
+        
+        
             <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Name:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
+
+                <div class="row" style="padding: 0px;">
+
+
+                    <div class="col-md-4" >
+                        <div class="mb-3">
+                            <!-- <label for="recipient-name" class="col-form-label">Name:</label> -->
+                            <input placeholder="Name" type="text" class="form-control" id="recipient-name">
+                          </div>
+                    </div>
+                    <div class="col-md-4">
+                        
                 <div class="mb-3">
                     <!-- <label for="message-text" class="col-form-label">Message:</label>
                     <textarea class="form-control" id="message-text"></textarea> -->
-                    <label >Role</label>
-                    <select class="form-select mt-1" aria-label="Gender select" style="border-top-right-radius:8px;border-bottom-right-radius:8px">
+                    <!-- <label >Role</label> -->
+                    <select class="form-select " aria-label="Gender select" style="border-top-right-radius:8px;border-bottom-right-radius:8px">
                         <option selected>Choose Role</option>
                         <option value="doctor">Doctor</option>
                         <option value="receptionist">Receptionist</option>
@@ -110,19 +120,83 @@
                         <option value="other">Other</option>
                     </select>
                   </div>
-                <div class="mb-3">
-                  <label for="mobile" class="col-form-label">Moblie No.</label>
-                  <input type="number" class="form-control" id="mobile">
-        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <!-- <label for="mobile" class="col-form-label">Moblie No.</label> -->
+                            <input type="number" placeholder="Mobile Number" class="form-control" id="mobile">
+                  
+                          </div>
+                    </div>
+
+
+
+
+
+
+
                 </div>
 
                 <button class="rounded-3 p-3  border-0 w-100" style="background-color: #1da453; color: white; font-weight: 500;">SAVE <i class="fa-solid fa-check"></i></button>
 
               </form>
 
-           
+
+              <div class="table-responsive">
+                <table id="table" class="table table-striped p-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Mobile No.</th>
+                            <th scope="col">Actions</th>
+                            <!-- <th scope="col">Last Visited</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>121</td>
+                            <td>Jay Mangukiya</td>
+                            <td>8160844068</td>
+                            <!-- <td>22-10-2004</td> -->
+                            <td>
+                                <div class="btn-container">
+                                    <a id="tooltip" class="btn rounded-4 mb-1 mt-1 edit-button action-button"
+                                        href="#" style="background-color: #d1d3ab;">  <i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a id="tooltip" class="btn rounded-4 mb-1 mt-1  add-button action-button"
+                                        href="checkup-page.html" style="background-color: #0b6e4f; color: white;"> <i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+    
+    
+                    </tbody>
+                </table>
             </div>
+
+        
+        
         </div>
+
+        <!-- <div class=" mx-3 rounded-5" style="background-color: #d1d3ab; width: 60%;"> -->
+
+
+        <!-- <div class="align-items-center mb-1 bg-white h-100 w-100 p-4 rounded-3" style="margin: 20px;"></div> -->
+         <br>
+
+        <!-- <div class="align-items-center mb-1 bg-white h-100 w-100 p-4 rounded-3" style="margin: 20px; display: block;"></div> -->
+
+
+           
+
+
+
 <script>
   const button = document.querySelector(".toggle-btn");
 
