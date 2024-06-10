@@ -1,3 +1,38 @@
+<?php
+    // include 'config.php';
+    // session_start();
+    // $sql = "SELECT * from test_details where caseno = $caseno";
+    // $result = $conn->query($sql);
+    // $stmt = $conn->prepare($sql);
+    // $stmt->execute();
+    // $row = $result->fetch_assoc();
+   
+if(isset($_GET['caseno'])) {
+    $caseno = $_GET['caseno']; 
+    include 'config.php';
+    $sql = "SELECT * FROM test_details WHERE caseno = $caseno";
+    $stmt = $conn->prepare($sql);
+
+    if($stmt) {
+        // $stmt->bind_param("i", $caseno);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0) {
+
+            $row = $result->fetch_assoc();
+        } else {
+            echo "No patient found with case number $caseno";
+            exit;
+        }
+
+        
+    } 
+} else {
+    echo "Case number not provided";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +88,7 @@
                             <div class="col-md-8" style="padding: 0px;">
                                 <div class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default"
                                     style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">
-                                    <?php  echo "Umang Ketanbhai Hirani" ?></div>
+                                    <?php echo $row['name']; ?></div>
                                 <div class="p-3 border-0 rounded-3 w-100" id="inputGroup-sizing-default"
                                     style="background-color: #0b6e4f;color: bisque;">
                                     <div class="row">
@@ -66,9 +101,9 @@
                                         </div>
                                         <div style="text-align: justify;"
                                             class="col-md-7 mt-1 mb-1 align-items-center justify-content-center">
-                                            Case No - <?php echo "100" ?><br>
+                                            Case No - <?php echo $row['caseno'] ?><br>
                                             File No - <?php echo "4" ?><br>
-                                            <?php echo "7984940336" ?>
+                                            Mobile No - <?php echo $row['mobile'] ?>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +153,8 @@
                         <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
                     
                             <div class="input-group">
-                                <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">30/10/2004</span>
+                                <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;"><?php  echo $row['date']; ?></span>
+
                                 <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas asperiores dolores maiores fugit facilis ipsam ab, m, nemo provident quae ad  </p></span>
                                 <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p>Medicine No. 1 x 3 Doze</p><p>Medicine No. 1 x 3 Doze</p><p>Medicine No. 1 x 3 Doze</p><p>Medicine No. 1 x 3 Doze</p</span>
                             </div>
@@ -232,53 +268,57 @@
                 <div class="modal-body rounded-3" style="background-color: #d1d3ab;">
                     <div class="row p-2">
                         <div class="col-md-4">
-                            <p><strong>Name:</strong> <span id="modalName"></span></p>
-                            <p><strong>Gender:</strong> <span id="modalGender"></span></p>
-                            <p><strong>Age:</strong> <span id="modalAge"></span></p>
-                            <p><strong>DOB:</strong> <span id="modalDOB"></span></p>
-                            <p><strong>Marital Status:</strong> <span id="modalMaritalStatus"></span></p>
-                            <p><strong>Address:</strong> <span id="modalAddress"></span></p>
-                            <p><strong>Contact No.:</strong> <span id="modalContact"></span></p>
-                            <p><strong>Occupation:</strong> <span id="modalOccupation"></span></p>
-                            <p><strong>Height:</strong> <span id="modalHeight"></span></p>
-                            <p><strong>Weight:</strong> <span id="modalWeight"></span></p>
-                            <p><strong>Kgm Child:</strong> <span id="modalKgmChild"></span></p>
-                            <p><strong>Blood Pressure:</strong> <span id="modalBloodPressure"></span></p>
-                            <p><strong>Pulse:</strong> <span id="modalPulse"></span></p>
-                            <p><strong>Temperature:</strong> <span id="modalTemperature"></span></p>
-                            <p><strong>Present Complaint:</strong> <span id="modalPresentComplaint"></span></p>
+                            <p><strong>Name:</strong> <?php echo $row['name']?> <span id="modalName"></span></p>
+                            <p><strong>Gender:</strong> <?php echo $row['gender']?> <span id="modalGender"></span></p>
+                            <p><strong>Age:</strong> <?php echo $row['age']?> <span id="modalAge"></span></p>
+                            <p><strong>DOB:</strong> <?php echo $row['dob']?> <span id="modalDOB"></span></p>
+                            <p><strong>Marital Status:</strong> <?php echo $row['marital']?> <span id="modalMaritalStatus"></span></p>
+                            <p><strong>Address:</strong> <?php echo $row['address']?> <span id="modalAddress"></span></p>
+                            <p><strong>Contact No.:</strong> <?php echo $row['mobile']?> <span id="modalContact"></span></p>
+                            <p><strong>Occupation:</strong> <?php echo $row['occupation']?> <span id="modalOccupation"></span></p>
+                            <p><strong>Height:</strong> <?php echo $row['height']?> <span id="modalHeight"></span></p>
+                            <p><strong>Weight:</strong> <?php echo $row['weight']?> <span id="modalWeight"></span></p>
+                            <p><strong>Child:</strong> <?php echo $row['child']?> <span id="modalKgmChild"></span></p>
+                            <p><strong>Blood Pressure:</strong> <?php echo $row['bp']?> <span id="modalBloodPressure"></span></p>
+                            <p><strong>Pulse:</strong> <?php echo $row['pulse']?> <span id="modalPulse"></span></p>
+                            <p><strong>Temperature:</strong> <?php echo $row['temperature']?> <span id="modalTemperature"></span></p>
+                            <p><strong>Present Complaint:</strong> <?php echo $row['present']?> <span id="modalPresentComplaint"></span></p>
                         </div>
                         <div class="col-md-4">
-                            <p><strong>Past History:</strong> <span id="modalPastHistory"></span></p>
-                            <p><strong>Family History:</strong> <span id="modalFamilyHistory"></span></p>
-                            <p><strong>Suffering from any other disease:</strong> <span id="modalOtherDisease"></span>
+                            <p><strong>Past History:</strong> <?php echo $row['past']?> <span id="modalPastHistory"></span></p>
+                            <p><strong>Family History:</strong> <?php echo $row['family']?> <span id="modalFamilyHistory"></span></p>
+                            <p><strong>Suffering from any other disease:</strong> <?php echo $row['disease']?> <span id="modalOtherDisease"></span>
                             </p>
-                            <p><strong>Cause of disease if any:</strong> <span id="modalCauseOfDisease"></span></p>
-                            <p><strong>Head/Neck:</strong> <span id="modalHeadNeck"></span></p>
-                            <p><strong>Mouth/Tongue:</strong> <span id="modalMouthTongue"></span></p>
-                            <p><strong>Eye/Ear:</strong> <span id="modalEyeEar"></span></p>
-                            <p><strong>Face/Color:</strong> <span id="modalFaceColor"></span></p>
-                            <p><strong>Nose:</strong> <span id="modalNose"></span></p>
-                            <p><strong>Chest:</strong> <span id="modalChest"></span></p>
-                            <p><strong>Abdomen/Pelvis:</strong> <span id="modalAbdomenPelvis"></span></p>
-                            <p><strong>Genitalia:</strong> <span id="modalGenitalia"></span></p>
+                            <p><strong>Cause of disease if any:</strong> <?php echo $row['cause']?> <span id="modalCauseOfDisease"></span></p>
+                            <p><strong>Head/Neck:</strong> <?php echo $row['head']?> <span id="modalHeadNeck"></span></p>
+                            <!-- <p><strong>Mouth/Tongue:</strong> <?php echo $row['mouth']?> <span id="modalMouthTongue"></span></p> -->
+                            <p><strong>Eye/Ear:</strong> <?php echo $row['eye']?> <span id="modalEyeEar"></span></p>
+                            <p><strong>Face/Color:</strong> <?php echo $row['face']?> <span id="modalFaceColor"></span></p>
+                            <p><strong>Nose:</strong> <?php echo $row['nose']?> <span id="modalNose"></span></p>
+                            <p><strong>Respiratory:</strong> <?php echo $row['respiratory']?> <span id="modalChest"></span></p>
+                            <p><strong>Cardiac:</strong> <?php echo $row['cardiac']?> <span id="modalChest"></span></p>
+                        
+                            <p><strong>Abdomen/Pelvis:</strong> <?php echo $row['abdomen']?> <span id="modalAbdomenPelvis"></span></p>
+                            <p><strong>Menses:</strong> <?php echo $row['menses']?> <span id="modalGenitalia"></span></p>
+                            <p><strong>Other DIscharge:</strong> <?php echo $row['other']?> <span id="modalChest"></span></p>
+
                         </div>
                         <div class="col-md-4">
-                            <p><strong>Limb:</strong> <span id="modalLimb"></span></p>
-                            <p><strong>Back/Lumber:</strong> <span id="modalBackLumber"></span></p>
-                            <p><strong>Skin/Condition/Perspiration:</strong> <span
+                            <p><strong>Limb:</strong> <?php echo $row['limb']?> <span id="modalLimb"></span></p>
+                            <p><strong>Back/Lumber:</strong> <?php echo $row['back']?> <span id="modalBackLumber"></span></p>
+                            <p><strong>Skin/Condition/Perspiration:</strong> <?php echo $row['skin']?> <span
                                     id="modalSkinConditionPerspiration"></span></p>
-                            <p><strong>Appetite:</strong> <span id="modalAppetite"></span></p>
-                            <p><strong>Thirst:</strong> <span id="modalThirst"></span></p>
-                            <p><strong>Stool:</strong> <span id="modalStool"></span></p>
-                            <p><strong>Urine:</strong> <span id="modalUrine"></span></p>
-                            <p><strong>Sleep/Dream:</strong> <span id="modalSleepDream"></span></p>
-                            <p><strong>Discharge If Any:</strong> <span id="modalDischarge"></span></p>
-                            <p><strong>Addiction If Any:</strong> <span id="modalAddiction"></span></p>
-                            <p><strong>Desire:</strong> <span id="modalDesire"></span></p>
-                            <p><strong>Aversion:</strong> <span id="modalAversion"></span></p>
-                            <p><strong>Aggravation:</strong> <span id="modalAggravation"></span></p>
-                            <p><strong>Amelioration:</strong> <span id="modalAmelioration"></span></p>
+                            <p><strong>Appetite:</strong> <?php echo $row['appetite']?> <span id="modalAppetite"></span></p>
+                            <p><strong>Thirst:</strong> <?php echo $row['thirst']?> <span id="modalThirst"></span></p>
+                            <p><strong>Stool:</strong> <?php echo $row['stool']?> <span id="modalStool"></span></p>
+                            <p><strong>Urine:</strong> <?php echo $row['urine']?> <span id="modalUrine"></span></p>
+                            <p><strong>Sleep/Dream:</strong> <?php echo $row['sleep']?> <span id="modalSleepDream"></span></p>
+                            <p><strong>Discharge If Any:</strong> <?php echo $row['discharge']?> <span id="modalDischarge"></span></p>
+                            <p><strong>Addiction If Any:</strong> <?php echo $row['addiction']?> <span id="modalAddiction"></span></p>
+                            <p><strong>Desire:</strong> <?php echo $row['desire']?> <span id="modalDesire"></span></p>
+                            <p><strong>Aversion:</strong> <?php echo $row['aversion']?> <span id="modalAversion"></span></p>
+                            <p><strong>Aggravation:</strong> <?php echo $row['aggravation']?> <span id="modalAggravation"></span></p>
+                            <p><strong>Amelioration:</strong> <?php echo $row['amelioration']?> <span id="modalAmelioration"></span></p>
                         </div>
                     </div>
                 </div>
@@ -355,7 +395,7 @@
             }
         }
     </script>
-    <script>
+    <!-- <script>
         // Pseudo information
         var patientInfo = {
             name: "John Doe",
@@ -449,7 +489,7 @@
         // Call the fillModal function when needed
         fillModal();
 
-    </script>
+    </script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
