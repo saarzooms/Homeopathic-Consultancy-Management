@@ -29,8 +29,66 @@
 </head>
 
 <body style="background-color: #0b6e4f">
-    <nav class="navbar shadow navbar-expand-lg fixed-top">
-        <!-- Navbar content -->
+<nav class="navbar shadow navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto " id="spmsbranding" href="index.html">IDEAL</a>
+            <div class="d-flex align-items-center justify-content-center w-50 position-relative searchbar ">
+                <input type="text" class="searchbar w-100" placeholder="Search" aria-label="Search">
+
+                <button class="btn rounded-5 " id="searchbutton">
+                    <i style="color: white;" class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+
+
+            </div>
+            <a href="details.html" id="tooltip" class="btn  rounded-5 ms-auto position-relative fs-4">
+                <span id="tooltiptext">Enter Patient Details</span>
+                <img class="nav-buttons" src="Images And Icons/add_patient.png"
+                    style="height: 25px; opacity: 85%; transform: translateY(-7%);" alt="">
+            </a>
+
+            <!-- Example single danger button -->
+            <div class="btn-group border-0 rounded-5">
+                <button type="button" id="tooltip" class="btn rounded-5 " data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <span id="tooltiptext">Account</span>
+                    <img class="nav-buttons" src="Images And Icons/user-doctor-solid.svg"
+                        style="height: 25px; opacity: 85%; transform: translateY(-9%);" alt="">
+                </button>
+                <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
+                    <!-- <li><a class="dropdown-item p-2 rounded-3 w-100" style="text-align: right; " href="profile.html"><i  class="fa-solid fa-user-doctor"></i>..................... Profile</a></li>
+      <li><a class="dropdown-item p-2 rounded-3" style="text-align: right;" href="#"> <i style="font-size: 13px;" class="fa-solid fa-gear"></i> ..................Settings </i></a></li> -->
+
+                    <li><a class="dropdown-item p-2 rounded-3 btn mb-1  profile-setting-button  justify-content-center d-flex "
+                            href="profile.html">
+                            <div class="me-auto w-100 " style="display: inline;"><i class="fa-solid fa-user-doctor"></i>
+                            </div><span class="w-100" style="text-align: right;">Profile</span>
+                        </a></li>
+                    <li><a class="dropdown-item p-2 rounded-3 btn mt-2 profile-setting-button justify-content-center d-flex "
+                            href="settings.html">
+                            <div class="me-auto w-100 " style="display: inline;"> <i style="font-size: 13px;"
+                                    class="fa-solid fa-gear"></i> </div><span class="w-100"
+                                style="text-align: right;">Settings</span>
+                        </a></li>
+
+                    <!-- <li><a class="dropdown-item" style="text-align: right;" href="#">Something else here</a></li> -->
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a href="login.html"
+                            class="dropdown-item p-3 rounded-3 btn btn-danger logout-button justify-content-center d-flex "
+                            style="background-color: rgba(255, 0, 0, 0.115);" href="#">
+                            <div class="me-auto w-100 " style="display: inline;"><i style="font-size: 13px; color: red;"
+                                    class="fa-solid fa-right-from-bracket"></i> </div><span class="w-100"
+                                style="text-align: right; color: red;">Logout</span>
+                        </a></li>
+                </ul>
+            </div>
+
+
+
+        </div>
     </nav>
     <br><br><br><br><br>
 
