@@ -158,13 +158,60 @@ switch ($selectedOption) {
                         <div class="input-group  mt-3">
                             <span class="input-group-text fixed-width p-3 border-0"
                                 id="inputGroup-sizing-default">Marital Status</span>
-                            <select class="form-select" aria-label="status-select">
-                                <option selected>Marital Status</option>
-                                <option value="married">Married</option>
-                                <option value="unmarried">Unmarried</option>
-                                <option value="divorced">Divorced</option>
-                                <option value="widow">Widow</option>
-                            </select>
+                                <?php
+$selectedStatus = $row['marital']; // Assuming $row['marital'] contains the selected option value
+
+// Debugging output
+// echo "Raw Selected Option: '" . $selectedStatus . "'\n";
+
+// Trim the value to remove any potential leading or trailing spaces
+$selectedStatus = trim($selectedStatus);
+
+// Debugging output after trim
+// echo "Trimmed Selected Option: '" . $selectedStatus . "'\n";
+
+$marriedSelected = '';
+$singleSelected = '';
+$divorcedSelected = '';
+$widowSelected = '';
+
+switch (strtolower($selectedStatus)) {
+    case 'married':
+        // echo "Selected Option: Married\n";
+        $marriedSelected = 'selected';
+        break;
+    case 'single':
+        // echo "Selected Option: Single\n";
+        $singleSelected = 'selected';
+        break;
+    case 'divorced':
+        // echo "Selected Option: Divorced\n";
+        $divorcedSelected = 'selected';
+        break;
+    case 'widow':
+        // echo "Selected Option: Widow\n";
+        $widowSelected = 'selected';
+        break;
+    default:
+        // echo "Selected Option: '" . $selectedStatus . "'\n";
+        echo "Case: Default\n";
+        break;
+}
+?>
+
+<select class="form-select" aria-label="status-select">
+    <option value="" <?php echo empty($selectedStatus) ? 'selected' : ''; ?>>Marital Status</option>
+    <option value="married" <?php echo $marriedSelected; ?>>Married</option>
+    <option value="single" <?php echo $singleSelected; ?>>Single</option>
+    <option value="divorced" <?php echo $divorcedSelected; ?>>Divorced</option>
+    <option value="widow" <?php echo $widowSelected; ?>>Widow</option>
+</select>
+
+
+
+
+
+
                         </div>
 
 
@@ -351,79 +398,60 @@ switch ($selectedOption) {
             </div>
 
 
-            <div class="tab" style="display:none;">
 
-                <div class="input-group mt-3">
-                    <span class="input-group-text w-100 rounded-3 p-3 border-0 mb-3"
-                        id="inputGroup-sizing-default">Mind</span>
+            <?php
+// Assuming $row['mind'] contains the stored mind values as a comma-separated string
+$mindField = $row['mind'] ?? ''; // Get the mind field value from the row
 
-                    <div class="btn-group p-3 bg-white row rounded-3 ms-1" role="group"
-                        aria-label="Basic checkbox toggle button group" style="width: 100%;">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check " id="btncheck1" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck1">Absent Mind</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker  w-100" for="btncheck2">Forgetfulness</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                            <label class="btn rounded-3  btn-checker w-100" for="btncheck3">Timid</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck4">Jealousness</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck5">Suspicious</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck6">Confuse Minded</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck7">Over Sensitive</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck8">Sadness</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck9">Aggressive</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck10">Angerness</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck11">Hot Temprament</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck12">Overthinking</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck13" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck13">Proudy</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <input type="checkbox" class="btn-check" id="btncheck14" autocomplete="off">
-                            <label class="btn rounded-3 btn-checker w-100" for="btncheck14">Over Proudy</label>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <button type="reset" id="clear-selection-button" class="btn rounded-3  w-100" style="">Clear
-                                Selection</button>
-                        </div>
-                    </div>
+// Debug: Print the raw mindField value
+// echo "Raw mindField: '$mindField'<br>";
 
+// Convert the comma-separated string to an array and trim whitespace
+$selectedMindOptions = array_map('trim', explode(',', $mindField));
 
+// Debug: Print the trimmed mindField value
+// echo "Trimmed mindField: '" . implode(', ', $selectedMindOptions) . "'<br>";
+
+// Function to check if an option is selected
+function isSelected($value, $selectedOptions) {
+    // Debug: Check if the value is in selectedOptions
+    $isSelected = in_array($value, $selectedOptions);
+    // echo "Checking if '$value' is selected: " . ($isSelected ? 'Yes' : 'No') . "<br>";
+    return $isSelected;
+}
+?>
+
+<div class="tab" style="display:none;">
+    <div class="input-group mt-3">
+        <span class="input-group-text w-100 rounded-3 p-3 border-0 mb-3" id="inputGroup-sizing-default">Mind</span>
+
+        <div class="btn-group p-3 bg-white row rounded-3 ms-1" role="group" aria-label="Basic checkbox toggle button group" style="width: 100%;">
+            <?php
+            $options = [
+                'Absent Mind', 'Forgetfulness', 'Timid', 'Jealousness', 'Suspicious',
+                'Confuse Minded', 'Over Sensitive', 'Sadness', 'Aggressive', 'Angerness',
+                'Hot Temprament', 'Overthinking', 'Proudy', 'Over Proudy'
+            ];
+
+            foreach ($options as $index => $option): 
+                $isChecked = isSelected($option, $selectedMindOptions) ? 'checked' : '';
+                // echo "Option: '$option', Checked: '$isChecked'<br>";
+                ?>
+                <div class="col-md-4 d-flex align-items-center">
+                    <input type="checkbox" class="btn-check" id="btncheck<?php echo $index + 1; ?>" autocomplete="off" <?php echo $isChecked; ?>>
+                    <label class="btn rounded-3 btn-checker w-100" for="btncheck<?php echo $index + 1; ?>"><?php echo $option; ?></label>
                 </div>
-                <div class="input-group  mt-3">
+            <?php endforeach; ?>
+            <div class="col-md-4 d-flex align-items-center">
+                <button type="reset" id="clear-selection-button" class="btn rounded-3 w-100">Clear Selection</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="input-group  mt-3">
                     <span class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Head/Neck</span>
                     <div class="form-floating">
@@ -437,8 +465,26 @@ switch ($selectedOption) {
                         <textarea class="form-control border-0"></textarea>
                     </div>
                 </div>
-            </div>
+
+
+
+
+
+
+</div>
+
+
+
             <div class="tab" style="display:none;">
+
+
+
+
+
+
+
+
+                
 
                 <div class="input-group  mt-3">
                     <span class="input-group-text fixed-width p-3 border-0"
