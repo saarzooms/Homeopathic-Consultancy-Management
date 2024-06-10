@@ -364,7 +364,7 @@ if(isset($_GET['caseno'])) {
             infoModal.show();
         };
         document.getElementById("edit-button").onclick = function () {
-            location.href = "edit.php";
+            location.href = "edit.php?caseno=<?php echo $row['caseno']?>";
         };
 
 
