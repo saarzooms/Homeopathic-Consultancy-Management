@@ -284,7 +284,7 @@ switch ($selectedOption) {
                         <div class="input-group  mt-3">
                             <span class="input-group-text fixed-width p-3 border-0"
                                 id="inputGroup-sizing-default">Pulse</span>
-                            <input type="number" class="form-control border-0" aria-label="Sizing example input"
+                            <input type="number" value="<?php echo $row['pulse'];?>" class="form-control border-0" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-default" placeholder="Enter Pulse">
                         </div>
                     </div>
@@ -292,7 +292,7 @@ switch ($selectedOption) {
                         <div class="input-group  mt-3">
                             <span class="input-group-text fixed-width p-3 border-0"
                                 id="inputGroup-sizing-default">Temperature</span>
-                            <input type="number" class="form-control border-0" aria-label="Sizing example input"
+                            <input type="number" value="<?php echo $row['temperature'];?>" class="form-control border-0" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-default" placeholder="Enter Tempreature">
                             <span class="input-group-text p-3 border-0 fixed-width" id="inputGroup-sizing-default"
                                 style="background-color: #ffffff74; color: rgba(0, 0, 0, 0.661); border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
@@ -304,7 +304,7 @@ switch ($selectedOption) {
                     <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Present
                         Complain</span>
                     <div class="form-floating">
-                        <textarea class="form-control border-0"></textarea>
+                        <textarea class="form-control border-0"><?php echo $row['present'];?></textarea>
                     </div>
                 </div>
 
@@ -320,14 +320,14 @@ switch ($selectedOption) {
                         History</span>
 
                     <div class="form-floating">
-                        <textarea class="form-control border-0 h-100"></textarea>
+                        <textarea class="form-control border-0 h-100"><?php echo $row['past'];?></textarea>
                     </div>
                 </div>
                 <div class="input-group  mt-3">
                     <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Family
                         History</span>
                     <div class="form-floating">
-                        <textarea class="form-control border-0 h-100"></textarea>
+                        <textarea class="form-control border-0 h-100"><?php echo $row['family'];?></textarea>
                     </div>
                 </div>
                 <div class="input-group  mt-3">
@@ -335,7 +335,7 @@ switch ($selectedOption) {
                         <p>Suffering from <br /> any other disease</p>
                     </span>
                     <div class="form-floating ">
-                        <textarea class="form-control border-0 h-100"></textarea>
+                        <textarea class="form-control border-0 h-100"><?php echo $row['disease'];?></textarea>
                     </div>
                 </div>
                 <div class="input-group  mt-3">
@@ -343,7 +343,7 @@ switch ($selectedOption) {
                         <p>Cause of disease <br />if any</p>
                     </span>
                     <div class="form-floating ">
-                        <textarea class="form-control border-0 h-100"></textarea>
+                        <textarea class="form-control border-0 h-100"><?php echo $row['cause'];?></textarea>
                     </div>
                 </div>
             </div>

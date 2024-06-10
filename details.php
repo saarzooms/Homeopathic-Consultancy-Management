@@ -86,13 +86,11 @@ try {
                 $target_file = $target_dir . basename($_FILES["file"]["name"][$i]);
                 
                 
-                // File upload logic
                 $uploadOk = 1;
                 $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                 $fileTmpName = $_FILES["file"]["tmp_name"][$i];
                 $fileSize = $_FILES["file"]["size"][$i];
 
-                // Check if file is an image or a pdf
                 $check = getimagesize($fileTmpName);
                 if ($check !== false || $fileType == "pdf") {
                     $uploadOk = 1;
@@ -101,27 +99,22 @@ try {
                     $uploadOk = 0;
                 }
 
-                // Check if file already exists
                 if (file_exists($target_file)) {
                     echo "Sorry, file already exists.";
                     $uploadOk = 0;
                 }
 
-                // Check file size
                 if ($fileSize > 5000000) {
                     echo "Sorry, your file is too large.";
                     $uploadOk = 0;
                 }
 
-                // Allow certain file formats
                 if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
                     && $fileType != "gif" && $fileType != "pdf") {
                     echo "Sorry, only JPG, JPEG, PNG, GIF & PDF files are allowed.";
                     $uploadOk = 0;
                 }
 
-
-                // Check if $uploadOk is set to 0 by an error
                 if ($uploadOk == 0) {
                     echo "Sorry, your file was not uploaded.";
                 } else {
