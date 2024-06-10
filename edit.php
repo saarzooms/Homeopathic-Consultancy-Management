@@ -78,34 +78,36 @@ if(isset($_GET['caseno'])) {
                     <span class="input-group-text fixed-width p-3 border-0" >Gender</span>
 
                     <?php
-$selectedOption = $row['gender']; // Assuming $row['gender'] contains the selected option value
-// echo $selectedOption;
+$selectedOption = trim($row['gender'] ?? ''); // Assuming $row['gender'] contains the selected option value
+$selectedOption = strtolower($selectedOption); // Convert to lowercase for case-insensitive comparison
+// Debugging: Output the selected option
+// echo "Selected Option: $selectedOption <br>";
+
 switch ($selectedOption) {
-    case 'Male':
-        // echo $selectedOption;
+    case 'male':
+        // echo "Case: Male<br>";
         $maleSelected = 'selected';
         $femaleSelected = '';
         $otherSelected = '';
-        echo $maleSelected;
         break;
-    case 'Female':
+    case 'female':
+        // echo "Case: Female<br>";
         $maleSelected = '';
         $femaleSelected = 'selected';
         $otherSelected = '';
         break;
-    case 'Other':
+    case 'other':
+        // echo "Case: Other<br>";
         $maleSelected = '';
         $femaleSelected = '';
         $otherSelected = 'selected';
         break;
     default:
-            echo $selectedOption;
-            echo "hello";
-
+        // echo "Case: Default<br>";
         $maleSelected = '';
         $femaleSelected = '';
         $otherSelected = '';
-        
+        break;
 }
 ?>
 
@@ -115,7 +117,7 @@ switch ($selectedOption) {
     <option value="Other" <?php echo $otherSelected; ?>>Other</option>
 </select>
 
-                    
+          
 
 
    
