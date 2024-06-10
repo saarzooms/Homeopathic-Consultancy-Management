@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,15 +37,32 @@
         <div class="container-fluid">
             <a class="navbar-brand me-auto " id="spmsbranding" href="index.html">IDEAL</a>
             <div class="d-flex align-items-center justify-content-center w-50 position-relative searchbar ">
-                <input type="text" class="searchbar w-100" placeholder="Search" aria-label="Search">
+                <input id="searchbar-input" type="text" class="searchbar w-100" placeholder="Search" aria-label="Search" value="<?php 
+                
+                if(isset($_GET['search'])) {
+                    $search_result = $_GET['search'];
+            
+                    // Process the search result here
+                    // echo "Search Result: " . $search_result . "<br>";
+                }
+                else{
+                    $search_result = "";
+            
+            
+                }
+                
+                
+                echo $search_result;?>">
 
-                <button class="btn rounded-5 " id="searchbutton">
+                <button class="btn rounded-5 " id="searchbutton" >
                     <i style="color: white;" class="fa-solid fa-magnifying-glass"></i>
                 </button>
 
 
-
             </div>
+
+
+            
             <a href="details.html" id="tooltip" class="btn  rounded-5 ms-auto position-relative fs-4">
                 <span id="tooltiptext">Enter Patient Details</span>
                 <img class="nav-buttons" src="Images And Icons/add_patient.png"
@@ -92,27 +113,95 @@
     </nav>
     <br><br><br><br><br>
 
+
+    <?php
+    // Check if the 'search' parameter is set in the URL
+    if(isset($_GET['search'])) {
+        $search_result = $_GET['search'];
+
+        // Process the search result here
+        // echo "Search Result: " . $search_result . "<br>";
+    }
+    else{
+        $search_result = "";
+
+
+    }
+
+    // Check if any checkbox options are selected
+    if(isset($_GET['btncheck1'])) {
+
+        $btn_1 = "checked";
+
+    }
+
+    if(isset($_GET['btncheck2'])) {
+
+        $btn_2 = "checked";
+    }
+
+    if(isset($_GET['btncheck3'])) {
+
+        $btn_3 = "checked";
+    }
+
+    if(isset($_GET['btncheck4'])) {
+
+        $btn_4 = "checked";
+    }
+?>
+
+
+
+
+
+
     <div class="container justify-content-center d-flex  ">
         <div class=" mx-3 rounded-5" style="background-color: #d1d3ab; width: 60%;">
 
             <div class="input-group m-0 rounded-5 ">
+
     
                 <div class="btn-group p-1 bg-white row rounded-3 ms-0 " role="group"
                     aria-label="Basic checkbox toggle button group" style="width: 100%;">
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck1" autocomplete="off">
+                        <input type="checkbox" class="btn-check " id="btncheck1" 
+                        
+                        <?php 
+    if(isset($_GET['btncheck1'])) {
+
+        $btn_1 = "checked";
+        echo "checked";
+    } ?> 
+     autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck1">Case No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck2" autocomplete="off">
+                        <input type="checkbox" class="btn-check " id="btncheck2"  
+                        <?php 
+    if(isset($_GET['btncheck2'])) {
+
+        $btn_2 = "checked";
+        echo "checked";
+    } ?>   autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck2">File No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck3" autocomplete="off">
+                        <input type="checkbox" class="btn-check " id="btncheck3"                          <?php 
+    if(isset($_GET['btncheck3'])) {
+
+        $btn_3 = "checked";
+        echo "checked";
+    } ?>  autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck3">Mobile No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck4" autocomplete="off">
+                        <input type="checkbox" class="btn-check " id="btncheck4"                         <?php 
+    if(isset($_GET['btncheck4'])) {
+
+        $btn_4 = "checked";
+        echo "checked";
+    } ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck4">Name</label>
                     </div>
     
@@ -122,6 +211,44 @@
             </div>
         </div>
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("searchbutton").addEventListener("click", function () {
+            var searchresult = document.getElementById("searchbar-input").value;
+            var selectedOptions = [];
+            var checkboxes = document.querySelectorAll('.btn-check');
+        
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    selectedOptions.push(checkbox.id);
+                }
+            });
+
+            var queryString = "";
+            if (searchresult.trim() !== "") {
+                queryString += "search=" + encodeURIComponent(searchresult);
+            }
+            
+            if (selectedOptions.length > 0) {
+                var optionsString = selectedOptions.join('&');
+                if (queryString !== "") {
+                    queryString += "&";
+                }
+                queryString += optionsString;
+            }
+
+            location.href = "index.php?" + queryString;
+        });
+    });
+</script>
+
+
+
+
+
+    
+</script>
 
 
     <div class="mt-3 bg-white mx-3 rounded-3 text-align-center p-3 fs-6">
@@ -140,7 +267,7 @@
                 <tbody>
                     <?php
                     include 'config.php';
-                    $sql = "SELECT * FROM test_details";
+                    $sql = "SELECT * FROM test_details WHERE name = $search_result";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
