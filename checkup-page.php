@@ -8,39 +8,63 @@ include 'config.php';
     // $stmt->execute();
     // $row = $result->fetch_assoc();
    
-if(isset($_GET['caseno'])) {
-    $caseno = $_GET['caseno']; 
-    
-    $sql = "SELECT * FROM test_details WHERE caseno = $caseno";
-    $stmt = $conn->prepare($sql);
-
-    if($stmt) {
-        // $stmt->bind_param("i", $caseno);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if($result->num_rows > 0) {
-
-            $row = $result->fetch_assoc();
-        } else {
-            echo "No patient found with case number $caseno";
-            exit;
-        }
-
+    if(isset($_GET['caseno'])) {
+        $caseno = $_GET['caseno']; 
         
-    } 
-} else {
-    echo "Case number not provided";
-    exit;
-}
-
-if(isset($_GET['caseno'] && $_SERVER["REQUEST_METHOD"]==="GET")){
-    $caseno = $_GET['caseno'];
-    $query = "INSERT into checkup_remarks (caseno, date, remarks, file) VALUES (:caseno, :date, :remarks, :file)
-    ON DUPLICATE KEY UPDATE file = VALUES(file)";
-
-   
+        $sql = "SELECT * FROM test_details WHERE caseno = ?";
+        $stmt = $conn->prepare($sql);
     
-}
+        if($stmt) {
+            $stmt->bind_param("i", $caseno);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+            } else {
+                echo "No patient found with case number $caseno";
+                exit;
+            }
+        } 
+    } else {
+        echo "Case number not provided";
+        exit;
+    }
+    
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $date = $_POST['date'];
+        $remarks = $_POST['remarks'];
+        $file = '';
+    
+        if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['file']['tmp_name'];
+            $fileName = $_FILES['file']['name'];
+            $uploadFileDir = './uploads/';
+            $dest_path = $uploadFileDir . $fileName;
+    
+            if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                $file = $dest_path;
+            } else {
+                echo "There was an error moving the uploaded file.";
+                exit;
+            }
+        }
+    
+        $query = "INSERT INTO checkup_remarks (caseno, date, remarks, file) 
+                  VALUES (?, ?, ?, ?)";
+        
+        $stmt = $conn->prepare($query);
+        if ($stmt) {
+            $stmt->bind_param("isss", $caseno, $date, $remarks, $file);
+    
+            if ($stmt->execute()) {
+                echo "Data inserted successfully.";
+            } else {
+                echo "Error inserting data.";
+            }
+        } else {
+            echo "Error preparing the statement.";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -188,7 +212,7 @@ if(isset($_GET['caseno'] && $_SERVER["REQUEST_METHOD"]==="GET")){
             </div>
 
             <div class="col-md-6 right-box p-2">
-                <form action="" method="get">
+                <form action="" method="post" enctype="multipart/form-data">
 
             <div class="rounded-3 p-3 " style="background-color: #d1d3ab;">
 
@@ -216,7 +240,7 @@ if(isset($_GET['caseno'] && $_SERVER["REQUEST_METHOD"]==="GET")){
                     <input class="form-control rounded-3 p-3 bg-light border-0 " name="file" style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" type="file" name="" placeholder="" aria-label="" id="file-upload">
                     <div class="w-100">
 
-                        
+                        <input type="hidden" name="caseno" value="<?php $row['caseno'];?>">
             <!-- <label class="btn rounded-3 btn-checker w-100" for="file-upload"></label> -->
 
                     </div>
