@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
     // include 'config.php';
     // session_start();
     // $sql = "SELECT * from test_details where caseno = $caseno";
@@ -9,7 +10,7 @@
    
 if(isset($_GET['caseno'])) {
     $caseno = $_GET['caseno']; 
-    include 'config.php';
+    
     $sql = "SELECT * FROM test_details WHERE caseno = $caseno";
     $stmt = $conn->prepare($sql);
 
@@ -30,6 +31,15 @@ if(isset($_GET['caseno'])) {
 } else {
     echo "Case number not provided";
     exit;
+}
+
+if(isset($_GET['caseno'] && $_SERVER["REQUEST_METHOD"]==="GET")){
+    $caseno = $_GET['caseno'];
+    $query = "INSERT into checkup_remarks (caseno, date, remarks, file) VALUES (:caseno, :date, :remarks, :file)
+    ON DUPLICATE KEY UPDATE file = VALUES(file)";
+
+   
+    
 }
 ?>
 
@@ -178,8 +188,8 @@ if(isset($_GET['caseno'])) {
             </div>
 
             <div class="col-md-6 right-box p-2">
-                <form action="" method="post">
-                
+                <form action="" method="get">
+
             <div class="rounded-3 p-3 " style="background-color: #d1d3ab;">
 
 
@@ -187,7 +197,7 @@ if(isset($_GET['caseno'])) {
                 <div class="input-group ">
                     <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
                         style="border-top-left-radius:8px;border-bottom-left-radius:8px; color: bisque;">Date</span>
-                    <input type="text" id="date" class="form-control border-0" aria-label="Sizing example input"
+                    <input type="text" id="date" class="form-control border-0" name="date" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" placeholder="Enter Date">
                 </div>
 
@@ -195,7 +205,7 @@ if(isset($_GET['caseno'])) {
                     <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
                         style="color: bisque;">Remarks</span>
                     <div class="form-floating">
-                        <textarea class="form-control border-0" placeholder="Enter Remarks (if any)"
+                        <textarea class="form-control border-0" name="remarks" placeholder="Enter Remarks (if any)"
                             ></textarea>
                     </div>
                 </div>
@@ -203,7 +213,7 @@ if(isset($_GET['caseno'])) {
                     
                     <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
                     style="color: bisque;">Photos</span>
-                    <input class="form-control rounded-3 p-3 bg-light border-0 " style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" type="file" name="" placeholder="" aria-label="" id="file-upload">
+                    <input class="form-control rounded-3 p-3 bg-light border-0 " name="file" style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" type="file" name="" placeholder="" aria-label="" id="file-upload">
                     <div class="w-100">
 
                         
