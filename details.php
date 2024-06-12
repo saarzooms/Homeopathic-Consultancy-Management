@@ -194,7 +194,9 @@ echo $file_number;
 
                         <div class="row">
 
-    <div class="col-md-4">                        
+    <div class="col-md-4">    
+        
+    <div></div>
         
         <div class="input-group  mt-3">
 
