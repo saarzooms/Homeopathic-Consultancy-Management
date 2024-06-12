@@ -395,7 +395,7 @@ switch (strtolower($selectedStatus)) {
         break;
     default:
         // echo "Selected Option: '" . $selectedStatus . "'\n";
-        echo "Case: Default\n";
+        // echo "Case: Default\n";
         break;
 }
 ?>
