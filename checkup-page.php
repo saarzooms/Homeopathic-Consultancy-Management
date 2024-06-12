@@ -177,9 +177,9 @@ if(isset($_GET['caseno'])) {
                 </div>
             </div>
 
-            <form action="" method="post">
             <div class="col-md-6 right-box p-2">
-
+                <form action="" method="post">
+                
             <div class="rounded-3 p-3 " style="background-color: #d1d3ab;">
 
 

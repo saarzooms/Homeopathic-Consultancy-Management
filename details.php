@@ -163,6 +163,14 @@ echo $message;
         <link rel="stylesheet" href="details.css">
     </head>
     <body style="background-color: #0b6e4f">
+
+
+    <?php
+// Include settings_config.php to get the file number
+$config = include 'settings_config.php';
+$file_number = $config['file_number'];
+echo $file_number;
+?>
         
         <div class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 " style="background-color: #d1d3ab;">
             

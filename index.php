@@ -26,10 +26,10 @@
             margin: 5px;
         }
 
-        /* .table-container {
-            max-height: 70vh;
+        .table-container {
+            max-height: 65vh;
             overflow-y: scroll;
-        } */
+        }
     </style>
 </head>
 
@@ -42,31 +42,24 @@
                 
                 if(isset($_GET['search'])) {
                     $search_result = $_GET['search'];
-            
-                    // Process the search result here
-                    // echo "Search Result: " . $search_result . "<br>";
-                }
-                else{
+                } else {
                     $search_result = "";
-            
-            
                 }
                 
-                
-                echo $search_result;?>">
+                echo htmlspecialchars($search_result);
+                ?>">
 
-                <button class="btn rounded-5 " id="searchbutton" >
+                <button class="btn rounded-5 " id="searchbutton">
                     <i style="color: white;" class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
             
-            <a href="details.html" id="tooltip" class="btn  rounded-5 ms-auto position-relative fs-4">
+            <a href="details.php" id="tooltip" class="btn rounded-5 ms-auto position-relative fs-4">
                 <span id="tooltiptext">Enter Patient Details</span>
                 <img class="nav-buttons" src="Images And Icons/add_patient.png"
                     style="height: 25px; opacity: 85%; transform: translateY(-7%);" alt="">
             </a>
 
-            <!-- Example single danger button -->
             <div class="btn-group border-0 rounded-5">
                 <button type="button" id="tooltip" class="btn rounded-5 " data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -75,13 +68,13 @@
                         style="height: 25px; opacity: 85%; transform: translateY(-9%);" alt="">
                 </button>
                 <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
-                    <li><a class="dropdown-item p-2 rounded-3 btn mb-1  profile-setting-button  justify-content-center d-flex "
+                    <li><a class="dropdown-item p-2 rounded-3 btn mb-1 profile-setting-button justify-content-center d-flex"
                             href="profile.html">
-                            <div class="me-auto w-100 " style="display: inline;"><i class="fa-solid fa-user-doctor"></i>
+                            <div class="me-auto w-100" style="display: inline;"><i class="fa-solid fa-user-doctor"></i>
                             </div><span class="w-100" style="text-align: right;">Profile</span>
                         </a></li>
-                    <li><a class="dropdown-item p-2 rounded-3 btn mt-2 profile-setting-button justify-content-center d-flex "
-                            href="settings.html">
+                        <li><a class="dropdown-item p-2 rounded-3 btn mt-2 profile-setting-button justify-content-center d-flex "
+                            href="settings.php">
                             <div class="me-auto w-100 " style="display: inline;"> <i style="font-size: 13px;"
                                     class="fa-solid fa-gear"></i> </div><span class="w-100"
                                 style="text-align: right;">Settings</span>
@@ -90,9 +83,9 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li><a href="login.html"
-                            class="dropdown-item p-3 rounded-3 btn btn-danger logout-button justify-content-center d-flex "
+                            class="dropdown-item p-3 rounded-3 btn btn-danger logout-button justify-content-center d-flex"
                             style="background-color: rgba(255, 0, 0, 0.115);" href="#">
-                            <div class="me-auto w-100 " style="display: inline;"><i style="font-size: 13px; color: red;"
+                            <div class="me-auto w-100" style="display: inline;"><i style="font-size: 13px; color: red;"
                                     class="fa-solid fa-right-from-bracket"></i> </div><span class="w-100"
                                 style="text-align: right; color: red;">Logout</span>
                         </a></li>
@@ -109,20 +102,23 @@
         $search_result = "";
     }
 
-    if(isset($_GET['btncheck1'])) {
+    $btn_1 = $btn_2 = $btn_3 = $btn_4 = "";
+
+    if(isset($_GET['btncheck1']) || isset($_GET['btncheck2']) || isset($_GET['btncheck3']) || isset($_GET['btncheck4'])) {
+        if(isset($_GET['btncheck1'])) {
+            $btn_1 = "checked";
+        }
+        if(isset($_GET['btncheck2'])) {
+            $btn_2 = "checked";
+        }
+        if(isset($_GET['btncheck3'])) {
+            $btn_3 = "checked";
+        }
+        if(isset($_GET['btncheck4'])) {
+            $btn_4 = "checked";
+        }
+    } else {
         $btn_1 = "checked";
-    }
-
-    if(isset($_GET['btncheck2'])) {
-        $btn_2 = "checked";
-    }
-
-    if(isset($_GET['btncheck3'])) {
-        $btn_3 = "checked";
-    }
-
-    if(isset($_GET['btncheck4'])) {
-        $btn_4 = "checked";
     }
     ?>
 
@@ -131,19 +127,19 @@
             <div class="input-group m-0 rounded-5">
                 <div class="btn-group p-1 bg-white row rounded-3 ms-0" role="group" aria-label="Basic checkbox toggle button group" style="width: 100%;">
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check" id="btncheck1" <?php if(isset($_GET['btncheck1'])) echo "checked"; ?> autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck1" <?php echo $btn_1; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck1">Case No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check" id="btncheck2" <?php if(isset($_GET['btncheck2'])) echo "checked"; ?> autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck2" <?php echo $btn_2; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck2">File No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check" id="btncheck3" <?php if(isset($_GET['btncheck3'])) echo "checked"; ?> autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck3" <?php echo $btn_3; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck3">Mobile No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check" id="btncheck4" <?php if(isset($_GET['btncheck4'])) echo "checked"; ?> autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck4" <?php echo $btn_4; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck4">Name</label>
                     </div>
                 </div>
