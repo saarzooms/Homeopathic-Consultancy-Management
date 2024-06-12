@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +25,11 @@
         .btn-checker {
             margin: 5px;
         }
+
+        /* .table-container {
+            max-height: 70vh;
+            overflow-y: scroll;
+        } */
     </style>
 </head>
 
@@ -57,11 +58,7 @@
                 <button class="btn rounded-5 " id="searchbutton" >
                     <i style="color: white;" class="fa-solid fa-magnifying-glass"></i>
                 </button>
-
-
             </div>
-
-
             
             <a href="details.html" id="tooltip" class="btn  rounded-5 ms-auto position-relative fs-4">
                 <span id="tooltiptext">Enter Patient Details</span>
@@ -78,9 +75,6 @@
                         style="height: 25px; opacity: 85%; transform: translateY(-9%);" alt="">
                 </button>
                 <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
-                    <!-- <li><a class="dropdown-item p-2 rounded-3 w-100" style="text-align: right; " href="profile.html"><i  class="fa-solid fa-user-doctor"></i>..................... Profile</a></li>
-      <li><a class="dropdown-item p-2 rounded-3" style="text-align: right;" href="#"> <i style="font-size: 13px;" class="fa-solid fa-gear"></i> ..................Settings </i></a></li> -->
-
                     <li><a class="dropdown-item p-2 rounded-3 btn mb-1  profile-setting-button  justify-content-center d-flex "
                             href="profile.html">
                             <div class="me-auto w-100 " style="display: inline;"><i class="fa-solid fa-user-doctor"></i>
@@ -92,8 +86,6 @@
                                     class="fa-solid fa-gear"></i> </div><span class="w-100"
                                 style="text-align: right;">Settings</span>
                         </a></li>
-
-                    <!-- <li><a class="dropdown-item" style="text-align: right;" href="#">Something else here</a></li> -->
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -106,108 +98,55 @@
                         </a></li>
                 </ul>
             </div>
-
-
-
         </div>
     </nav>
     <br><br><br><br><br>
 
-
     <?php
-    // Check if the 'search' parameter is set in the URL
     if(isset($_GET['search'])) {
         $search_result = $_GET['search'];
-
-        // Process the search result here
-        // echo "Search Result: " . $search_result . "<br>";
-    }
-    else{
+    } else {
         $search_result = "";
-
-
     }
 
-    // Check if any checkbox options are selected
     if(isset($_GET['btncheck1'])) {
-
         $btn_1 = "checked";
-
     }
 
     if(isset($_GET['btncheck2'])) {
-
         $btn_2 = "checked";
     }
 
     if(isset($_GET['btncheck3'])) {
-
         $btn_3 = "checked";
     }
 
     if(isset($_GET['btncheck4'])) {
-
         $btn_4 = "checked";
     }
-?>
+    ?>
 
-
-
-
-
-
-    <div class="container justify-content-center d-flex  ">
-        <div class=" mx-3 rounded-5" style="background-color: #d1d3ab; width: 60%;">
-
-            <div class="input-group m-0 rounded-5 ">
-
-    
-                <div class="btn-group p-1 bg-white row rounded-3 ms-0 " role="group"
-                    aria-label="Basic checkbox toggle button group" style="width: 100%;">
+    <div class="container justify-content-center d-flex">
+        <div class="mx-3 rounded-5" style="background-color: #d1d3ab; width: 60%;">
+            <div class="input-group m-0 rounded-5">
+                <div class="btn-group p-1 bg-white row rounded-3 ms-0" role="group" aria-label="Basic checkbox toggle button group" style="width: 100%;">
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck1" 
-                        
-                        <?php 
-    if(isset($_GET['btncheck1'])) {
-
-        $btn_1 = "checked";
-        echo "checked";
-    } ?> 
-     autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck1" <?php if(isset($_GET['btncheck1'])) echo "checked"; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck1">Case No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck2"  
-                        <?php 
-    if(isset($_GET['btncheck2'])) {
-
-        $btn_2 = "checked";
-        echo "checked";
-    } ?>   autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck2" <?php if(isset($_GET['btncheck2'])) echo "checked"; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck2">File No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck3"                          <?php 
-    if(isset($_GET['btncheck3'])) {
-
-        $btn_3 = "checked";
-        echo "checked";
-    } ?>  autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck3" <?php if(isset($_GET['btncheck3'])) echo "checked"; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck3">Mobile No.</label>
                     </div>
                     <div class="col-md-3 d-flex align-items-center">
-                        <input type="checkbox" class="btn-check " id="btncheck4"                         <?php 
-    if(isset($_GET['btncheck4'])) {
-
-        $btn_4 = "checked";
-        echo "checked";
-    } ?> autocomplete="off">
+                        <input type="checkbox" class="btn-check" id="btncheck4" <?php if(isset($_GET['btncheck4'])) echo "checked"; ?> autocomplete="off">
                         <label class="btn rounded-3 btn-checker w-100" for="btncheck4">Name</label>
                     </div>
-    
                 </div>
-    
-    
             </div>
         </div>
     </div>
@@ -241,23 +180,14 @@
             location.href = "index.php?" + queryString;
         });
     });
-</script>
+    </script>
 
-
-
-
-
-    
-</script>
-
-
-    <div class="mt-3 bg-white mx-3 rounded-3 text-align-center p-3 fs-6">
-        <div class="table-responsive">
+    <div class="mt-3 bg-white mx-3 rounded-3 text-align-center p-3 fs-6 table-container">
+        <div class="table-responsive" style="max-height: 65vh;overflow-y:scroll;overflow-x:scroll;">
             <table id="table" class="table table-striped p-3">
                 <thead>
                     <tr>
                         <th scope="col">Case No.</th>
-                        <!-- <th scope="col">File No.</th> -->
                         <th scope="col">Name</th>
                         <th scope="col">Mobile No.</th>
                         <th scope="col">Last Visited</th>
@@ -265,48 +195,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    include 'config.php';
-                    $sql = "SELECT * FROM test_details WHERE name = $search_result";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            ?>
-                            <tr>
-                                <td><?php echo $row["caseno"]; ?></td>
-                                <!-- <td><?php echo $row["file"]; ?></td>s -->
-                                <td><?php echo $row["name"]; ?></td>
-                                <td><?php echo $row["mobile"]; ?></td>
-                                <td><?php echo $row["date"]; ?></td>
+                <?php
+                include 'config.php';
+
+                $search_term = isset($_GET['search']) ? $_GET['search'] : '';
+                $conditions = [];
+
+                if (isset($_GET['btncheck1'])) {
+                    $conditions[] = "caseno LIKE '%" . $conn->real_escape_string($search_term) . "%'";
+                }
+
+                if (isset($_GET['btncheck3'])) {
+                    $conditions[] = "mobile LIKE '%" . $conn->real_escape_string($search_term) . "%'";
+                }
+
+                if (isset($_GET['btncheck4'])) {
+                    $conditions[] = "name LIKE '%" . $conn->real_escape_string($search_term) . "%'";
+                }
+
+                $sql = "SELECT * FROM test_details";
+                if (!empty($conditions)) {
+                    $sql .= " WHERE " . implode(" OR ", $conditions);
+                }
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>{$row['caseno']}</td>
+                                <td>{$row['name']}</td>
+                                <td>{$row['mobile']}</td>
+                                <td>{$row['date']}</td>
                                 <td>
-                                    <div class="btn-container">
-                                        <!-- Add your action buttons here -->
-
-                                        <a id="tooltip" class="btn rounded-4 mb-1 mt-1 w-100 edit-button action-button" href="edit.php?caseno=<?php echo $row["caseno"]; ?>" style="background-color: #d1d3ab;">
-                                        <span id="tooltiptext">Edit Patient Details</span>
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    <div class='btn-container'>
+                                        <a id='tooltip' class='btn rounded-4 mb-1 mt-1 w-100 edit-button action-button' href='edit.php?caseno={$row['caseno']}' style='background-color: #d1d3ab;'>
+                                            <span id='tooltiptext'>Edit Patient Details</span>
+                                            <i class='fa-solid fa-pen-to-square'></i>
                                         </a>
-    
-
-
-
-                                        <a id="tooltip" class="btn rounded-4 mb-1 mt-1 w-100 add-button action-button"
-                                            href="checkup-page.php?caseno=<?php echo $row["caseno"]; ?>" style="background-color: #0b6e4f; color: white;"> <span
-                                                id="tooltiptext">Patient Checkup</span><i
-                                                class="fa-solid fa-notes-medical"></i></a>
+                                        <a id='tooltip' class='btn rounded-4 mb-1 mt-1 w-100 add-button action-button' href='checkup-page.php?caseno={$row['caseno']}' style='background-color: #0b6e4f; color: white;'>
+                                            <span id='tooltiptext'>Patient Checkup</span>
+                                            <i class='fa-solid fa-notes-medical'></i>
+                                        </a>
                                     </div>
                                 </td>
-                            </tr>
-                        <?php
-                        }
-                    } else {
-                        ?>
-                        <tr>
-                            <td colspan="6">No data found</td>
-                        </tr>
-                    <?php
+                              </tr>";
                     }
-                    ?>
+                } else {
+                    echo "<tr><td colspan='6'>No data found</td></tr>";
+                }
+                ?>
                 </tbody>
             </table>
         </div>
