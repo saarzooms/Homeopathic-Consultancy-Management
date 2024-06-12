@@ -5,10 +5,10 @@ try {
     $message = '';
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $query = "INSERT INTO test_details (name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
+        $query = "INSERT INTO test_details (fileno,name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
         weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, eye, face, nose, respiratory,
         cardiac, abdomen, menses, other, limb, back, skin, appetite, thirst, stool, urine, sleep, discharge, addiction, desire, aversion,
-        aggravation, amelioration) VALUES (:name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
+        aggravation, amelioration) VALUES (:fileno,:name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
         :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :eye,
         :face, :nose, :respiratory, :cardiac, :abdomen, :menses, :other, :limb, :back, :skin, :appetite, :thirst, :stool, :urine, :sleep, :discharge,
         :addiction, :desire, :aversion, :aggravation, :amelioration)";
@@ -19,7 +19,13 @@ try {
             $mind = "";
         }
 
+        // Include settings_config.php to get the file number
+$config = include 'settings_config.php';
+$file_number = $config['file_number'];
+echo $file_number;
+
         $user_data = array(
+            ':fileno'         => $file_number,
             ':name'           => $_POST["name"],
             ':gender'         => $_POST["gender"],
             ':age'            => $_POST["age"],
@@ -166,10 +172,7 @@ echo $message;
 
 
     <?php
-// Include settings_config.php to get the file number
-$config = include 'settings_config.php';
-$file_number = $config['file_number'];
-echo $file_number;
+
 ?>
         
         <div class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 " style="background-color: #d1d3ab;">

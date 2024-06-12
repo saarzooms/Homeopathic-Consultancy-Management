@@ -184,6 +184,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Case No.</th>
+                        <th scope="col">File No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Mobile No.</th>
                         <th scope="col">Last Visited</th>
@@ -199,6 +200,10 @@
 
                 if (isset($_GET['btncheck1'])) {
                     $conditions[] = "caseno LIKE '%" . $conn->real_escape_string($search_term) . "%'";
+                }
+
+                if (isset($_GET['btncheck2'])) {
+                    $conditions[] = "fileno LIKE '%" . $conn->real_escape_string($search_term) . "%'";
                 }
 
                 if (isset($_GET['btncheck3'])) {
@@ -220,6 +225,7 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
                                 <td>{$row['caseno']}</td>
+                                <td>{$row['fileno']}</td>
                                 <td>{$row['name']}</td>
                                 <td>{$row['mobile']}</td>
                                 <td>{$row['date']}</td>
