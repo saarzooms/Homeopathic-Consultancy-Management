@@ -177,77 +177,79 @@ if(isset($_GET['caseno'])) {
                 </div>
             </div>
 
+            <form action="" method="post">
             <div class="col-md-6 right-box p-2">
 
-                <div class="rounded-3 p-3 " style="background-color: #d1d3ab;">
+            <div class="rounded-3 p-3 " style="background-color: #d1d3ab;">
 
 
 
-                    <div class="input-group ">
-                        <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
-                            style="border-top-left-radius:8px;border-bottom-left-radius:8px; color: bisque;">Date</span>
-                        <input type="text" id="date" class="form-control border-0" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" placeholder="Enter Date">
+                <div class="input-group ">
+                    <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
+                        style="border-top-left-radius:8px;border-bottom-left-radius:8px; color: bisque;">Date</span>
+                    <input type="text" id="date" class="form-control border-0" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" placeholder="Enter Date">
+                </div>
+
+                <div class="input-group mt-3">
+                    <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
+                        style="color: bisque;">Remarks</span>
+                    <div class="form-floating">
+                        <textarea class="form-control border-0" placeholder="Enter Remarks (if any)"
+                            ></textarea>
                     </div>
+                </div>
+                <div class="input-group mt-3">
+                    
+                    <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
+                    style="color: bisque;">Photos</span>
+                    <input class="form-control rounded-3 p-3 bg-light border-0 " style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" type="file" name="" placeholder="" aria-label="" id="file-upload">
+                    <div class="w-100">
 
-                    <div class="input-group mt-3">
-                        <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
-                            style="color: bisque;">Remarks</span>
-                        <div class="form-floating">
-                            <textarea class="form-control border-0" placeholder="Enter Remarks (if any)"
-                                ></textarea>
-                        </div>
-                    </div>
-                    <div class="input-group mt-3">
                         
-                        <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
-                        style="color: bisque;">Photos</span>
-                        <input class="form-control rounded-3 p-3 bg-light border-0 " style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" type="file" name="" placeholder="" aria-label="" id="file-upload">
-                        <div class="w-100">
+            <!-- <label class="btn rounded-3 btn-checker w-100" for="file-upload"></label> -->
 
-                            
-          <!-- <label class="btn rounded-3 btn-checker w-100" for="file-upload"></label> -->
-
-                        </div>
                     </div>
+                </div>
 
-                    <div class="mt-3 rounded-3" style="max-height: 50vh;overflow-y: auto;">
+                <div class="mt-3 rounded-3" style="max-height: 50vh;overflow-y: auto;">
 
-                        <div id="input-fields">
-                            <div class="input-group" style="max-height: 20vh;">
-                                <span class="input-group-text w-100 rounded-3 p-3 border-0"
-                                    id="inputGroup-sizing-default"
-                                    style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
+                    <div id="input-fields">
+                        <div class="input-group" style="max-height: 20vh;">
+                            <span class="input-group-text w-100 rounded-3 p-3 border-0"
+                                id="inputGroup-sizing-default"
+                                style="color: bisque; font-weight: 600; font-size: 27px;">Prescriptions</span>
 
-                                <div class="input-group mt-3 input-group-custom">
-                                    <input type="text" class="form-control p-3 border-0 rounded-3 me-auto"
-                                        id="medicine-input" name="medicine[]" placeholder="Enter Medicine"
-                                        style="background-color: #ffffff7a;color: black;">
-                                    <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto"
-                                        id="dose-input" name="dose[]" placeholder="Enter Dose"
-                                        style="background-color: #ffffff85;color: black;">
-                                    <button type="button" class="form-control p-3 border-0 rounded-3 me-auto"
-                                        id="remove" onclick="removeInputFields()"
-                                        style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
-                                    <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto"
-                                        onclick="addInputFields()" id="add"
-                                        style="background-color: #1da453;color: bisque;">+</button>
-                                </div>
+                            <div class="input-group mt-3 input-group-custom">
+                                <input type="text" class="form-control p-3 border-0 rounded-3 me-auto"
+                                    id="medicine-input" name="medicine[]" placeholder="Enter Medicine"
+                                    style="background-color: #ffffff7a;color: black;">
+                                <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto"
+                                    id="dose-input" name="dose[]" placeholder="Enter Dose"
+                                    style="background-color: #ffffff85;color: black;">
+                                <button type="button" class="form-control p-3 border-0 rounded-3 me-auto"
+                                    id="remove" onclick="removeInputFields()"
+                                    style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
+                                <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto"
+                                    onclick="addInputFields()" id="add"
+                                    style="background-color: #1da453;color: bisque;">+</button>
                             </div>
                         </div>
-
-
                     </div>
 
 
+    </div>
 
-                </div>
-                <button id="payment-button" class="rounded-3 p-3 mt-3 border-0 w-100"
-                    style="background-color: #019fdece; color: bisque;">PAYMENT <img
-                        src="Images And Icons/arrow-right-solid (1).svg"
-                        style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt=""></button>
 
-            </div>
+
+</div>
+<button id="payment-button" class="rounded-3 p-3 mt-3 border-0 w-100"
+    style="background-color: #019fdece; color: bisque;">PAYMENT <img
+        src="Images And Icons/arrow-right-solid (1).svg"
+        style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt=""></button>
+
+</div>
+            </form>
         </div>
     </div>
 
@@ -375,7 +377,7 @@ if(isset($_GET['caseno'])) {
             newDiv.innerHTML = `
                 <input type="text" class="form-control p-3 border-0 rounded-3 me-auto" name="medicine[]" placeholder="Enter Medicine" aria-label="Enter Medicine" style="background-color: #ffffff7a;color: black;">
                 <input type="text" class="form-control p-3 border-0 rounded-3 ms-auto" name="dose[]" placeholder="Enter Dose" aria-label="Enter Dose" style="background-color: #ffffff85;color: black;">
-                <button class="form-control p-3 border-0 rounded-3 me-auto" onclick="removeInputFields(this)" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
+                <button type="button" class="form-control p-3 border-0 rounded-3 me-auto" onclick="removeInputFields(this)" style="background-color: rgba(255, 0, 0, 0.521); color: bisque;">-</button>
                 <button type="button" class="form-control p-3 border-0 rounded-3 ms-auto" onclick="addInputFields()" style="background-color: #1da453;color: bisque;">+</button>
             `;
             container.appendChild(newDiv);
@@ -395,101 +397,7 @@ if(isset($_GET['caseno'])) {
             }
         }
     </script>
-    <!-- <script>
-        // Pseudo information
-        var patientInfo = {
-            name: "John Doe",
-            gender: "Male",
-            age: 35,
-            dob: "1989-05-15",
-            maritalStatus: "Married",
-            address: "123 Main Street, Cityville",
-            contact: "555-123-4567",
-            occupation: "Engineer",
-            height: "180 cm",
-            weight: "75 kg",
-            kgmChild: "2",
-            bloodPressure: "120/80 mmHg",
-            pulse: "70 bpm",
-            temperature: "37.0°C",
-            presentComplaint: "Headache and fever",
-            pastHistory: "No significant past medical history",
-            familyHistory: "Father had hypertension",
-            otherDisease: "No",
-            causeOfDisease: "Unknown",
-            headNeck: "No abnormalities",
-            mouthTongue: "Normal appearance",
-            eyeEar: "Normal examination",
-            faceColor: "Normal color",
-            nose: "No abnormalities",
-            chest: "Clear lung fields",
-            abdomenPelvis: "Soft and non-tender",
-            genitalia: "Normal examination",
-            limb: "Full range of motion",
-            backLumber: "No abnormalities",
-            skinConditionPerspiration: "No rashes or lesions",
-            appetite: "Normal",
-            thirst: "Normal",
-            stool: "Normal consistency",
-            urine: "Normal color and clarity",
-            sleepDream: "Normal sleep patterns",
-            discharge: "None",
-            addiction: "None",
-            desire: "None",
-            aversion: "None",
-            aggravation: "None",
-            amelioration: "None"
-        };
-
-        // Function to fill modal with patient information
-        function fillModal() {
-            document.getElementById("modalName").innerText = patientInfo.name;
-            document.getElementById("modalGender").innerText = patientInfo.gender;
-            document.getElementById("modalAge").innerText = patientInfo.age;
-            document.getElementById("modalDOB").innerText = patientInfo.dob;
-            document.getElementById("modalMaritalStatus").innerText = patientInfo.maritalStatus;
-            document.getElementById("modalAddress").innerText = patientInfo.address;
-            document.getElementById("modalContact").innerText = patientInfo.contact;
-            document.getElementById("modalOccupation").innerText = patientInfo.occupation;
-            document.getElementById("modalHeight").innerText = patientInfo.height;
-            document.getElementById("modalWeight").innerText = patientInfo.weight;
-            document.getElementById("modalKgmChild").innerText = patientInfo.kgmChild;
-            document.getElementById("modalBloodPressure").innerText = patientInfo.bloodPressure;
-            document.getElementById("modalPulse").innerText = patientInfo.pulse;
-            document.getElementById("modalTemperature").innerText = patientInfo.temperature;
-            document.getElementById("modalPresentComplaint").innerText = patientInfo.presentComplaint;
-            document.getElementById("modalPastHistory").innerText = patientInfo.pastHistory;
-            document.getElementById("modalFamilyHistory").innerText = patientInfo.familyHistory;
-            document.getElementById("modalOtherDisease").innerText = patientInfo.otherDisease;
-            document.getElementById("modalCauseOfDisease").innerText = patientInfo.causeOfDisease;
-            document.getElementById("modalHeadNeck").innerText = patientInfo.headNeck;
-            document.getElementById("modalMouthTongue").innerText = patientInfo.mouthTongue;
-            document.getElementById("modalEyeEar").innerText = patientInfo.eyeEar;
-            document.getElementById("modalFaceColor").innerText = patientInfo.faceColor;
-            document.getElementById("modalNose").innerText = patientInfo.nose;
-            document.getElementById("modalChest").innerText = patientInfo.chest;
-            document.getElementById("modalAbdomenPelvis").innerText = patientInfo.abdomenPelvis;
-            document.getElementById("modalGenitalia").innerText = patientInfo.genitalia;
-            document.getElementById("modalLimb").innerText = patientInfo.limb;
-            document.getElementById("modalBackLumber").innerText = patientInfo.backLumber;
-            document.getElementById("modalSkinConditionPerspiration").innerText = patientInfo.skinConditionPerspiration;
-            document.getElementById("modalAppetite").innerText = patientInfo.appetite;
-            document.getElementById("modalThirst").innerText = patientInfo.thirst;
-            document.getElementById("modalStool").innerText = patientInfo.stool;
-            document.getElementById("modalUrine").innerText = patientInfo.urine;
-            document.getElementById("modalSleepDream").innerText = patientInfo.sleepDream;
-            document.getElementById("modalDischarge").innerText = patientInfo.discharge;
-            document.getElementById("modalAddiction").innerText = patientInfo.addiction;
-            document.getElementById("modalDesire").innerText = patientInfo.desire;
-            document.getElementById("modalAversion").innerText = patientInfo.aversion;
-            document.getElementById("modalAggravation").innerText = patientInfo.aggravation;
-            document.getElementById("modalAmelioration").innerText = patientInfo.amelioration;
-        }
-
-        // Call the fillModal function when needed
-        fillModal();
-
-    </script> -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
