@@ -1,6 +1,90 @@
 <?php
-include 'config.php';
+/**
+ * Updates a record in the specified table based on the provided data and ID.
+ *
+ * @param mysqli $conn The database connection.
+ * @param array $data The data to update as an associative array where keys are column names.
+ * @param int|string $id The ID of the record to update.
+ * @param string $columnName The column name for the ID.
+ * @param string $tableName The name of the table to update.
+ * @return string Success message or error message in case of failure.
+ */
+function updateData($conn, $data, $id, $columnName, $tableName) {
+    try {
+        $updateString = "";
+        $params = [];
+        $types = "";
 
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $value = implode(",", $value); // Handle array values like 'mind'
+            }
+            $updateString .= "$key = ?, ";
+            $params[] = $value;
+            $types .= getMysqliType($value);
+        }
+
+        $updateString = rtrim($updateString, ", ");
+        $sql = "UPDATE $tableName SET $updateString WHERE $columnName = ?";
+        $params[] = $id;
+        $types .= getMysqliType($id);
+
+        $stmt = $conn->prepare($sql);
+        if ($stmt === false) {
+            throw new Exception("Failed to prepare the SQL statement: " . $conn->error);
+        }
+
+        $stmt->bind_param($types, ...$params);
+        $stmt->execute();
+
+        if ($stmt->error) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
+
+        $stmt->close();
+        return "Update successful";
+    } catch (Exception $e) {
+        return "Update failed: " . $e->getMessage();
+    }
+}
+
+/**
+ * Get the mysqli type character for a given value.
+ *
+ * @param mixed $value The value to determine the type for.
+ * @return string The mysqli type character.
+ */
+function getMysqliType($value) {
+    if (is_int($value)) {
+        return "i";
+    } elseif (is_double($value)) {
+        return "d";
+    } elseif (is_string($value)) {
+        return "s";
+    } else {
+        return "b"; // blob and other types
+    }
+}
+
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "pdo";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}else{
+    echo "";
+}
+
+$caseno;
+$row;
 // Fetching patient details if 'caseno' is provided in GET request
 if (isset($_GET['caseno'])) {
     $caseno = $_GET['caseno'];
@@ -22,7 +106,7 @@ if (isset($_GET['caseno'])) {
         echo "Failed to prepare the SQL statement: " . $conn->error;
     }
 
-    $conn->close();
+    //$conn->close();
 } else {
     echo "Case number not provided";
 }
@@ -30,125 +114,147 @@ if (isset($_GET['caseno'])) {
 // Handling the form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['caseno'])) {
     $caseno = $_POST['caseno'];
-    $mind = isset($_POST["mind"]) ? implode(",", $_POST["mind"]) : "";
 
-    // Use prepared statement for UPDATE query
-    $query = "UPDATE test_details SET
-                    name = ?,
-                    gender = ?,
-                    age = ?,
-                    dob = ?,
-                    marital = ?,
-                    complexion = ?,
-                    constitution = ?,
-                    address = ?,
-                    mobile = ?,
-                    occupation = ?,
-                    height = ?,
-                    weight = ?,
-                    child = ?,
-                    bp = ?,
-                    pulse = ?,
-                    temperature = ?,
-                    present = ?,
-                    past = ?,
-                    family = ?,
-                    disease = ?,
-                    cause = ?,
-                    mind = ?,
-                    head = ?,
-                    eye = ?,
-                    face = ?,
-                    nose = ?,
-                    respiratory = ?,
-                    cardiac = ?,
-                    abdomen = ?,
-                    menses = ?,
-                    other = ?,
-                    limb = ?,
-                    back = ?,
-                    skin = ?,
-                    appetite = ?,
-                    thirst = ?,
-                    stool = ?,
-                    urine = ?,
-                    sleep = ?,
-                    discharge = ?,
-                    addiction = ?,
-                    desire = ?,
-                    aversion = ?,
-                    aggravation = ?,
-                    amelioration = ?
-                  WHERE caseno = ?";
-                  
-    $statement = $conn->prepare($query);
+    // Prepare the data to update
+    $data = $_POST;
+    unset($data['caseno']); // Remove the caseno from data as it's used as the identifier
 
-    if ($statement) {
-        // Assuming some fields are integers and the rest are strings
-        $statement->bind_param("ssisssssssssssssssssssssssssssssssssssssssi",
-            $_POST["name"],
-            $_POST["gender"],
-            $_POST["age"],  // Assuming age is an integer
-            $_POST["dob"],
-            $_POST["marital"],
-            $_POST["complexion"],
-            $_POST["constitution"],
-            $_POST["address"],
-            $_POST["mobile"],
-            $_POST["occupation"],
-            $_POST["height"],
-            $_POST["weight"],
-            $_POST["child"],
-            $_POST["bp"],
-            $_POST["pulse"],
-            $_POST["temperature"],
-            $_POST["present"],
-            $_POST["past"],
-            $_POST["family"],
-            $_POST["disease"],
-            $_POST["cause"],
-            $mind,
-            $_POST["head"],
-            $_POST["eye"],
-            $_POST["face"],
-            $_POST["nose"],
-            $_POST["respiratory"],
-            $_POST["cardiac"],
-            $_POST["abdomen"],
-            $_POST["menses"],
-            $_POST["other"],
-            $_POST["limb"],
-            $_POST["back"],
-            $_POST["skin"],
-            $_POST["appetite"],
-            $_POST["thirst"],
-            $_POST["stool"],
-            $_POST["urine"],
-            $_POST["sleep"],
-            $_POST["discharge"],
-            $_POST["addiction"],
-            $_POST["desire"],
-            $_POST["aversion"],
-            $_POST["aggravation"],
-            $_POST["amelioration"],
-            $caseno  // Assuming caseno is an integer
-        );
+    // Assuming $conn is your mysqli connection object and 'test_details' is your table name
+    $result = updateData($conn, $data, $caseno, 'caseno', 'test_details');
+    echo $result;
 
-        if ($statement->execute()) {
-            echo '<div name="" class="alert alert-success">Record Updated Successfully</div>';
-        } else {
-            echo '<div name="" class="alert alert-danger">There was an error updating the record: ' . $statement->error . '</div>';
-        }
-        $statement->close();
-    } else {
-        echo "Failed to prepare the SQL statement: " . $conn->error;
+    if (strpos($result, 'successful') !== false) {
+        header("Location: edit.php?caseno=$caseno");
+        exit();
     }
-
-    $conn->close();
 } else {
-    echo "Case number not provided";
+    // echo "Case numberok";
 }
+// Handling the form submission
+// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['caseno'])) {
+//     $caseno = $_POST['caseno'];
+//     $mind = isset($_POST["mind"]) ? implode(",", $_POST["mind"]) : "";
+
+//     // Use prepared statement for UPDATE query
+//     $query = "UPDATE test_details SET
+//                     name = ?,
+//                     gender = ?,
+//                     age = ?,
+//                     dob = ?,
+//                     marital = ?,
+//                     complexion = ?,
+//                     constitution = ?,
+//                     address = ?,
+//                     mobile = ?,
+//                     occupation = ?,
+//                     height = ?,
+//                     weight = ?,
+//                     child = ?,
+//                     bp = ?,
+//                     pulse = ?,
+//                     temperature = ?,
+//                     present = ?,
+//                     past = ?,
+//                     family = ?,
+//                     disease = ?,
+//                     cause = ?,
+//                     mind = ?,
+//                     head = ?,
+//                     eye = ?,
+//                     face = ?,
+//                     nose = ?,
+//                     respiratory = ?,
+//                     cardiac = ?,
+//                     abdomen = ?,
+//                     menses = ?,
+//                     other = ?,
+//                     limb = ?,
+//                     back = ?,
+//                     skin = ?,
+//                     appetite = ?,
+//                     thirst = ?,
+//                     stool = ?,
+//                     urine = ?,
+//                     sleep = ?,
+//                     discharge = ?,
+//                     addiction = ?,
+//                     desire = ?,
+//                     aversion = ?,
+//                     aggravation = ?,
+//                     amelioration = ?
+//                   WHERE caseno = ?";
+                  
+//     $statement = $conn->prepare($query);
+
+//     if ($statement) {
+//         // Assuming some fields are integers and the rest are strings
+//         $statement->bind_param("ssisssssssssssssssssssssssssssssssssssssssi",
+//             $_POST["name"],
+//             $_POST["gender"],
+//             $_POST["age"],  // Assuming age is an integer
+//             $_POST["dob"],
+//             $_POST["marital"],
+//             $_POST["complexion"],
+//             $_POST["constitution"],
+//             $_POST["address"],
+//             $_POST["mobile"],
+//             $_POST["occupation"],
+//             $_POST["height"],
+//             $_POST["weight"],
+//             $_POST["child"],
+//             $_POST["bp"],
+//             $_POST["pulse"],
+//             $_POST["temperature"],
+//             $_POST["present"],
+//             $_POST["past"],
+//             $_POST["family"],
+//             $_POST["disease"],
+//             $_POST["cause"],
+//             $mind,
+//             $_POST["head"],
+//             $_POST["eye"],
+//             $_POST["face"],
+//             $_POST["nose"],
+//             $_POST["respiratory"],
+//             $_POST["cardiac"],
+//             $_POST["abdomen"],
+//             $_POST["menses"],
+//             $_POST["other"],
+//             $_POST["limb"],
+//             $_POST["back"],
+//             $_POST["skin"],
+//             $_POST["appetite"],
+//             $_POST["thirst"],
+//             $_POST["stool"],
+//             $_POST["urine"],
+//             $_POST["sleep"],
+//             $_POST["discharge"],
+//             $_POST["addiction"],
+//             $_POST["desire"],
+//             $_POST["aversion"],
+//             $_POST["aggravation"],
+//             $_POST["amelioration"],
+//             $caseno  // Assuming caseno is an integer
+//         );
+
+//         if ($statement->execute()) {
+//             echo '<div name="" class="alert alert-success">Record Updated Successfully</div>';
+//             header("Location: edit.php?caseno=$caseno");
+//             exit();
+//         } else {
+//             echo '<div name="" class="alert alert-danger">There was an error updating the record: ' . $statement->error . '</div>';
+//         }
+//         $statement->close();
+//     } else {
+//         echo "Failed to prepare the SQL statement: " . $conn->error;
+//     }
+
+//     $conn->close();
+// } else {
+//     echo "Case number not provided";
+// }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -167,8 +273,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['caseno'])) {
     <div name="" class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 "
         style="background-color: #d1d3ab;">
 
-        <form action="edit.php" method="POST" id="detailsForm" enctype="multipart/form-data">
-            <div name="" class="tab">
+        <form action="edit.php?caseno=<?php echo $row['caseno']?>" method="POST" id="detailsForm" enctype="multipart/form-data">
+        <input type="hidden" name="caseno" value="<?php echo $row['caseno'] ?>">    
+        <div name="" class="tab">
                 <div name="" class="input-group ">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Name</span>
                     <input type="text" name="name" class="form-control border-0" aria-label="Sizing example input" value = "<?php echo $row['name'];?>"
@@ -541,14 +648,14 @@ function isSelected($value, $selectedOptions) {
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Head/Neck</span>
                     <div name="" class="form-floating">
-                        <textarea name="head" class="form-control border-0"></textarea>
+                        <textarea name="head" class="form-control border-0"><?php echo $row['head'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Mouth/Tongue</span>
                     <div name="" class="form-floating">
-                        <textarea name="mouth" class="form-control border-0"></textarea>
+                        <textarea name="mouth" class="form-control border-0"><?php echo $row['mouth'];?></textarea>
                     </div>
                 </div>
 
@@ -575,19 +682,19 @@ function isSelected($value, $selectedOptions) {
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Eye/Ear</span>
                     <div name="" class="form-floating">
-                        <textarea name="eye" class="form-control border-0"></textarea>
+                        <textarea name="eye" class="form-control border-0"><?php echo $row['eye'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0">Face/Color</span>
                     <div name="" class="form-floating">
-                        <textarea name="face" class="form-control border-0"></textarea>
+                        <textarea name="face" class="form-control border-0"><?php echo $row['face'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Nose</span>
                     <div name="" class="form-floating">
-                        <textarea name="nose" class="form-control border-0"></textarea>
+                        <textarea name="nose" class="form-control border-0"><?php echo $row['nose'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
@@ -596,7 +703,7 @@ function isSelected($value, $selectedOptions) {
                     <span name="" class="input-group-text p-3 border-0 fixed-width" id="inputGroup-sizing-default"
                         style="background-color: #ffffff74; color: rgba(0, 0, 0, 0.661); "> Respiratory</span>
 
-                    <input type="text" name="respiratory" class="form-control border-0" aria-label="Sizing example input"
+                    <input type="text" name="respiratory" class="form-control border-0" value="<?php echo $row['respiratory'];?>" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
 
                 </div>
@@ -606,7 +713,7 @@ function isSelected($value, $selectedOptions) {
                     <span name="" class="input-group-text p-3 border-0 fixed-width" id="inputGroup-sizing-default"
                         style="background-color: #ffffff74; color: rgba(0, 0, 0, 0.661); "> Cardiac</span>
 
-                    <input type="text" name="cardiac" class="form-control border-0" aria-label="Sizing example input"
+                    <input type="text" name="cardiac" class="form-control border-0" value="<?php echo $row['cardiac'];?>" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
 
                 </div>
@@ -614,7 +721,7 @@ function isSelected($value, $selectedOptions) {
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Abdomen/Pelvis</span>
                     <div name="" class="form-floating">
-                        <textarea name="abdomen" class="form-control border-0"></textarea>
+                        <textarea name="abdomen" class="form-control border-0"><?php echo $row['abdomen'];?></textarea>
                     </div>
                 </div>
             </div>
@@ -628,7 +735,7 @@ function isSelected($value, $selectedOptions) {
                     <span name="" class="input-group-text p-3 border-0 fixed-width" id="inputGroup-sizing-default"
                         style="background-color: #ffffff74; color: rgba(0, 0, 0, 0.661); "> Menses</span>
 
-                    <input type="text" name="menses" class="form-control border-0" aria-label="Sizing example input"
+                    <input type="text" name="menses" value="<?php echo $row['menses'];?>" class="form-control border-0" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
 
                 </div>
@@ -639,35 +746,35 @@ function isSelected($value, $selectedOptions) {
                     <span name="" class="input-group-text p-3 border-0 fixed-width" id="inputGroup-sizing-default"
                         style="background-color: #ffffff74; color: rgba(0, 0, 0, 0.661); "> Other Discharge</span>
 
-                    <input type="text" name="other" class="form-control border-0" aria-label="Sizing example input"
+                    <input type="text" name="other" value="<?php echo $row['other'];?>" class="form-control border-0" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
 
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Limb</span>
                     <div name="" class="form-floating">
-                        <textarea name="limb" class="form-control border-0"></textarea>
+                        <textarea name="limb" class="form-control border-0"><?php echo $row['limb'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Back/Lumber</span>
                     <div name="" class="form-floating">
-                        <textarea name="back" class="form-control border-0"></textarea>
+                        <textarea name="back" class="form-control border-0"><?php echo $row['back'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Skin/Condition/ <br /> Perspiration</span>
                     <div name="" class="form-floating">
-                        <textarea name="skin" class="form-control border-0 h-100"></textarea>
+                        <textarea name="skin" class="form-control border-0 h-100"><?php echo $row['skin'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Appetite</span>
                     <div name="" class="form-floating">
-                        <textarea name="appetite" class="form-control border-0"></textarea>
+                        <textarea name="appetite" class="form-control border-0"><?php echo $row['appetite'];?></textarea>
                     </div>
                 </div>
 
@@ -677,40 +784,40 @@ function isSelected($value, $selectedOptions) {
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Thirst</span>
                     <div name="" class="form-floating">
-                        <textarea name="thirst" class="form-control border-0"></textarea>
+                        <textarea name="thirst" class="form-control border-0"><?php echo $row['thirst'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Stool</span>
                     <div name="" class="form-floating">
-                        <textarea name="stool" class="form-control border-0"></textarea>
+                        <textarea name="stool" class="form-control border-0"><?php echo $row['stool'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Urine</span>
                     <div name="" class="form-floating">
-                        <textarea name="urine" class="form-control border-0"></textarea>
+                        <textarea name="urine" class="form-control border-0"><?php echo $row['urine'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Sleep/Dream</span>
                     <div name="" class="form-floating">
-                        <textarea name="sleep" class="form-control border-0"></textarea>
+                        <textarea name="sleep" class="form-control border-0"><?php echo $row['sleep'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Discharge If
                         Any</span>
                     <div name="" class="form-floating">
-                        <textarea name="discharge" class="form-control border-0"></textarea>
+                        <textarea name="discharge" class="form-control border-0"><?php echo $row['discharge'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Addiction If
                         Any</span>
                     <div name="" class="form-floating">
-                        <textarea name="addiction" class="form-control border-0"></textarea>
+                        <textarea name="addiction" class="form-control border-0"><?php echo $row['addiction'];?></textarea>
                     </div>
                 </div>
 
@@ -720,28 +827,28 @@ function isSelected($value, $selectedOptions) {
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Desire</span>
                     <div name="" class="form-floating">
-                        <textarea name="desire" class="form-control border-0"></textarea>
+                        <textarea name="desire" class="form-control border-0"><?php echo $row['desire'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Aversion</span>
                     <div name="" class="form-floating">
-                        <textarea name="aversion" class="form-control border-0"></textarea>
+                        <textarea name="aversion" class="form-control border-0"><?php echo $row['aversion'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Aggravation</span>
                     <div name="" class="form-floating">
-                        <textarea name="aggravation" class="form-control border-0"></textarea>
+                        <textarea name="aggravation" class="form-control border-0"><?php echo $row['aggravation'];?></textarea>
                     </div>
                 </div>
                 <div name="" class="input-group  mt-3">
                     <span name="" class="input-group-text fixed-width p-3 border-0"
                         id="inputGroup-sizing-default">Amelioration</span>
                     <div name="" class="form-floating">
-                        <textarea name="amelioration" class="form-control border-0"></textarea>
+                        <textarea name="amelioration" class="form-control border-0"><?php echo $row['amelioration'];?></textarea>
                     </div>
                 </div>
             </div>
