@@ -1,155 +1,26 @@
 <?php
 include 'config.php';
-
-if (isset($_GET['caseno'])) {
-    $caseno = $_GET['caseno']; 
-    
-    $sql = "SELECT * FROM test_details WHERE caseno = ?";
-    $stmt = $conn->prepare($sql);
-    if ($stmt) {
-        $stmt->bind_param("i", $caseno);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-        } else {
-            echo "No patient found with case number $caseno";
-            exit;
-        }
-    } else {
-        echo "Error preparing the statement.";
-        exit;
-    }
-
-    $sql1 = "SELECT medicine,dose,date FROM prescriptions WHERE caseno = ?";
-    $stmt1 = $conn->prepare($sql1);
-    $row1 = [];
-    if ($stmt1) {
-        $stmt1->bind_param("i", $caseno);
-        $stmt1->execute();
-        $result1 = $stmt1->get_result();
-        if ($result1->num_rows > 0) {
-            // $row1 = $result1->fetch_assoc();
-            
-        // Fetch each row and add to the array
-        while ($row33 = $result1->fetch_assoc()) {
-            $row1[] = $row33;
-        }
-        } else {
-            $redirect = "checkup-pg.php?caseno=" . urlencode($caseno);
-            header("Location:$redirect");
-            // echo "No patient found with case number $caseno";
-             exit;
-        }
-    } else {
-        echo "Error preparing the statement.";
-        exit;
-    }
-
-    $sql2 = "SELECT * FROM checkup_remarks WHERE caseno = ?";
-    $stmt2 = $conn->prepare($sql2);
-    if ($stmt2) {
-        $stmt2->bind_param("i", $caseno);
-        $stmt2->execute();
-        $result2 = $stmt2->get_result();
-        if ($result2->num_rows > 0) {
-            $row2 = $result2->fetch_assoc();
-        } else {
-            // echo "No patient found with case number $caseno";
-            $redirect = "checkup-pg.php?caseno=" . urlencode($caseno);
-            header("Location:$redirect");
-             exit;
-        }
-    } else {
-        echo "Error preparing the statement.";
-        exit;
-    }
-
-    $visit_sql = "SELECT COUNT(*) as visit_count FROM checkup_remarks WHERE caseno = ?";
-    $visit_stmt = $conn->prepare($visit_sql);
-    if ($visit_stmt) {
-        $visit_stmt->bind_param("i", $caseno);
-        $visit_stmt->execute();
-        $visit_result = $visit_stmt->get_result();
-        $visit_data = $visit_result->fetch_assoc();
-        $visit_count = $visit_data['visit_count'];
-    } else {
-        echo "Error counting visits.";
-        exit;
-    }
-
-
-    if ($visit_count < 2) {
-        $display_date = $row['date'];
-    } else {
+    if (isset($_GET['caseno'])) {
+        $caseno = $_GET['caseno']; 
         
-        $last_visit_sql = "SELECT date FROM checkup_remarks WHERE caseno = ? ORDER BY date DESC LIMIT 1";
-        $last_visit_stmt = $conn->prepare($last_visit_sql);
-        if ($last_visit_stmt) {
-            $last_visit_stmt->bind_param("i", $caseno);
-            $last_visit_stmt->execute();
-            $last_visit_result = $last_visit_stmt->get_result();
-            if ($last_visit_result->num_rows > 0) {
-                $last_visit_row = $last_visit_result->fetch_assoc();
-                $display_date = $last_visit_row['date'];
+        $sql = "SELECT * FROM test_details WHERE caseno = ?";
+        $stmt = $conn->prepare($sql);
+        if ($stmt) {
+            $stmt->bind_param("i", $caseno);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
             } else {
-                echo "No previous visits found.";
+                echo "No patient found with case number $caseno";
                 exit;
             }
         } else {
-            echo "Error fetching last visit date.";
+            echo "Error preparing the statement.";
             exit;
         }
     }
-} else {
-    echo "Case number not provided";
-    exit;
-}
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $date = $_POST['date'];
-    $remarks = $_POST['remarks'];
-
-    $query = "INSERT INTO checkup_remarks (caseno, date, remarks, file) 
-              VALUES (?, ?, ?, '')";
-    
-    $stmt = $conn->prepare($query);
-    if ($stmt) {
-        $stmt->bind_param("iss", $caseno, $date, $remarks);
-
-        if ($stmt->execute()) {
-            echo "Data inserted successfully.";
-            $medicine = $_POST['medicine'];
-            $dose = $_POST['dose'];
-            for ($i = 0; $i < count($medicine); $i++) {
-                $medicines = htmlspecialchars($medicine[$i]);
-                $doses = htmlspecialchars($dose[$i]);
-                
-                $med_query = "INSERT INTO prescriptions (caseno, medicine, dose, date) 
-                              VALUES (?, ?, ?, ?)";
-                $med_stmt = $conn->prepare($med_query);
-                if ($med_stmt) {
-                    $med_stmt->bind_param("isss", $caseno, $medicines, $doses, $date);
-                    if ($med_stmt->execute()) {
-                        // echo "Medicine and dose added successfully.";
-                    } else {
-                        echo "Error inserting medicine and dose.";
-                    }
-                } else {
-                    echo "Error preparing the medicine statement.";
-                }
-            }
-        } else {
-            echo "Error inserting data.";
-        }
-    } else {
-        echo "Error preparing the statement.";
-    }
-}
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -271,14 +142,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
                     
                             <div class="input-group">
-                                <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;"><?php echo $display_date; ?></span>
+                                <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;"><?php echo $row['date']; ?></span>
 
-                                <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p> <?php echo $row2['remarks'];?> </p></span>
-                                <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p> <?php
-                                 //echo $row1['medicine']."--"; echo $row1['dose']."--".$row1["date"];
-                                 foreach($row1 as $row34) {
-                                    echo $row34['medicine']." -- ". $row34['dose']." -- ".$row34['date']."<br>";
-                                }?> </p></span>
+                                <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p> No Remarks have been given. </p></span>
+                                <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p> No Prescriptions have been given. </p></span>
                             </div>
                         </div>
 
