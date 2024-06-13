@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body style="background-color: #0b6e4f;">
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="fa-solid fa-house-chimney-medical mt-3"></i>
+                    <div class="sidebar-logo">
+                        <a href="">Ideal Homeo Clinic</a>
+                    </div>
+               </button>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item mb-1">
+                    <a href="admin_profile.html" class="sidebar-link">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="ms-2">Profile</span>
+                    </a>
+                </li>
+                <li class="sidebar-item mb-1">
+                    <a href="add_user.html" class="sidebar-link">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Add User</span>
+                    </a>
+                </li>
+                <li class="sidebar-item mb-1">
+                    <a href="#" class="sidebar-link">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white " style="margin-left: -3px;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z" clip-rule="evenodd"/>
+                        </svg>
+                        <span style="margin-left: 12px;">Role Management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item mb-1">
+                    <a href="lab_test.html" class="sidebar-link">
+                        <i class="fa-solid fa-microscope"></i>
+                        <span class="ms-1">Lab Tests</span>
+                    </a>
+                </li>
+                <li class="sidebar-item mb-1">
+                    <a href="index.html " class="sidebar-link">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="ms-1">Back</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">
+                    <i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="border-0 w-100 rounded-5 p-4 shadow box-area" style="background-color: #d1d3ab;">
+                <form>
+                    <div class="mb-3 mt-2">
+                        <div class="row" style="padding: 0px; margin: 0px;">
+                            <div id="labtest">
+                                <h3><b>Lab Tests:</b></h3>
+                            </div>
+                            <div class="col-md-8 mt-2" style="padding: auto;">
+                                <input type="text" class="form-control h-100" id="recipient-name">
+                            </div>
+                            <div class="col-md-4 mt-2" style="padding: auto;">
+                                <button class="form-control p-3 border-0 rounded-3 w-100" id="medicine-input" placeholder="Enter Medicine" style="display: inline; background-color:#1da453; max-width: 100%; color: bisque;">ADD <i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="table-responsive border-0 rounded-3 mt-2" style="max-height: 50vh;">
+                                <table id="table" class="table table-striped p-3 rounded-3">
+                                    <thead>
+                                        <tr class="border-0">
+                                            <th class="border-0" scope="col">Sr No.</th>
+                                            <th class="border-0" scope="col">Lab</th>
+                                            <th class="border-0" scope="col">Added by:</th>
+                                            <th class="border-0" scope="col">Last Updated</th>
+                                            <th class="border-0" scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-0">
+                                        <tr class="border-0 rounded-3">
+                                            <td class="border-0">1</td>
+                                            <td class="border-0">Blood Test</td>
+                                            <td class="border-0">121</td>
+                                            <td class="border-0">30-10-2004</td>
+                                            <td class="border-0" style="width: 30%;">
+                                                <div class="btn-container">
+                                                    <button class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-0 rounded-3">
+                                            <td class="border-0">2</td>
+                                            <td class="border-0">Urine Test</td>
+                                            <td class="border-0">122</td>
+                                            <td class="border-0">31-10-2004</td>
+                                            <td class="border-0" style="width: 30%;">
+                                                <div class="btn-container">
+                                                    <button class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- Additional rows here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            document.querySelectorAll('.toggle-button').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (this.textContent.trim() === 'Disable') {
+                        this.textContent = 'Enable';
+                        this.classList.remove('btn-danger');
+                        this.classList.add('btn-success');
+                    } else {
+                        this.textContent = 'Disable';
+                        this.classList.remove('btn-success');
+                        this.classList.add('btn-danger');
+                    }
+                });
+            });
+
+            const toggleBtn = document.querySelector(".toggle-btn");
+            toggleBtn.addEventListener("click", () => {
+                document.getElementById("sidebar").classList.toggle("show-sidebar");
+            });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const buttons = document.querySelectorAll('.toggle-button');
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
+
+

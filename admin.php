@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,7 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item mb-1 ">
-                    <a href="admin.php" class="sidebar-link">
+                    <a href="admin_profile.php" class="sidebar-link">
                         <!-- <i class="lni lni-user"></i> -->
                         <i class="fa-solid fa-user"></i>
                         <span class="ms-2">Profile</span>
@@ -94,79 +94,56 @@
                     Admin Page
                 </h1>
             </div>
+            <?php
+            // Database connection
+            include "config.php";
+            // Fetch data from the "admin" table
+            $sql = "SELECT id, name, role, mobile FROM admin";
+            $result = $conn->query($sql);
+            
+            ?>
+            
             <div class="bg-white mx-3 rounded-3 text-align-center p-3 fs-6 mt-3">
                 <div class="table-responsive">
-                    <table  id="table" class="table table-striped p-3">
+                    <table id="table" class="table table-striped p-3">
                         <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                        
-                            <th scope="col">Name</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Mobile No.</th>
-                            
-                            <th scope="col">Actions</th>
-                          </tr>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Mobile No.</th>
+                                <th scope="col">Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            
-                            <td>Umang Hirani</td>
-                            <td>Doctor</td>
-                            <td>7984940336</td>
-                            
-                            <td>
-                                <div class="btn-container">
-                                    <button id="tooltip" class="btn rounded-4 mb-1 mt-1  edit-button action-button" style="background-color: #d1d3ab;"> <span id="tooltiptext">Edit</span> <i class="fa-solid fa-pen-to-square ms-2"></i></button>
-                                    <a id="tooltip" class="btn rounded-4 mb-1 mt-1 add-button action-button" href="" style="background-color: #0b6e4f; color: white;"> <span id="tooltiptext">Delete</span><i class="fa-solid fa-trash ms-2"></i></a>
-                                </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            
-                            <td>Aryan Mahida</td>
-                            <td>Doctor</td>
-                            <td>9030620245</td>
-                            
-                            <td>
-                                <div class="btn-container">
-                                    <button id="tooltip" class="btn rounded-4 mb-1 mt-1  edit-button action-button" style="background-color: #d1d3ab;"> <span id="tooltiptext">Edit</span> <i class="fa-solid fa-pen-to-square ms-2"></i></button>
-                                    <a id="tooltip" class="btn rounded-4 mb-1 mt-1 add-button action-button" href="" style="background-color: #0b6e4f; color: white;"> <span id="tooltiptext">Delete</span><i class="fa-solid fa-trash ms-2"></i></a>
-                                </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            
-                            <td>Rishit Rathod</td>
-                            <td>Doctor</td>
-                            <td>9590284822</td>
-                            
-                            <td>
-                                <div class="btn-container">
-                                    <button id="tooltip" class="btn rounded-4 mb-1 mt-1  edit-button action-button" style="background-color: #d1d3ab;"> <span id="tooltiptext">Edit</span> <i class="fa-solid fa-pen-to-square ms-2"></i></button>
-                                    <a id="tooltip" class="btn rounded-4 mb-1 mt-1 add-button action-button" href="" style="background-color: #0b6e4f; color: white;"> <span id="tooltiptext">Delete</span><i class="fa-solid fa-trash ms-2"></i></a>
-                                </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            
-                            <td>Kirtan Makwana</td>
-                            <td>Doctor</td>
-                            <td>9437292302</td>
-                            
-                            <td>
-                                <div class="btn-container">
-                                    <button id="tooltip" class="btn rounded-4 mb-1 mt-1  edit-button action-button" style="background-color: #d1d3ab;"> <span id="tooltiptext">Edit</span> <i class="fa-solid fa-pen-to-square ms-2"></i></button>
-                                    <a id="tooltip" class="btn rounded-4 mb-1 mt-1 add-button action-button" href="" style="background-color: #0b6e4f; color: white;"> <span id="tooltiptext">Delete</span><i class="fa-solid fa-trash ms-2"></i></a>
-                                </div>
-                            </td>
-                          </tr>
-        
-        
+                            <?php
+                            if ($result->num_rows > 0) {
+                                // Output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>
+                                            <td>{$row['id']}</td>
+                                            <td>{$row['name']}</td>
+                                            <td>{$row['role']}</td>
+                                            <td>{$row['mobile']}</td>
+                                            <td>
+                                                <div class=\"btn-container\">
+                                                    <button id=\"tooltip\" class=\"btn rounded-4 mb-1 mt-1 edit-button action-button\" style=\"background-color: #d1d3ab;\">
+                                                        <span id=\"tooltiptext\">Edit</span>
+                                                        <i class=\"fa-solid fa-pen-to-square ms-2\"></i>
+                                                    </button>
+                                                    <a id=\"tooltip\" class=\"btn rounded-4 mb-1 mt-1 add-button action-button\" href=\"delete.php?id={$row['id']}\" style=\"background-color: #0b6e4f; color: white;\">
+                                                        <span id=\"tooltiptext\">Delete</span>
+                                                        <i class=\"fa-solid fa-trash ms-2\"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                          </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='5'>No records found</td></tr>";
+                            }
+                            $conn->close();
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -206,7 +183,7 @@ function test() {
   var removeButton = document.createElement('button');
   removeButton.setAttribute('class', 'btn btn-danger');
   removeButton.setAttribute('type', 'button');
-  removeButton.innerHTML = 'Remove';
+  removeButton.innerphp = 'Remove';
   removeButton.onclick = function() {
       container.remove();
   };
@@ -221,4 +198,4 @@ function test() {
     </script>
 </body>
 
-</html>
+</php>
