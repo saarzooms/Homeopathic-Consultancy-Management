@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <td>Medicine 1</td>
-                            <td>Dose 1</td>
+                             <td>Dose 1</td>
                         </tr>
                         <tr>
                             <td>Medicine 1</td>
