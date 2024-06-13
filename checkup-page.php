@@ -132,6 +132,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $med_stmt->bind_param("isss", $caseno, $medicines, $doses, $date);
                     if ($med_stmt->execute()) {
                         // echo "Medicine and dose added successfully.";
+                        $redirect = "payment.php?caseno=" . urlencode($caseno);
+                            header("Location:$redirect");
                     } else {
                         echo "Error inserting medicine and dose.";
                     }
@@ -220,7 +222,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div style="text-align: justify;"
                                             class="col-md-7 mt-1 mb-1 align-items-center justify-content-center">
                                             Case No - <?php echo $row['caseno'] ?><br>
-                                            File No - <?php echo "4" ?><br>
+                                            File No - <?php $config = include 'settings_config.php';
+$file_number = $config['file_number'];
+echo $file_number; ?><br>
                                             Mobile No - <?php echo $row['mobile'] ?>
                                         </div>
                                     </div>
@@ -263,24 +267,93 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             alt="">
                     </div>
 
-                    <div class="history-div rounded-3" style="max-height: 45vh; overflow-y: scroll;">
+                   
+                            
+                                <?php
+// Given array
+// $data = array(
+//     array("medicine" => "", "dose" => "", "date" => "06/13/2024"),
+//     array("medicine" => "asdf", "dose" => "asdf", "date" => "06/13/2024"),
+//     array("medicine" => "", "dose" => "", "date" => "06/13/2024"),
+//     array("medicine" => "dfasdf", "dose" => "asdfasdf", "date" => "06/13/2024"),
+//     array("medicine" => "dfasdf", "dose" => "asdfasdf", "date" => "06/13/2024"),
+//     array("medicine" => "", "dose" => "", "date" => "06/13/2024")
+// );
 
-                    
+// Given array
+$data = $row1;
+
+// Initialize an empty array to hold formatted data
+$formatted_data = array();
+
+// Fetching remarks for each unique date
+$remarks_query = "SELECT date, remarks FROM checkup_remarks WHERE caseno = ?";
+$remarks_stmt = $conn->prepare($remarks_query);
+if ($remarks_stmt) {
+    $remarks_stmt->bind_param("i", $caseno);
+    $remarks_stmt->execute();
+    $remarks_result = $remarks_stmt->get_result();
+    if ($remarks_result->num_rows > 0) {
+        while ($remarks_row = $remarks_result->fetch_assoc()) {
+            $formatted_data[$remarks_row['date']]['remarks'] = $remarks_row['remarks'];
+        }
+    } else {
+        // Handle case where no remarks found
+    }
+} else {
+    echo "Error preparing the remarks statement.";
+    exit;
+}
+
+// Loop through the given array to populate formatted_data
+foreach ($data as $entry) {
+    $date = $entry['date'];
+    if (!isset($formatted_data[$date])) {
+        $formatted_data[$date] = array(
+            'remarks' => '', // Initialize remarks field
+            'prescriptions' => array()
+        );
+    }
+    // Add prescription details only if both medicine and dose are not empty
+    if ($entry['medicine'] != "" && $entry['dose'] != "") {
+        $formatted_data[$date]['prescriptions'][] = $entry;
+    }
+}
+// Display the formatted data
+echo '<div class="history-div rounded-3" style="max-height: 45vh; overflow-y: scroll;">';
+
+foreach ($formatted_data as $date => $entry) {
+    $remarks = $entry['remarks'];
+    $prescriptions = $entry['prescriptions'];
+    ?>
+    <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
+        <div class="input-group">
+            <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">
+                <?php echo $date; ?>
+            </span>
+            <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                <p><?php echo $remarks; ?></p>
+            </span>
+            <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
+                <p>
+                    <?php
+                    foreach ($prescriptions as $prescription) {
+                        echo $prescription['medicine'] . " X " . $prescription['dose'] . "<br>";
+                    }
+                    ?>
+                </p>
+            </span>
+        </div>
+    </div>
+    <?php
+}
+
+echo '</div>';
+?>
+</p></span>
+                     
 
 
-                        <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
-                    
-                            <div class="input-group">
-                                <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;"><?php echo $display_date; ?></span>
-
-                                <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p> <?php echo $row2['remarks'];?> </p></span>
-                                <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;"><p> <?php
-                                 //echo $row1['medicine']."--"; echo $row1['dose']."--".$row1["date"];
-                                 foreach($row1 as $row34) {
-                                    echo $row34['medicine']." -- ". $row34['dose']." -- ".$row34['date']."<br>";
-                                }?> </p></span>
-                            </div>
-                        </div>
 
 
 
@@ -288,10 +361,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-
-
-
-                    </div>
+                  
 
 
 

@@ -46,6 +46,8 @@ include 'config.php';
                         $med_stmt->bind_param("isss", $caseno, $medicines, $doses, $date);
                         if ($med_stmt->execute()) {
                             // echo "Medicine and dose added successfully.";
+                            $redirect = "payment.php?caseno=" . urlencode($caseno);
+                            header("Location:$redirect");
                         } else {
                             echo "Error inserting medicine and dose.";
                         }
