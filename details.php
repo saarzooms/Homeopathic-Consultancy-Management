@@ -622,11 +622,16 @@ echo $message;
 
                             <select style="" name="lab[]" id="option" class="form-select" aria-label="status-select">
                                 <option selected>Select Lab Test</option>
-                                <option value="blood">Blood Test</option>
-                                <option value="stool">Stool Test</option>
-                                <option value="urine">Urine Test</option>
-                                <option value="genetic">Genetic Test</option>
-                                <option value="biopsy">Biopsy</option>
+                                <?php
+                                    include 'config.php';
+                                    $query = "SELECT lab FROM test_name";
+                                    $result = $conn->query($query);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo '<option value="' . htmlspecialchars($row['lab']) . '">' . htmlspecialchars($row['lab']) . '</option>';
+                                        }
+                                    }
+                                ?>
                             </select>
             <input type="date" name="dt[]" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
 

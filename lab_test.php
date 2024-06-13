@@ -1,3 +1,14 @@
+<?php
+    include 'config.php';
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $lab = $_POST['lab'];
+        $query = "INSERT INTO test_name (lab) VALUES (?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $lab);
+        $stmt->execute();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,14 +76,14 @@
 
         <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="border-0 w-100 rounded-5 p-4 shadow box-area" style="background-color: #d1d3ab;">
-                <form>
+                <form action="lab_test.php" method="post">
                     <div class="mb-3 mt-2">
                         <div class="row" style="padding: 0px; margin: 0px;">
                             <div id="labtest">
                                 <h3><b>Lab Tests:</b></h3>
                             </div>
                             <div class="col-md-8 mt-2" style="padding: auto;">
-                                <input type="text" class="form-control h-100" id="recipient-name">
+                                <input type="text" name="lab" class="form-control h-100" id="recipient-name" required>
                             </div>
                             <div class="col-md-4 mt-2" style="padding: auto;">
                                 <button class="form-control p-3 border-0 rounded-3 w-100" id="medicine-input" placeholder="Enter Medicine" style="display: inline; background-color:#1da453; max-width: 100%; color: bisque;">ADD <i class="fa-solid fa-plus"></i></button>
@@ -89,29 +100,30 @@
                                         </tr>
                                     </thead>
                                     <tbody class="border-0">
-                                        <tr class="border-0 rounded-3">
-                                            <td class="border-0">1</td>
-                                            <td class="border-0">Blood Test</td>
-                                            <td class="border-0">121</td>
-                                            <td class="border-0">30-10-2004</td>
-                                            <td class="border-0" style="width: 30%;">
-                                                <div class="btn-container">
-                                                    <button class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-0 rounded-3">
-                                            <td class="border-0">2</td>
-                                            <td class="border-0">Urine Test</td>
-                                            <td class="border-0">122</td>
-                                            <td class="border-0">31-10-2004</td>
-                                            <td class="border-0" style="width: 30%;">
-                                                <div class="btn-container">
-                                                    <button class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <!-- Additional rows here -->
+                                        <?php
+                                            include 'config.php';
+                                            $sql = "SELECT * from test_name";
+                                            $result = $conn->query($sql);
+
+                                            if($result->num_rows>0){
+                                                while($row=$result->fetch_assoc()){
+                                                    echo '<tr class="border-0 rounded-3">
+                                                            <td class="border-0">'. $row['id'] .'</td>
+                                                            <td class="border-0">'. $row['lab'] .'</td>
+                                                            <td class="border-0">121</td>
+                                                            <td class="border-0">'. $row['date'] .'</td>
+                                                            <td class="border-0" style="width: 30%;">
+                                                                <div class="btn-container">
+                                                                    <button class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>';
+
+                                                }
+                                            }
+                                        
+                                        
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
