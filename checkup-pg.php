@@ -20,7 +20,47 @@ include 'config.php';
             exit;
         }
     }
-?>
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $date = $_POST['date'];
+        $remarks = $_POST['remarks'];
+    
+        $query = "INSERT INTO checkup_remarks (caseno, date, remarks, file) 
+                  VALUES (?, ?, ?, '')";
+        
+        $stmt = $conn->prepare($query);
+        if ($stmt) {
+            $stmt->bind_param("iss", $caseno, $date, $remarks);
+    
+            if ($stmt->execute()) {
+                echo "Data inserted successfully.";
+                $medicine = $_POST['medicine'];
+                $dose = $_POST['dose'];
+                for ($i = 0; $i < count($medicine); $i++) {
+                    $medicines = htmlspecialchars($medicine[$i]);
+                    $doses = htmlspecialchars($dose[$i]);
+                    
+                    $med_query = "INSERT INTO prescriptions (caseno, medicine, dose, date) 
+                                  VALUES (?, ?, ?, ?)";
+                    $med_stmt = $conn->prepare($med_query);
+                    if ($med_stmt) {
+                        $med_stmt->bind_param("isss", $caseno, $medicines, $doses, $date);
+                        if ($med_stmt->execute()) {
+                            // echo "Medicine and dose added successfully.";
+                        } else {
+                            echo "Error inserting medicine and dose.";
+                        }
+                    } else {
+                        echo "Error preparing the medicine statement.";
+                    }
+                }
+            } else {
+                echo "Error inserting data.";
+            }
+        } else {
+            echo "Error preparing the statement.";
+        }
+    }
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
