@@ -5,7 +5,7 @@ include 'config.php';
 // Handle form submission for adding a new user
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_user'])) {
     $name = $_POST['name'];
-    $role = $_POST['role'];
+    $role = ucfirst($_POST['role']);
     $mobile = $_POST['mobile'];
 
     $insertSql = "INSERT INTO admin (name, role, mobile) VALUES ('$name', '$role', '$mobile')";
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_user'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_user'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $role = $_POST['role'];
+    $role = ucfirst($_POST['role']);
     $mobile = $_POST['mobile'];
 
     $updateSql = "UPDATE admin SET name='$name', role='$role', mobile='$mobile' WHERE id=$id";
@@ -124,10 +124,10 @@ $result = $conn->query($sql);
                         <div class="mb-3">
                             <select class="form-select" aria-label="Role select" name="role" required>
                                 <option selected disabled>Choose Role</option>
-                                <option value="doctor">Doctor</option>
-                                <option value="receptionist">Receptionist</option>
-                                <option value="admin">Admin</option>
-                                <option value="other">Other</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Receptionist">Receptionist</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </div>
@@ -159,7 +159,7 @@ $result = $conn->query($sql);
                                 echo "<tr>";
                                 echo "<td>" . $row["id"] . "</td>";
                                 echo "<td>" . $row["name"] . "</td>";
-                                echo "<td>" . $row["role"] . "</td>";
+                                echo "<td>" . ucfirst($row["role"]) . "</td>";
                                 echo "<td>" . $row["mobile"] . "</td>";
                                 echo '<td>
                                     <div class="btn-container">

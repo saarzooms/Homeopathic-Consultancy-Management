@@ -23,13 +23,13 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item mb-1">
-                    <a href="admin_profile.html" class="sidebar-link">
+                    <a href="admin_profile.php" class="sidebar-link">
                         <i class="fa-solid fa-user"></i>
                         <span class="ms-2">Profile</span>
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="add_user.html" class="sidebar-link">
+                    <a href="add_user.php" class="sidebar-link">
                         <i class="fa-solid fa-user-plus"></i>
                         <span>Add User</span>
                     </a>
@@ -43,13 +43,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="lab_test.html" class="sidebar-link">
+                    <a href="lab_test.php" class="sidebar-link">
                         <i class="fa-solid fa-microscope"></i>
                         <span class="ms-1">Lab Tests</span>
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="index.html " class="sidebar-link">
+                    <a href="index.php " class="sidebar-link">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span class="ms-1">Back</span>
                     </a>
