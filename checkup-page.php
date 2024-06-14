@@ -221,10 +221,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div style="text-align: justify;"
                                             class="col-md-7 mt-1 mb-1 align-items-center justify-content-center">
+                                            <input type="hidden" name="fileno" value="<?php echo $row['fileno'] ?>">    
+
                                             Case No - <?php echo $row['caseno'] ?><br>
-                                            File No - <?php $config = include 'settings_config.php';
-$file_number = $config['file_number'];
-echo $file_number; ?><br>
+                                            File No - <?php echo $row['fileno']?> <br>
                                             Mobile No - <?php echo $row['mobile'] ?>
                                         </div>
                                     </div>

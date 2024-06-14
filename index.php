@@ -235,7 +235,7 @@
                                             <span id='tooltiptext'>Edit Patient Details</span>
                                             <i class='fa-solid fa-pen-to-square'></i>
                                         </a>
-                                        <a id='tooltip' class='btn rounded-4 mb-1 mt-1 w-100 add-button action-button' href='checkup-page.php?caseno={$row['caseno']}' style='background-color: #0b6e4f; color: white;'>
+                                        <a id='tooltip' class='btn rounded-4 mb-1 mt-1 w-100 add-button action-button' href='checkup-page.php?caseno={$row['caseno']}?fileno={$row['fileno']}' style='background-color: #0b6e4f; color: white;'>
                                             <span id='tooltiptext'>Patient Checkup</span>
                                             <i class='fa-solid fa-notes-medical'></i>
                                         </a>

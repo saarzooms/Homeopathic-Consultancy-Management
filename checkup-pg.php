@@ -132,8 +132,10 @@ include 'config.php';
                                         </div>
                                         <div style="text-align: justify;"
                                             class="col-md-7 mt-1 mb-1 align-items-center justify-content-center">
+                                            <input type="hidden" name="fileno" value="<?php echo $row['fileno'] ?>">    
+
                                             Case No - <?php echo $row['caseno'] ?><br>
-                                            File No - <?php echo "4" ?><br>
+                                            File No - <?php echo $row['fileno'] ?><br>
                                             Mobile No - <?php echo $row['mobile'] ?>
                                         </div>
                                     </div>
