@@ -1,13 +1,31 @@
 <?php
-    include 'config.php';
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $lab = $_POST['lab'];
-        $query = "INSERT INTO test_name (lab) VALUES (?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $lab);
-        $stmt->execute();
-    }
+include 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['lab'])) {
+    $lab = $_POST['lab'];
+    $query = "INSERT INTO test_name (lab) VALUES (?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $lab);
+    $stmt->execute();
+
+    // Redirect after POST
+    // header("Location: lab_test.php");
+    // exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['disable_lab_id'])) {
+    $labToDisable = $_POST['disable_lab_id'];
+    $query = "UPDATE test_name SET is_disabled = TRUE WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $labToDisable);
+    $stmt->execute();
+
+    // Redirect after POST
+    // header("Location: lab_test.php");
+    // exit;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,18 +94,19 @@
 
         <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="border-0 w-100 rounded-5 p-4 shadow box-area" style="background-color: #d1d3ab;">
-                <form action="lab_test.php" method="post">
-                    <div class="mb-3 mt-2">
-                        <div class="row" style="padding: 0px; margin: 0px;">
-                            <div id="labtest">
-                                <h3><b>Lab Tests:</b></h3>
+                <div class="mb-3 mt-2">
+                    <div class="row" style="padding: 0px; margin: 0px;">
+                        <div id="labtest">
+                            <h3><b>Lab Tests:</b></h3>
                             </div>
+                        <form action="lab_test.php" method="post">
                             <div class="col-md-8 mt-2" style="padding: auto;">
                                 <input type="text" name="lab" class="form-control h-100" id="recipient-name" required>
                             </div>
                             <div class="col-md-4 mt-2" style="padding: auto;">
                                 <button class="form-control p-3 border-0 rounded-3 w-100" id="medicine-input" placeholder="Enter Medicine" style="display: inline; background-color:#1da453; max-width: 100%; color: bisque;">ADD <i class="fa-solid fa-plus"></i></button>
                             </div>
+                            </form>
                             <div class="table-responsive border-0 rounded-3 mt-2" style="max-height: 50vh;">
                                 <table id="table" class="table table-striped p-3 rounded-3">
                                     <thead>
@@ -114,7 +133,9 @@
                                                             <td class="border-0">'. $row['date'] .'</td>
                                                             <td class="border-0" style="width: 30%;">
                                                                 <div class="btn-container">
-                                                                    <button class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
+                                                                    
+                                                                        <button value='.$row['id'].' onclick="dosubmit(this.value)"  return false; class="btn btn-danger rounded-4 mb-1 mt-1 w-100 edit-button action-button toggle-button">Disable</button>
+                                                                    
                                                                 </div>
                                                             </td>
                                                         </tr>';
@@ -129,11 +150,20 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
-
+        <form action="lab_test.php" method="post" id="disable_form">
+        <input type="hidden"id="disable_id" name="disable_lab_id" value="" >
+</form>
         <script>
+
+function dosubmit(value){
+    event.preventDefault();
+    const form = document.getElementById('disable_form');
+    document.getElementById('disable_id').value = value;
+    form.submit();
+}
+
             document.querySelectorAll('.toggle-button').forEach(button => {
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
