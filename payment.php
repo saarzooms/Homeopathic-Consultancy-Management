@@ -117,7 +117,8 @@ if (isset($_GET['caseno'])) {
             <form method="POST">
                 <div class="input-group mt-3 mb-2">
                     <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default" style="border-top-left-radius:8px;border-bottom-left-radius:8px;background-color: #0b6e4f;color: bisque;">Date</span>
-                    <input type="text" id="date" class="form-control border-0 right-align" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Date" style="background-color: #d1d3ab;">
+                    <input type="text" name="date" id="date" class="form-control border-0 right-align" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter Date" style="background-color: #d1d3ab;">
+                    <!-- <input type="hidden" name="" value="<?php echo $prescriptions['date'];?>"> -->
                 </div>
 
                 <div class="table-responsive">
