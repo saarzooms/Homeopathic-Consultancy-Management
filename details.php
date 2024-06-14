@@ -77,6 +77,39 @@ echo $file_number;
         if ($statement->execute($user_data)) {
             $message = '<div class="alert alert-success">Registration Completed Successfully</div>';
             $last_id = $connect->lastInsertId();
+            echo $last_id;
+
+            include 'config.php';
+            $sql = "INSERT INTO payment (caseno, prev_amt, present_amt, paid_amt, future_amt) VALUES (?, 0, 0, 0, 0)";
+
+$stmt = $conn->prepare($sql);
+
+if ($stmt === false) {
+    die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+}
+
+// Bind the $last_id to the statement
+$stmt->bind_param("i", $last_id);
+
+// Execute the statement
+if ($stmt->execute()) {
+    echo "New record inserted successfully\n";
+} else {
+    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+}
+
+// Close statement and connection
+$stmt->close();
+$conn->close();
+
+
+
+
+
+
+
+
+
             $lab = $_POST['lab'];
             $remarks = $_POST['remarks'];
             $dt = $_POST['dt'];
