@@ -657,7 +657,7 @@ echo $message;
                                 <option selected>Select Lab Test</option>
                                 <?php
                                     include 'config.php';
-                                    $query = "SELECT lab FROM test_name";
+                                    $query = "SELECT lab FROM test_name where is_disabled = 1";
                                     $result = $conn->query($query);
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
