@@ -200,8 +200,9 @@
                             testList.appendChild(newRow);
                             labTestName.value = '';
                         } else {
-                            alert('Failed to add test');
+                            alert('Failed to add test some changes');
                         }
+                        
                     });
                 });
             });
