@@ -36,7 +36,7 @@
 <body style="background-color: #0b6e4f">
 <nav class="navbar shadow navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand me-auto " id="spmsbranding" href="index.html">IDEAL</a>
+            <a class="navbar-brand me-auto " id="spmsbranding" href="index.php">IDEAL</a>
             <div class="d-flex align-items-center justify-content-center w-50 position-relative searchbar ">
                 <input id="searchbar-input" type="text" class="searchbar w-100" placeholder="Search" aria-label="Search" value="<?php 
                 
@@ -69,7 +69,7 @@
                 </button>
                 <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
                     <li><a class="dropdown-item p-2 rounded-3 btn mb-1 profile-setting-button justify-content-center d-flex"
-                            href="profile.html">
+                            href="profile.php">
                             <div class="me-auto w-100" style="display: inline;"><i class="fa-solid fa-user-doctor"></i>
                             </div><span class="w-100" style="text-align: right;">Profile</span>
                         </a></li>
@@ -82,7 +82,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a href="login.html"
+                    <li><a href="login.php"
                             class="dropdown-item p-3 rounded-3 btn btn-danger logout-button justify-content-center d-flex"
                             style="background-color: rgba(255, 0, 0, 0.115);" href="#">
                             <div class="me-auto w-100" style="display: inline;"><i style="font-size: 13px; color: red;"

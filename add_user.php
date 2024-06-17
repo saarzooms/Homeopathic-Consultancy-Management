@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_user'])) {
 
     $insertSql = "INSERT INTO admin (name, role, mobile) VALUES ('$name', '$role', '$mobile')";
     if ($conn->query($insertSql) === TRUE) {
-        echo "New record created successfully";
+        // echo "New record created successfully";
     } else {
         echo "Error: " . $insertSql . "<br>" . $conn->error;
     }
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_user'])) {
 
     $updateSql = "UPDATE admin SET name='$name', role='$role', mobile='$mobile' WHERE id=$id";
     if ($conn->query($updateSql) === TRUE) {
-        echo "Record updated successfully";
+        // echo "Record updated successfully";
     } else {
         echo "Error: " . $updateSql . "<br>" . $conn->error;
     }
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['delete_id'])) {
     $id = $_GET['delete_id'];
     $deleteSql = "DELETE FROM admin WHERE id=$id";
     if ($conn->query($deleteSql) === TRUE) {
-        echo "Record deleted successfully";
+        // echo "Record deleted successfully";
     } else {
         echo "Error: " . $deleteSql . "<br>" . $conn->error;
     }
@@ -47,8 +47,8 @@ $sql = "SELECT id, name, role, mobile FROM admin";
 $result = $conn->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,13 +72,13 @@ $result = $conn->query($sql);
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item mb-1 ">
-                    <a href="admin_profile.html" class="sidebar-link">
+                    <a href="admin_profile.php" class="sidebar-link">
                         <i class="fa-solid fa-user"></i>
                         <span class="ms-2">Profile</span>
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="add_user.html" class="sidebar-link">
+                    <a href="add_user.php" class="sidebar-link">
                         <i class="fa-solid fa-user-plus"></i>
                         <span >Add User</span>
                     </a>
@@ -92,20 +92,20 @@ $result = $conn->query($sql);
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="lab_test.html" class="sidebar-link">
+                    <a href="lab_test.php" class="sidebar-link">
                         <i class="fa-solid fa-microscope"></i>
                         <span class="ms-1">Lab Tests</span>
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="admin.html " class="sidebar-link">
+                    <a href="admin.php " class="sidebar-link">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span class="ms-1">Back</span>
                     </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="login.php" class="sidebar-link">
                     <i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i>
                     <span>Logout</span>
                 </a>
@@ -203,4 +203,4 @@ $result = $conn->query($sql);
     });
 </script>
 </body>
-</html>
+</php>

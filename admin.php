@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item mb-1">
-                    <a href="index.php " class="sidebar-link">
+                    <a href="admin.php " class="sidebar-link">
                         <!-- <i class="lni lni-cog"></i> -->
                         <!-- <i class="fa-solid fa-gear"></i> -->
                         <i class="fa-solid fa-house"></i>

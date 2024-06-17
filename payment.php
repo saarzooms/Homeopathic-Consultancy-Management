@@ -6,7 +6,7 @@ if (isset($_GET['caseno'])) {
     $caseno = $_GET['caseno']; 
 
 
-    $sql = "SELECT medicine, dose FROM prescriptions WHERE caseno = ?";
+    $sql = "SELECT * FROM prescriptions WHERE caseno = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt) {
         $stmt->bind_param("i", $caseno);
@@ -130,10 +130,22 @@ if (isset($_GET['caseno'])) {
                             </tr>
                         </thead>
                         <tbody>
-    <?php foreach ($prescriptions as $prescription): ?>
+                            
+    <?php foreach ($prescriptions as $prescription): 
+
+    if(date("m/d/Y")==$prescription['date']){
+        // echo "hello";
+        echo '<td>'.htmlspecialchars($prescription['medicine']).'</td>';
+        echo '<td>'.htmlspecialchars($prescription['dose']).'</td>';
+
+        
+    }
+        
+        ?>
     <tr>
-        <td><?php echo htmlspecialchars($prescription['medicine']); ?></td>
-        <td><?php echo htmlspecialchars($prescription['dose']); ?></td>
+
+        <!-- <td><?php echo htmlspecialchars($prescription['medicine']); ?></td>
+        <td><?php echo htmlspecialchars($prescription['dose']); ?></td> -->
     </tr>
     <?php endforeach; ?>
 </tbody>
@@ -166,7 +178,7 @@ if (isset($_GET['caseno'])) {
      $(document).ready(function () {
     var currentDate = new Date();
     var formattedDate = ('0' + (currentDate.getMonth()+1) ).slice(-2) + '/'
-                        + ('0' + (currentDate.getDate() + 0)).slice(-2) + '/'
+    + ('0' + (currentDate.getDate() + 0)).slice(-2) + '/'
                         + currentDate.getFullYear();
 
     $('#date').val(formattedDate);

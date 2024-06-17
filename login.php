@@ -60,14 +60,14 @@
             var email_final = "doctor";
         var pass_final = "doctor";
             if(email==email_final && pass==pass_final){
-                window.location.href = "index.html";
+                window.location.href = "index.php";
             }
             else{
                 alert ("Invalid Credentials!");
             }
 
             if(email=="admin" && pass=="admin"){
-                window.location.href = "admin.html";
+                window.location.href = "admin.php";
             }
             else{
                 alert ("Invalid Credentials!");
