@@ -2,8 +2,12 @@
 include 'config.php';
 
 if (isset($_GET['caseno'])) {
-    $caseno = $_GET['caseno']; 
-    
+    $caseno = $_GET['caseno']; // Ensure caseno is an integer
+    // if ($caseno === false) {
+    //     echo "Invalid case number.";
+    //     exit;
+    // }
+
     $sql = "SELECT * FROM test_details WHERE caseno = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt) {
@@ -29,17 +33,13 @@ if (isset($_GET['caseno'])) {
         $stmt1->execute();
         $result1 = $stmt1->get_result();
         if ($result1->num_rows > 0) {
-            // $row1 = $result1->fetch_assoc();
-            
-        // Fetch each row and add to the array
-        while ($row33 = $result1->fetch_assoc()) {
-            $row1[] = $row33;
-        }
+            while ($row33 = $result1->fetch_assoc()) {
+                $row1[] = $row33;
+            }
         } else {
             $redirect = "checkup-pg.php?caseno=" . urlencode($caseno);
             header("Location:$redirect");
-            // echo "No patient found with case number $caseno";
-             exit;
+            exit;
         }
     } else {
         echo "Error preparing the statement.";
@@ -55,68 +55,45 @@ if (isset($_GET['caseno'])) {
         if ($result2->num_rows > 0) {
             $row2 = $result2->fetch_assoc();
         } else {
-            // echo "No patient found with case number $caseno";
             $redirect = "checkup-pg.php?caseno=" . urlencode($caseno);
             header("Location:$redirect");
-             exit;
+            exit;
         }
     } else {
         echo "Error preparing the statement.";
         exit;
     }
-
-    // $visit_sql = "SELECT COUNT(*) as visit_count FROM checkup_remarks WHERE caseno = ?";
-    // $visit_stmt = $conn->prepare($visit_sql);
-    // if ($visit_stmt) {
-    //     $visit_stmt->bind_param("i", $caseno);
-    //     $visit_stmt->execute();
-    //     $visit_result = $visit_stmt->get_result();
-    //     $visit_data = $visit_result->fetch_assoc();
-    //     $visit_count = $visit_data['visit_count'];
-    // } else {
-    //     echo "Error counting visits.";
-    //     exit;
-    // }
-
-
-    // if ($visit_count < 2) {
-    //     $display_date = $row['date'];
-    // } else {
-        
-    //     $last_visit_sql = "SELECT date FROM checkup_remarks WHERE caseno = ? ORDER BY date DESC LIMIT 1";
-    //     $last_visit_stmt = $conn->prepare($last_visit_sql);
-    //     if ($last_visit_stmt) {
-    //         $last_visit_stmt->bind_param("i", $caseno);
-    //         $last_visit_stmt->execute();
-    //         $last_visit_result = $last_visit_stmt->get_result();
-    //         if ($last_visit_result->num_rows > 0) {
-    //             $last_visit_row = $last_visit_result->fetch_assoc();
-    //             $display_date = $last_visit_row['date'];
-    //         } else {
-    //             echo "No previous visits found.";
-    //             exit;
-    //         }
-    //     } else {
-    //         echo "Error fetching last visit date.";
-    //         exit;
-    //     }
-    // }
-} 
-// else {
-//     echo "Case number not provided";
-//     exit;
-// }
+} else {
+    echo "Case number not provided";
+    exit;
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST['date'];
     $remarks = $_POST['remarks'];
 
+    // Handle file upload
+    $file = $_FILES['file'];
+    if ($file['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($file['name']);
+
+        if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+            $fileUrl = $uploadFile; // Path to be saved in the database
+        } else {
+            echo "File upload failed.";
+            exit;
+        }
+    } else {
+        $fileUrl = ''; // No file uploaded
+    }
+
     $query = "INSERT INTO checkup_remarks (caseno, date, remarks, file) 
-              VALUES (?, ?, ?, '')";
+              VALUES (?, ?, ?, ?)";
     
     $stmt = $conn->prepare($query);
     if ($stmt) {
-        $stmt->bind_param("iss", $caseno, $date, $remarks);
+        $stmt->bind_param("isss", $caseno, $date, $remarks, $fileUrl);
 
         if ($stmt->execute()) {
             echo "Data inserted successfully.";
@@ -132,9 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if ($med_stmt) {
                     $med_stmt->bind_param("isss", $caseno, $medicines, $doses, $date);
                     if ($med_stmt->execute()) {
-                        // echo "Medicine and dose added successfully.";
+                        // Redirect after successful insertion
                         $redirect = "payment.php?caseno=" . urlencode($caseno);
-                            header("Location:$redirect");
+                        header("Location:$redirect");
                     } else {
                         echo "Error inserting medicine and dose.";
                     }
@@ -282,13 +259,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 // );
 
 // Given array
+// Existing code to fetch and format data
 $data = $row1;
 
 // Initialize an empty array to hold formatted data
 $formatted_data = array();
 
 // Fetching remarks for each unique date
-$remarks_query = "SELECT date, remarks FROM checkup_remarks WHERE caseno = ?";
+$remarks_query = "SELECT * FROM checkup_remarks WHERE caseno = ?";
 $remarks_stmt = $conn->prepare($remarks_query);
 if ($remarks_stmt) {
     $remarks_stmt->bind_param("i", $caseno);
@@ -296,7 +274,11 @@ if ($remarks_stmt) {
     $remarks_result = $remarks_stmt->get_result();
     if ($remarks_result->num_rows > 0) {
         while ($remarks_row = $remarks_result->fetch_assoc()) {
-            $formatted_data[$remarks_row['date']]['remarks'] = $remarks_row['remarks'];
+            $formatted_data[$remarks_row['date']] = [
+                'remarks' => $remarks_row['remarks'],
+                'prescriptions' => [],  // Initialize prescriptions as an empty array
+                'file' => $remarks_row['file']  // Assuming 'file' field is in the checkup_remarks table
+            ];
         }
     } else {
         // Handle case where no remarks found
@@ -310,10 +292,11 @@ if ($remarks_stmt) {
 foreach ($data as $entry) {
     $date = $entry['date'];
     if (!isset($formatted_data[$date])) {
-        $formatted_data[$date] = array(
-            'remarks' => '', // Initialize remarks field
-            'prescriptions' => array()
-        );
+        $formatted_data[$date] = [
+            'remarks' => '',  // Initialize remarks field
+            'prescriptions' => [],  // Initialize prescriptions as an empty array
+            'file' => ''  // Initialize file field
+        ];
     }
     // Add prescription details only if both medicine and dose are not empty
     if ($entry['medicine'] != "" && $entry['dose'] != "") {
@@ -330,19 +313,22 @@ foreach ($formatted_data as $date => $entry) {
 usort($indexed_data, function($a, $b) {
     return strtotime($b['date']) - strtotime($a['date']);
 });
-
 echo '<div class="history-div rounded-3" style="max-height: 45vh; overflow-y: scroll;">';
 
 foreach ($indexed_data as $entry) {
     $date = $entry['date'];
     $remarks = $entry['data']['remarks'];
     $prescriptions = $entry['data']['prescriptions'];
+    $filelocation = $entry['data']['file'];
     ?>
     <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
         <div class="input-group">
-            <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">
-                <?php echo htmlspecialchars($date); ?>
-            </span>
+        <span class="p-3 border-0 rounded-3 w-100 mb-3 d-flex justify-content-between align-items-center" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">
+    <span><?php echo htmlspecialchars($date); ?></span>
+    <?php if (!empty($filelocation)): ?>
+        <img src="Images And Icons/image-preview.svg" alt="file icon" style="cursor:pointer; height:27px;width:27px;" onclick="showModal('<?php echo htmlspecialchars($filelocation); ?>')">
+    <?php endif; ?>
+</span>
             <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
                 <p><?php echo htmlspecialchars($remarks); ?></p>
             </span>
@@ -362,7 +348,94 @@ foreach ($indexed_data as $entry) {
 
 echo '</div>';
 ?>
-</p></span>
+
+<!-- Modal HTML -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<style>
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script>
+function showModal(imageSrc) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+}
+
+function closeModal() {
+    var modal = document.getElementById("imageModal");
+    modal.style.display = "none";
+}
+</script>
+
                      
 
 
