@@ -65,46 +65,47 @@ if (isset($_GET['caseno'])) {
         exit;
     }
 
-    $visit_sql = "SELECT COUNT(*) as visit_count FROM checkup_remarks WHERE caseno = ?";
-    $visit_stmt = $conn->prepare($visit_sql);
-    if ($visit_stmt) {
-        $visit_stmt->bind_param("i", $caseno);
-        $visit_stmt->execute();
-        $visit_result = $visit_stmt->get_result();
-        $visit_data = $visit_result->fetch_assoc();
-        $visit_count = $visit_data['visit_count'];
-    } else {
-        echo "Error counting visits.";
-        exit;
-    }
+    // $visit_sql = "SELECT COUNT(*) as visit_count FROM checkup_remarks WHERE caseno = ?";
+    // $visit_stmt = $conn->prepare($visit_sql);
+    // if ($visit_stmt) {
+    //     $visit_stmt->bind_param("i", $caseno);
+    //     $visit_stmt->execute();
+    //     $visit_result = $visit_stmt->get_result();
+    //     $visit_data = $visit_result->fetch_assoc();
+    //     $visit_count = $visit_data['visit_count'];
+    // } else {
+    //     echo "Error counting visits.";
+    //     exit;
+    // }
 
 
-    if ($visit_count < 2) {
-        $display_date = $row['date'];
-    } else {
+    // if ($visit_count < 2) {
+    //     $display_date = $row['date'];
+    // } else {
         
-        $last_visit_sql = "SELECT date FROM checkup_remarks WHERE caseno = ? ORDER BY date DESC LIMIT 1";
-        $last_visit_stmt = $conn->prepare($last_visit_sql);
-        if ($last_visit_stmt) {
-            $last_visit_stmt->bind_param("i", $caseno);
-            $last_visit_stmt->execute();
-            $last_visit_result = $last_visit_stmt->get_result();
-            if ($last_visit_result->num_rows > 0) {
-                $last_visit_row = $last_visit_result->fetch_assoc();
-                $display_date = $last_visit_row['date'];
-            } else {
-                echo "No previous visits found.";
-                exit;
-            }
-        } else {
-            echo "Error fetching last visit date.";
-            exit;
-        }
-    }
-} else {
-    echo "Case number not provided";
-    exit;
-}
+    //     $last_visit_sql = "SELECT date FROM checkup_remarks WHERE caseno = ? ORDER BY date DESC LIMIT 1";
+    //     $last_visit_stmt = $conn->prepare($last_visit_sql);
+    //     if ($last_visit_stmt) {
+    //         $last_visit_stmt->bind_param("i", $caseno);
+    //         $last_visit_stmt->execute();
+    //         $last_visit_result = $last_visit_stmt->get_result();
+    //         if ($last_visit_result->num_rows > 0) {
+    //             $last_visit_row = $last_visit_result->fetch_assoc();
+    //             $display_date = $last_visit_row['date'];
+    //         } else {
+    //             echo "No previous visits found.";
+    //             exit;
+    //         }
+    //     } else {
+    //         echo "Error fetching last visit date.";
+    //         exit;
+    //     }
+    // }
+} 
+// else {
+//     echo "Case number not provided";
+//     exit;
+// }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST['date'];
@@ -319,26 +320,37 @@ foreach ($data as $entry) {
         $formatted_data[$date]['prescriptions'][] = $entry;
     }
 }
-// Display the formatted data
+
+$indexed_data = [];
+foreach ($formatted_data as $date => $entry) {
+    $indexed_data[] = ['date' => $date, 'data' => $entry];
+}
+
+// Sort the indexed array by date in descending order
+usort($indexed_data, function($a, $b) {
+    return strtotime($b['date']) - strtotime($a['date']);
+});
+
 echo '<div class="history-div rounded-3" style="max-height: 45vh; overflow-y: scroll;">';
 
-foreach ($formatted_data as $date => $entry) {
-    $remarks = $entry['remarks'];
-    $prescriptions = $entry['prescriptions'];
+foreach ($indexed_data as $entry) {
+    $date = $entry['date'];
+    $remarks = $entry['data']['remarks'];
+    $prescriptions = $entry['data']['prescriptions'];
     ?>
     <div class="justify-content-center align-items-center mb-1 mt-3 p-3 rounded-3" style="background-color: #d1d3ab;">
         <div class="input-group">
             <span class="p-3 border-0 rounded-3 w-100 mb-3" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; text-align: center; font-weight: 600; font-size: 20px;">
-                <?php echo $date; ?>
+                <?php echo htmlspecialchars($date); ?>
             </span>
             <span class="p-3 border-0 rounded-3 me-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
-                <p><?php echo $remarks; ?></p>
+                <p><?php echo htmlspecialchars($remarks); ?></p>
             </span>
             <span class="p-3 border-0 rounded-3 ms-auto" id="inputGroup-sizing-default" style="background-color: #0b6e4f;color: bisque; width: 49%;">
                 <p>
                     <?php
                     foreach ($prescriptions as $prescription) {
-                        echo $prescription['medicine'] . " X " . $prescription['dose'] . "<br>";
+                        echo htmlspecialchars($prescription['medicine']) . " X " . htmlspecialchars($prescription['dose']) . "<br>";
                     }
                     ?>
                 </p>
