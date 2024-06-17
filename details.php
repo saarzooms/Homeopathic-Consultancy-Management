@@ -5,10 +5,10 @@ try {
     $message = '';
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $query = "INSERT INTO test_details (fileno,name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
+        $query = "INSERT INTO test_details (fileno, name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
         weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, eye, face, nose, respiratory,
         cardiac, abdomen, menses, other, limb, back, skin, appetite, thirst, stool, urine, sleep, discharge, addiction, desire, aversion,
-        aggravation, amelioration) VALUES (:fileno,:name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
+        aggravation, amelioration) VALUES (:fileno, :name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
         :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :eye,
         :face, :nose, :respiratory, :cardiac, :abdomen, :menses, :other, :limb, :back, :skin, :appetite, :thirst, :stool, :urine, :sleep, :discharge,
         :addiction, :desire, :aversion, :aggravation, :amelioration)";
@@ -20,9 +20,9 @@ try {
         }
 
         // Include settings_config.php to get the file number
-$config = include 'settings_config.php';
-$file_number = $config['file_number'];
-echo $file_number;
+        $config = include 'settings_config.php';
+        $file_number = $config['file_number'];
+        echo $file_number;
 
         $user_data = array(
             ':fileno'         => $file_number,
@@ -82,100 +82,112 @@ echo $file_number;
             include 'config.php';
             $sql = "INSERT INTO payment (caseno, prev_amt, present_amt, paid_amt, future_amt) VALUES (?, 0, 0, 0, 0)";
 
-$stmt = $conn->prepare($sql);
+            $stmt = $conn->prepare($sql);
 
-if ($stmt === false) {
-    die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
-}
+            if ($stmt === false) {
+                die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+            }
 
-// Bind the $last_id to the statement
-$stmt->bind_param("i", $last_id);
+            // Bind the $last_id to the statement
+            $stmt->bind_param("i", $last_id);
 
-// Execute the statement
-if ($stmt->execute()) {
-    echo "New record inserted successfully\n";
-} else {
-    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-}
+            // Execute the statement
+            if ($stmt->execute()) {
+                echo "New record inserted successfully\n";
+            } else {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
 
-// Close statement and connection
-$stmt->close();
-$conn->close();
+            // Close statement and connection
+            $stmt->close();
+            $conn->close();
 
+            if (isset($_POST['lab'], $_POST['remarks'], $_POST['dt']) && isset($_FILES['file'])) {
+                $lab = $_POST['lab'];
+                $remarks = $_POST['remarks'];
+                $dt = $_POST['dt'];
 
+                for ($i = 0; $i < count($lab); $i++) {
+                    $lab_type = htmlspecialchars($lab[$i]);
+                    $date_lab = htmlspecialchars($dt[$i]);
+                    $remark = htmlspecialchars($remarks[$i]);
+                    $target_dir = "uploads/$last_id/";
+                    if (!is_dir($target_dir)) {
+                        mkdir($target_dir, 0777, true);
+                    }
 
+                    if (!empty($_FILES["file"]["name"][$i])) {
+                        $target_file = $target_dir . basename($_FILES["file"]["name"][$i]);
 
+                        $uploadOk = 1;
+                        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                        $fileTmpName = $_FILES["file"]["tmp_name"][$i];
+                        $fileSize = $_FILES["file"]["size"][$i];
 
+                        $check = getimagesize($fileTmpName);
+                        if ($check !== false || $fileType == "pdf") {
+                            $uploadOk = 1;
+                        } else {
+                            echo "File is not an image or pdf.";
+                            $uploadOk = 0;
+                        }
 
+                        if (file_exists($target_file)) {
+                            echo "Sorry, file already exists.";
+                            $uploadOk = 0;
+                        }
 
+                        if ($fileSize > 5000000) {
+                            echo "Sorry, your file is too large.";
+                            $uploadOk = 0;
+                        }
 
+                        if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
+                            && $fileType != "gif" && $fileType != "pdf") {
+                            echo "Sorry, only JPG, JPEG, PNG, GIF & PDF files are allowed.";
+                            $uploadOk = 0;
+                        }
 
-            $lab = $_POST['lab'];
-            $remarks = $_POST['remarks'];
-            $dt = $_POST['dt'];
-             
-            for($i = 0; $i < count($lab); $i++) {
-                $lab_type = htmlspecialchars($lab[$i]);
-                $date_lab = htmlspecialchars($dt[$i]);
-                $remark = htmlspecialchars($remarks[$i]);
-                $target_dir = "uploads/$last_id";
-                if(!is_dir($target_dir)) 
-                {mkdir($target_dir, 77, true);}
+                        if ($uploadOk == 0) {
+                            echo "Sorry, your file was not uploaded.";
+                        } else {
+                            if (move_uploaded_file($fileTmpName, $target_file)) {
+                                $query = "INSERT INTO lab_test (caseno, lab, date, remarks, file) VALUES (:caseno, :lab, :date, :remarks, :file)
+                                          ON DUPLICATE KEY UPDATE file = VALUES(file)";
+                                $lab_data = array(
+                                    ':caseno' => $last_id,
+                                    ':lab' => $lab_type,
+                                    ':date' => $date_lab,
+                                    ':remarks' => $remark,
+                                    ':file' => $target_file
+                                );
 
-                $target_file = $target_dir . basename($_FILES["file"]["name"][$i]);
-                
-                
-                $uploadOk = 1;
-                $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                $fileTmpName = $_FILES["file"]["tmp_name"][$i];
-                $fileSize = $_FILES["file"]["size"][$i];
-
-                $check = getimagesize($fileTmpName);
-                if ($check !== false || $fileType == "pdf") {
-                    $uploadOk = 1;
-                } else {
-                    echo "File is not an image or pdf.";
-                    $uploadOk = 0;
-                }
-
-                if (file_exists($target_file)) {
-                    echo "Sorry, file already exists.";
-                    $uploadOk = 0;
-                }
-
-                if ($fileSize > 5000000) {
-                    echo "Sorry, your file is too large.";
-                    $uploadOk = 0;
-                }
-
-                if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
-                    && $fileType != "gif" && $fileType != "pdf") {
-                    echo "Sorry, only JPG, JPEG, PNG, GIF & PDF files are allowed.";
-                    $uploadOk = 0;
-                }
-
-                if ($uploadOk == 0) {
-                    echo "Sorry, your file was not uploaded.";
-                } else {
-                    if (move_uploaded_file($fileTmpName, $target_file)) {
-                        $query = "INSERT INTO lab_test (caseno, lab, date, remarks, file) VALUES (:caseno, :lab, :date, :remarks, :file)
-                                  ON DUPLICATE KEY UPDATE file = VALUES(file)";
+                                $statement = $connect->prepare($query);
+                                if ($statement->execute($lab_data)) {
+                                    echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"][$i])) . " has been uploaded.";
+                                } else {
+                                    echo "Sorry, there was an error uploading your file data.";
+                                }
+                            } else {
+                                echo "Sorry, there was an error uploading your file.";
+                            }
+                        }
+                    } else {
+                        // Handle the case where no file is uploaded but lab data needs to be inserted
+                        $query = "INSERT INTO lab_test (caseno, lab, date, remarks) VALUES (:caseno, :lab, :date, :remarks)";
                         $lab_data = array(
                             ':caseno' => $last_id,
                             ':lab' => $lab_type,
                             ':date' => $date_lab,
-                            ':remarks' => $remark,
-                            ':file' => $target_file
+                            ':remarks' => $remark
                         );
 
                         $statement = $connect->prepare($query);
                         if ($statement->execute($lab_data)) {
-                            echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"][$i])) . " has been uploaded.";
+                            echo "Lab data inserted without file.";
                         } else {
-                            echo "Sorry, there was an error uploading your file data.";
+                            echo "Sorry, there was an error inserting your lab data.";
                         }
-                    } else {
-                        echo "Sorry, there was an error uploading your file.";
                     }
                 }
             }
@@ -192,12 +204,15 @@ echo $message;
 
 
 
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
         <title>Form Example</title>
         <link rel="stylesheet" href="details.css">
     </head>
@@ -649,6 +664,12 @@ echo $message;
                                 <textarea name="amelioration" class="form-control border-0"></textarea>         
                             </div>
                         </div>
+                        <div class="input-group  mt-3">
+                            <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Patient Image</span>
+                            <div class="form-floating">
+                                <input type="file" name="photo" class="form-control border-0"></textarea>         
+                            </div>
+                        </div>
                         <div class="input-group mt-3" id="labtest">
                             <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Lab Test</span> -->
                             <span class="input-group-text w-100 rounded-3 p-3 border-0 mb-3" id="inputGroup-sizing-default">Lab Tests</span>
@@ -678,8 +699,8 @@ echo $message;
                             
                                 <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
                                 <button class="btn btn-danger" onclick="deletelab()" type="button" id=""><i class="fa-solid fa-trash"></i></button>
-                                <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04">Save</button>
-                                <button class="btn btn-primary" onclick="addlab()" type="button" id="">Add</button>
+                                <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
+                                <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
 
                             
                         </div>
@@ -693,7 +714,18 @@ echo $message;
                 </form>
             
         </div>
-        
+        <?php
+include 'config.php';
+$query = "SELECT lab FROM test_name WHERE is_disabled = 0";
+$result = $conn->query($query);
+$options = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $options[] = htmlspecialchars($row['lab']);
+    }
+}
+?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             
@@ -705,7 +737,7 @@ echo $message;
                 if (inputField.disabled) {
                     file.disabled = false;
                     inputField.disabled = false;
-                    button.innerHTML = "Save";
+                    button.innerHTML = '<i class="fa-solid fa-check"></i>';
                     option.disabled = false;
                     
                 } else {
@@ -718,19 +750,25 @@ echo $message;
                 function addlab(){
     var container = document.createElement('div');
     container.setAttribute('class', 'input-group mt-3');
+            var select = document.createElement('select');
+            select.setAttribute('name', 'lab[]');
+            select.setAttribute('class', 'form-select');
+            
+            var defaultOption = document.createElement('option');
+            defaultOption.text = 'Select Lab Test';
+            defaultOption.selected = true;
+            select.appendChild(defaultOption);
+            var labOptions = <?php echo json_encode($options); ?>;
+            
+            labOptions.forEach(function(option) {
+                var opt = document.createElement('option');
+                opt.value = option;
+                opt.text = option;
+                select.appendChild(opt);
+            });
 
-    var select = document.createElement('select');
-    select.setAttribute('name', 'lab[]');
-    select.setAttribute('class', 'form-select');
-    select.innerHTML = `
-        <option selected>Select Lab Test</option>
-        <option value="blood">Blood Test</option>
-        <option value="stool">Stool Test</option>
-        <option value="urine">Urine Test</option>
-        <option value="genetic">Genetic Test</option>
-        <option value="biopsy">Biopsy</option>
-    `;
-    container.appendChild(select);
+            container.appendChild(select);
+        
 
     var dateInput = document.createElement('input');
     dateInput.setAttribute('type', 'date');
@@ -756,7 +794,7 @@ echo $message;
     var deleteButton = document.createElement('button');
     deleteButton.setAttribute('class', 'btn btn-danger');
     deleteButton.setAttribute('type', 'button');
-    deleteButton.innerHTML = 'Delete';
+    deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
     deleteButton.onclick = function() {
         container.remove();
     };
@@ -766,7 +804,7 @@ echo $message;
     var saveButton = document.createElement('button');
     saveButton.setAttribute('class', 'btn btn-success');
     saveButton.setAttribute('type', 'button');
-    saveButton.innerHTML = 'Save';
+    saveButton.innerHTML = '<i class="fa-solid fa-check"></i>';
     saveButton.onclick = function() {
         
     };
@@ -775,7 +813,7 @@ echo $message;
     var addButton = document.createElement('button');
     addButton.setAttribute('class', 'btn btn-primary');
     addButton.setAttribute('type', 'button');
-    addButton.innerHTML = 'Add';
+    addButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
     addButton.onclick = function() {
         addlab();
     };
