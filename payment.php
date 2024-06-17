@@ -26,9 +26,9 @@ if (isset($_GET['caseno'])) {
 
     // Handle form submission to update the record
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $present_amt = $_POST['present_amt'];
-        $paid_amt = $_POST['paid_amt'];
-        $prev_amt = $_POST['prev_amt']; // Hidden input to hold previous amount
+        $present_amt = (int)$_POST['present_amt'];
+        $paid_amt = (int)$_POST['paid_amt'];
+        $prev_amt = (int)$_POST['prev_amt']; // Hidden input to hold previous amount
         $left_amt = $prev_amt + $present_amt - $paid_amt;
 
         $update_sql = "UPDATE payment SET prev_amt = ?, present_amt = ?, paid_amt = ?, future_amt = ? WHERE caseno = ?";

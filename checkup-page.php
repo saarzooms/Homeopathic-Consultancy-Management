@@ -21,7 +21,7 @@ if (isset($_GET['caseno'])) {
         exit;
     }
 
-    $sql1 = "SELECT medicine,dose,date FROM prescriptions WHERE caseno = ?";
+    $sql1 = "SELECT * FROM prescriptions WHERE caseno = ?";
     $stmt1 = $conn->prepare($sql1);
     $row1 = [];
     if ($stmt1) {
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <div class="col-md-4" style="padding: 0px; padding-bottom: 0px;">
                                 <div class="h-100 w-100 img-fluid img-div"
                                     style="padding-right: 15px; padding-bottom: 0px; max-height: min-content;">
-                                    <img src="doctor_login.png" class="w-100 h-100 rounded-4"
+                                    <img src="doctor_login.png" class="w-100  rounded-4"
                                         style="background-color: #d1d3ab;" alt="Images And Icons/user-solid.svg">
                                 </div>
                             </div>
