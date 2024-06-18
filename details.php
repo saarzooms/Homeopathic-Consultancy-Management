@@ -5,13 +5,30 @@ try {
     $message = '';
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $photoPath = '';
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+            $photo_tmp_name = $_FILES['photo']['tmp_name'];
+            $photo_name = basename($_FILES['photo']['name']);
+            $photo_dir = 'uploads/photos/';
+            if (!is_dir($photo_dir)) {
+                mkdir($photo_dir, 0777, true);
+            }
+            $photoPath = $photo_dir . $photo_name;
+
+            if (move_uploaded_file($photo_tmp_name, $photoPath)) {
+                echo "Photo uploaded successfully.";
+            } else {
+                echo "Failed to upload photo.";
+            }
+        }
+
         $query = "INSERT INTO test_details (fileno, name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
         weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, eye, face, nose, respiratory,
         cardiac, abdomen, menses, other, limb, back, skin, appetite, thirst, stool, urine, sleep, discharge, addiction, desire, aversion,
-        aggravation, amelioration) VALUES (:fileno, :name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
+        aggravation, amelioration, photo) VALUES (:fileno, :name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
         :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :eye,
         :face, :nose, :respiratory, :cardiac, :abdomen, :menses, :other, :limb, :back, :skin, :appetite, :thirst, :stool, :urine, :sleep, :discharge,
-        :addiction, :desire, :aversion, :aggravation, :amelioration)";
+        :addiction, :desire, :aversion, :aggravation, :amelioration, :photo)";
 
         if (isset($_POST["mind"]) && !empty($_POST["mind"])) {
             $mind = implode(",", $_POST["mind"]);
@@ -22,7 +39,7 @@ try {
         // Include settings_config.php to get the file number
         $config = include 'settings_config.php';
         $file_number = $config['file_number'];
-        echo $file_number;
+        // echo $file_number; // Uncomment for debugging purposes
 
         $user_data = array(
             ':fileno'         => $file_number,
@@ -70,7 +87,8 @@ try {
             ':desire'         => $_POST["desire"],
             ':aversion'       => $_POST["aversion"],
             ':aggravation'    => $_POST["aggravation"],
-            ':amelioration'   => $_POST["amelioration"]
+            ':amelioration'   => $_POST["amelioration"],
+            ':photo'          => $photoPath
         );
 
         $statement = $connect->prepare($query);
@@ -102,6 +120,7 @@ try {
             $stmt->close();
             $conn->close();
 
+            
             if (isset($_POST['lab'], $_POST['remarks'], $_POST['dt']) && isset($_FILES['file'])) {
                 $lab = $_POST['lab'];
                 $remarks = $_POST['remarks'];
