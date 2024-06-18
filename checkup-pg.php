@@ -113,7 +113,7 @@ include 'config.php';
                                 <div class="h-100 w-100 img-fluid img-div"
                                     style="padding-right: 15px; padding-bottom: 0px; max-height: min-content;">
                                     <img src="doctor_login.png" class="w-100 h-100 rounded-4"
-                                        style="background-color: #d1d3ab;" alt="Images And Icons/user-solid.svg">
+                                        style="background-color: #d1d3ab;" onclick="showModal('<?php echo htmlspecialchars($row['photo']); ?>')" alt="Images And Icons/user-solid.svg">
                                 </div>
                             </div>
                             <div class="col-md-8" style="padding: 0px;">
@@ -209,6 +209,94 @@ include 'config.php';
 
                 </div>
             </div>
+
+            <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modal-content">
+</div>
+
+<style>
+/* The Modal (background) */
+#imageModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+/* Modal Content (image) */
+#modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+#modal-content, #caption { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script>
+function showModal(imageSrc) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modal-content");
+
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+}
+
+function closeModal() {
+    var modal = document.getElementById("imageModal");
+    modal.style.display = "none";
+}
+</script>
+
+
 
             <div class="col-md-6 right-box p-2">
                 <form action="" method="post" enctype="multipart/form-data">

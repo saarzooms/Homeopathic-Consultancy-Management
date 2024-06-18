@@ -4,6 +4,10 @@ try {
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $message = '';
 
+    header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    header("Pragma: no-cache"); // HTTP 1.0.
+    header("Expires: 0"); // Proxies
+
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $photoPath = '';
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -210,6 +214,8 @@ try {
                     }
                 }
             }
+            header("Location: index.php");
+            exit();
         } else {
             $message = '<div class="alert alert-danger">There is an error in Registration</div>';
         }
@@ -693,7 +699,7 @@ echo $message;
                             <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default">Lab Test</span> -->
                             <span class="input-group-text w-100 rounded-3 p-3 border-0 mb-3" id="inputGroup-sizing-default">Lab Tests</span>
 
-                            <select style="" name="lab[]" id="option" class="form-select" aria-label="status-select">
+                            <select style="" name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
                                 <option selected>Select Lab Test</option>
                                 <?php
                                     include 'config.php';
@@ -717,8 +723,8 @@ echo $message;
                             <input class="form-control  p-3 bg-light border-0 " style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
                             
                                 <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
-                                <button class="btn btn-danger" onclick="deletelab()" type="button" id=""><i class="fa-solid fa-trash"></i></button>
                                 <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
+                                <button class="btn btn-danger" onclick="deletelab()" type="button" id=""><i class="fa-solid fa-trash"></i></button>
                                 <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
 
                             
