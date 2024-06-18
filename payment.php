@@ -38,6 +38,7 @@ if (isset($_GET['caseno'])) {
             $stmt->bind_param("iiiii", $prev_amt, $present_amt, $paid_amt, $left_amt, $caseno);
             if ($stmt->execute()) {
                 // echo "Record updated successfully";
+                header ("location: index.php");
             } else {
                 echo "Error updating record: " . $stmt->error;
             }
@@ -170,11 +171,16 @@ if (isset($_GET['caseno'])) {
                     <span>Amount that will be left to be paid:</span> <b id="left_amt"></b>
                 </div>
 
-                <button type="submit" class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #1da453; color: white; font-weight: 500;">SAVE <i class="fa-solid fa-check"></i></button>
+                <button type="submit" id="save-button" class="rounded-3 p-3 mt-3 border-0 w-100" style="background-color: #1da453; color: white; font-weight: 500;">SAVE <i class="fa-solid fa-check"></i></button>
             </form>
         </div>
     </div>
     <script>
+
+
+
+
+
      $(document).ready(function () {
     var currentDate = new Date();
     var formattedDate = ('0' + (currentDate.getMonth()+1) ).slice(-2) + '/'
