@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_user'])) {
     $role = ucfirst($_POST['role']);
     $mobile = $_POST['mobile'];
 
-    $insertSql = "INSERT INTO admin (name, role, mobile) VALUES ('$name', '$role', '$mobile')";
+    $insertSql = "INSERT INTO admin (name, role, mobile,password) VALUES ('$name', '$role', '$mobile','$mobile')";
     if ($conn->query($insertSql) === TRUE) {
         // echo "New record created successfully";
     } else {

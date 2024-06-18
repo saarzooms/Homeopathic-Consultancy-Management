@@ -94,26 +94,11 @@
         </aside>
     <div id="container" class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        <div class="row border rounded-3 p-4 bg-white ">
 
-            <div class="row">
-                <div id="profile" class="col-md-4 rounded-4 justify-content-center flex-column left-box ">
-                    <div class="login-image mb-3 mt-3">
-                        <img src="Images And Icons/doctor.jpg" class="img-fluid rounded-3" style="width: 2500px;">
-                    </div>
-                    <!-- <p class="text-white fs-1 mt-3 text-center" style="font-family: 'Helvetica',monospace; font-weight:540;"></p> -->
-                    <!-- <small class="text-white text-wrap text-center mb-4 fs-6"></small> -->
-                </div>
-                <div class="col-md-6 right-box">
-                    <div id="doctor" class="row align-items-center">
-                            <p class="text-left fs-4 mt-3">Name</p>
-                            <p class="text-left fs-4">ID</p>
-                            <p class="text-left fs-4">Password</p>
-
-                        </div>
-                        
-                    </div>
-                </div>
+        Name - John Doe<br>
+        ID - an225 <br>
+        Password - xyz12345 <br>
             </div>
         </div>
 
