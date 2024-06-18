@@ -24,12 +24,28 @@ include 'config.php';
         $date = $_POST['date'];
         $remarks = $_POST['remarks'];
     
+        // Handle file upload
+        $file = $_FILES['file'];
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = 'uploads/';
+            $uploadFile = $uploadDir . basename($file['name']);
+    
+            if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
+                $fileUrl = $uploadFile; // Path to be saved in the database
+            } else {
+                echo "File upload failed.";
+                exit;
+            }
+        } else {
+            $fileUrl = ''; // No file uploaded
+        }
+    
         $query = "INSERT INTO checkup_remarks (caseno, date, remarks, file) 
-                  VALUES (?, ?, ?, '')";
+                  VALUES (?, ?, ?, ?)";
         
         $stmt = $conn->prepare($query);
         if ($stmt) {
-            $stmt->bind_param("iss", $caseno, $date, $remarks);
+            $stmt->bind_param("isss", $caseno, $date, $remarks, $fileUrl);
     
             if ($stmt->execute()) {
                 echo "Data inserted successfully.";
@@ -45,7 +61,7 @@ include 'config.php';
                     if ($med_stmt) {
                         $med_stmt->bind_param("isss", $caseno, $medicines, $doses, $date);
                         if ($med_stmt->execute()) {
-                            // echo "Medicine and dose added successfully.";
+                            // Redirect after successful insertion
                             $redirect = "payment.php?caseno=" . urlencode($caseno);
                             header("Location:$redirect");
                         } else {
@@ -112,7 +128,7 @@ include 'config.php';
                             <div class="col-md-4" style="padding: 0px; padding-bottom: 0px;">
                                 <div class="h-100 w-100 img-fluid img-div"
                                     style="padding-right: 15px; padding-bottom: 0px; max-height: min-content;">
-                                    <img src="doctor_login.png" class="w-100 h-100 rounded-4"
+                                    <img src="<?php echo htmlspecialchars($row['photo']); ?>" class="w-100 h-100 rounded-4"
                                         style="background-color: #d1d3ab;" onclick="showModal('<?php echo htmlspecialchars($row['photo']); ?>')" alt="Images And Icons/user-solid.svg">
                                 </div>
                             </div>

@@ -179,8 +179,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <div class="col-md-4" style="padding: 0px; padding-bottom: 0px;">
                                 <div class="h-100 w-100 img-fluid img-div"
                                     style="padding-right: 15px; padding-bottom: 0px; max-height: min-content;">
-                                    <img src="doctor_login.png" class="w-100  rounded-4"
-                                        style="background-color: #d1d3ab;" onclick="showModal('<?php echo htmlspecialchars($row['photo']); ?>')" alt="Images And Icons/user-solid.svg">
+                                    <img src="<?php echo htmlspecialchars($row['photo']); ?>" class="w-100  rounded-4"
+                                        style="background-color: #d1d3ab" onclick="showModal('<?php echo htmlspecialchars($row['photo']); ?>')" alt="Image Not Uploaded">
+                                        
                                 </div>
                             </div>
                             <div class="col-md-8" style="padding: 0px;">
