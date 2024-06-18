@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <div class="h-100 w-100 img-fluid img-div"
                                     style="padding-right: 15px; padding-bottom: 0px; max-height: min-content;">
                                     <img src="doctor_login.png" class="w-100  rounded-4"
-                                        style="background-color: #d1d3ab;" alt="Images And Icons/user-solid.svg">
+                                        style="background-color: #d1d3ab;" onclick="showModal('<?php echo htmlspecialchars($row['photo']); ?>')" alt="Images And Icons/user-solid.svg">
                                 </div>
                             </div>
                             <div class="col-md-8" style="padding: 0px;">
@@ -352,12 +352,12 @@ echo '</div>';
 <!-- Modal HTML -->
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImage">
+    <img class="modal-content" id="modal-content">
 </div>
 
 <style>
 /* The Modal (background) */
-.modal {
+#imageModal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -372,7 +372,7 @@ echo '</div>';
 }
 
 /* Modal Content (image) */
-.modal-content {
+#modal-content {
     margin: auto;
     display: block;
     width: 80%;
@@ -392,7 +392,7 @@ echo '</div>';
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption { 
+#modal-content, #caption { 
     animation-name: zoom;
     animation-duration: 0.6s;
 }
@@ -424,7 +424,7 @@ echo '</div>';
 <script>
 function showModal(imageSrc) {
     var modal = document.getElementById("imageModal");
-    var modalImg = document.getElementById("modalImage");
+    var modalImg = document.getElementById("modal-content");
 
     modal.style.display = "block";
     modalImg.src = imageSrc;
