@@ -8,6 +8,9 @@ if (isset($_GET['id'])) {
 
 
 
+}else{
+    $doctorid = 0;
+
 }
 
 
