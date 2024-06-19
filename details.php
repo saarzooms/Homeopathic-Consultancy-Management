@@ -27,10 +27,10 @@ try {
         }
 
         $query = "INSERT INTO test_details (fileno, name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
-        weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, eye, face, nose, respiratory,
+        weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, mouth, eye, face, nose, respiratory,
         cardiac, abdomen, menses, other, limb, back, skin, appetite, thirst, stool, urine, sleep, discharge, addiction, desire, aversion,
         aggravation, amelioration, photo) VALUES (:fileno, :name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
-        :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :eye,
+        :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :mouth, :eye,
         :face, :nose, :respiratory, :cardiac, :abdomen, :menses, :other, :limb, :back, :skin, :appetite, :thirst, :stool, :urine, :sleep, :discharge,
         :addiction, :desire, :aversion, :aggravation, :amelioration, :photo)";
 
@@ -70,6 +70,7 @@ try {
             ':cause'          => $_POST["cause"],
             ':mind'           => $mind,
             ':head'           => $_POST["head"],
+            ':mouth'           => $_POST["mouth"],
             ':eye'            => $_POST["eye"],
             ':face'           => $_POST["face"],
             ':nose'           => $_POST["nose"],

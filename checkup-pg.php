@@ -20,6 +20,26 @@ include 'config.php';
             exit;
         }
     }
+    if (isset($_GET['caseno'])) {
+        $caseno = $_GET['caseno']; 
+        
+        $sql = "SELECT * FROM lab_test WHERE caseno = ?";
+        $stmt = $conn->prepare($sql);
+        if ($stmt) {
+            $stmt->bind_param("i", $caseno);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $row3 = $result->fetch_assoc();
+            } else {
+                echo "No patient found with case number $caseno";
+                exit;
+            }
+        } else {
+            echo "Error preparing the statement.";
+            exit;
+        }
+    }
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $date = $_POST['date'];
         $remarks = $_POST['remarks'];
@@ -429,8 +449,10 @@ function closeModal() {
                             <p><strong>Suffering from any other disease:</strong> <?php echo $row['disease']?> <span id="modalOtherDisease"></span>
                             </p>
                             <p><strong>Cause of disease if any:</strong> <?php echo $row['cause']?> <span id="modalCauseOfDisease"></span></p>
+                            <p><strong>Mind:</strong> <?php echo $row['mind']?> <span id="modalMouthTongue"></span></p>
+
                             <p><strong>Head/Neck:</strong> <?php echo $row['head']?> <span id="modalHeadNeck"></span></p>
-                            <!-- <p><strong>Mouth/Tongue:</strong> <?php echo $row['mouth']?> <span id="modalMouthTongue"></span></p> -->
+                            <p><strong>Mouth/Tongue:</strong> <?php echo $row['mouth']?> <span id="modalMouthTongue"></span></p>
                             <p><strong>Eye/Ear:</strong> <?php echo $row['eye']?> <span id="modalEyeEar"></span></p>
                             <p><strong>Face/Color:</strong> <?php echo $row['face']?> <span id="modalFaceColor"></span></p>
                             <p><strong>Nose:</strong> <?php echo $row['nose']?> <span id="modalNose"></span></p>
@@ -439,7 +461,7 @@ function closeModal() {
                         
                             <p><strong>Abdomen/Pelvis:</strong> <?php echo $row['abdomen']?> <span id="modalAbdomenPelvis"></span></p>
                             <p><strong>Menses:</strong> <?php echo $row['menses']?> <span id="modalGenitalia"></span></p>
-                            <p><strong>Other DIscharge:</strong> <?php echo $row['other']?> <span id="modalChest"></span></p>
+                            <p><strong>Other Discharge:</strong> <?php echo $row['other']?> <span id="modalChest"></span></p>
 
                         </div>
                         <div class="col-md-4">
@@ -458,6 +480,8 @@ function closeModal() {
                             <p><strong>Aversion:</strong> <?php echo $row['aversion']?> <span id="modalAversion"></span></p>
                             <p><strong>Aggravation:</strong> <?php echo $row['aggravation']?> <span id="modalAggravation"></span></p>
                             <p><strong>Amelioration:</strong> <?php echo $row['amelioration']?> <span id="modalAmelioration"></span></p>
+                            <p><strong>Lab Tests:</strong> <?php echo $row['amelioration']?> <span id="modalAmelioration"></span></p>
+
                         </div>
                     </div>
                 </div>
