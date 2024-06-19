@@ -1,3 +1,19 @@
+<?php
+
+
+if (isset($_GET['id'])) {
+    $doctorid = $_GET['id'];
+    // echo $doctorid;
+
+
+
+
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +49,7 @@
     </style>
 </head>
 
+
 <body style="background-color: #0b6e4f">
 <nav class="navbar shadow navbar-expand-lg fixed-top">
         <div class="container-fluid">
@@ -54,7 +71,7 @@
                 </button>
             </div>
             
-            <a href="details.php" id="tooltip" class="btn rounded-5 ms-auto position-relative fs-4">
+            <a href="details.php?id=<?php echo $doctorid?>" id="tooltip" class="btn rounded-5 ms-auto position-relative fs-4">
                 <span id="tooltiptext">Enter Patient Details</span>
                 <img class="nav-buttons" src="Images And Icons/add_patient.png"
                     style="height: 25px; opacity: 85%; transform: translateY(-7%);" alt="">
@@ -69,12 +86,12 @@
                 </button>
                 <ul class="dropdown-menu border-0 p-2" style="transform: translateX(-75%);">
                     <li><a class="dropdown-item p-2 rounded-3 btn mb-1 profile-setting-button justify-content-center d-flex"
-                            href="profile.php">
+                            href="profile.php?id=<?php echo $doctorid?>">
                             <div class="me-auto w-100" style="display: inline;"><i class="fa-solid fa-user-doctor"></i>
                             </div><span class="w-100" style="text-align: right;">Profile</span>
                         </a></li>
                         <li><a class="dropdown-item p-2 rounded-3 btn mt-2 profile-setting-button justify-content-center d-flex "
-                            href="settings.php">
+                            href="settings.php?id=<?php echo $doctorid?>">
                             <div class="me-auto w-100 " style="display: inline;"> <i style="font-size: 13px;"
                                     class="fa-solid fa-gear"></i> </div><span class="w-100"
                                 style="text-align: right;">Settings</span>
