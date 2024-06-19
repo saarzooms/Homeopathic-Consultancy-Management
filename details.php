@@ -4,10 +4,14 @@ try {
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $message = '';
 
-    header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
-    header("Pragma: no-cache"); // HTTP 1.0.
-    header("Expires: 0"); // Proxies
+    // header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    // header("Pragma: no-cache"); // HTTP 1.0.
+    // header("Expires: 0"); // Proxies
 
+    if (isset($_GET['id'])) {
+        $doctorid = $_GET['id'];
+        // echo $doctorid;
+    }
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $photoPath = '';
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -26,10 +30,10 @@ try {
             }
         }
 
-        $query = "INSERT INTO test_details (fileno, name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
+        $query = "INSERT INTO test_details (doctorid, fileno, name, gender, age, dob, marital, complexion, constitution, address, mobile, occupation, height,
         weight, child, bp, pulse, temperature, present, past, family, disease, cause, mind, head, mouth, eye, face, nose, respiratory,
         cardiac, abdomen, menses, other, limb, back, skin, appetite, thirst, stool, urine, sleep, discharge, addiction, desire, aversion,
-        aggravation, amelioration, photo) VALUES (:fileno, :name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
+        aggravation, amelioration, photo) VALUES ( :doctorid, :fileno, :name, :gender, :age, :dob, :marital, :complexion, :constitution, :address, :mobile, 
         :occupation, :height, :weight, :child, :bp, :pulse, :temperature, :present, :past, :family, :disease, :cause, :mind, :head, :mouth, :eye,
         :face, :nose, :respiratory, :cardiac, :abdomen, :menses, :other, :limb, :back, :skin, :appetite, :thirst, :stool, :urine, :sleep, :discharge,
         :addiction, :desire, :aversion, :aggravation, :amelioration, :photo)";
@@ -46,6 +50,7 @@ try {
         // echo $file_number; // Uncomment for debugging purposes
 
         $user_data = array(
+            ':doctorid'       => $_GET["doctorid"],
             ':fileno'         => $file_number,
             ':name'           => $_POST["name"],
             ':gender'         => $_POST["gender"],
@@ -248,7 +253,7 @@ echo $message;
     <?php
 
 ?>
-        
+        <input type="hidden" name="doctorid" value="<?php echo $doctorid; ?>">
         <div class="container justify-content-center align-items-center mt-5 p-lg-5 p-3 rounded-3 " style="background-color: #d1d3ab;">
             
                 <form action="details.php" method="POST" id="detailsForm" enctype="multipart/form-data">
