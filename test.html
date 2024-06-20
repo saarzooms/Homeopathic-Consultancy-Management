@@ -15,7 +15,7 @@
                 <ul class="nav nav-tabs m-2">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#personal">Personal Details</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history">History</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu21">Menu 2</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#measurements">Measurements</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu31">Menu 3</a></li>
                 </ul>
                 <div class="tab-content m-4">
@@ -103,20 +103,75 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                
-                            </div>
                             
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <textarea class="form-control" id="address"></textarea>
+                                </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="contact">Contact</label>
+                                        <input type="number" class="form-control" id="contact">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="occupation">Occupation</label>
+                                        <input type="text" class="form-control" id="occupation">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="child">Child</label>
+                                        <input type="number" class="form-control" id="child">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="photo">Patient Image (Optional)</label>
+                                <input type="file" class="form-control" id="photo">
+                            </div>
                             
                         </form>
                     </div>
                     <div id="history" class="tab-pane fade">
-                        <h3>Menu 1</h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <form action="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>History</h3>
+                                <button type="submit" class="btn btn-success ">Save</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="past">Past History</label>
+                                <textarea class="form-control" id="past"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="family">Family History</label>
+                                <textarea class="form-control" id="family"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="present">Present Complain</label>
+                                <textarea class="form-control" id="present"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="disease">Suffering from any other disease</label>
+                                <textarea class="form-control" id="disease"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cause">Cause of disease if any</label>
+                                <textarea class="form-control" id="cause"></textarea>
+                            </div>
+
+                        </form>
+                        <!--<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
                     </div>
-                    <div id="menu21" class="tab-pane fade">
-                        <h3>Menu 2</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                    <div id="measurements" class="tab-pane fade">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3>Measurements</h3>
+                            <button type="submit" class="btn btn-success ">Save</button>
+                        </div>
+                        
+                        <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p> -->
                     </div>
                     <div id="menu31" class="tab-pane fade">
                         <h3>Menu 3</h3>
