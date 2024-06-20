@@ -24,7 +24,7 @@
 }
 
 .input-group-text.fixed-width {
-    width: 150px; /* Fixed width for the input-group-text elements */
+    width: 100px; /* Fixed width for the input-group-text elements */
 }
 .form-control:focus, .form-select:focus {
     outline: none; /* Ensure no outline on focus */
@@ -37,10 +37,13 @@
     /* Optional: Add your own styles */
     box-shadow: none; /* Remove any box-shadow if present */
 }
+.form-control{
+    /* border-radius: 5px !important; */
+}
 .form-control:focus {
     outline: none !important;
     box-shadow: none !important;
-    border: none !important;
+    /* border: none !important; */
 }
 
 
