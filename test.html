@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeopathic Case Analysis</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .section-title {
+            color: purple;
+            margin-top: 0;
+        }
+        .progress-indicators {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .investigations {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header div {
+            display: flex;
+            align-items: center;
+        }
+        .header div img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .header div span {
+            font-weight: bold;
+        }
+        .btn-custom {
+            background-color: green;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+        }
+        .btn-custom:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <img src="user.png" alt="User" width="50" height="50">
+            <span>Roberts Wood</span>
+        </div>
+        <div>
+            <span>39y, M</span>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-12">
+                <h2 class="section-title">Homeopathic Case Analysis</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="rubrics">Rubrics selected</label>
+                        <input type="text" class="form-control" id="rubrics">
+                    </div>
+                    <div class="form-group">
+                        <label for="miasm">Miasm</label>
+                        <input type="text" class="form-control" id="miasm">
+                    </div>
+                    <div class="form-group">
+                        <label for="temperament">Temperament</label>
+                        <input type="text" class="form-control" id="temperament">
+                    </div>
+                    <div class="form-group">
+                        <label for="constitution">Constitution</label>
+                        <input type="text" class="form-control" id="constitution">
+                    </div>
+                    <div class="form-group">
+                        <label for="kingdoms">Kingdoms</label>
+                        <input type="text" class="form-control" id="kingdoms">
+                    </div>
+                    <div class="form-group">
+                        <label for="remedies">Probable remedies</label>
+                        <input type="text" class="form-control" id="remedies">
+                    </div>
+                    <div class="form-group">
+                        <label for="reasons">Reasons for remedy selection</label>
+                        <input type="text" class="form-control" id="reasons">
+                    </div>
+                    <h3>Physical generals</h3>
+                    <div class="form-group">
+                        <label for="appetite">Appetite</label>
+                        <select id="appetite" class="form-control">
+                            <option>Normal</option>
+                            <option>Low</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="thirst">Thirst</label>
+                        <select id="thirst" class="form-control">
+                            <option>Normal</option>
+                            <option>Low</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="aversions">Aversions</label>
+                        <select id="aversions" class="form-control">
+                            <option>Normal</option>
+                            <option>Low</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cravings">Cravings</label>
+                        <select id="cravings" class="form-control">
+                            <option>Normal</option>
+                            <option>Low</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="urine">Urine</label>
+                        <select id="urine" class="form-control">
+                            <option>Normal</option>
+                            <option>Abnormal</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-custom">Save</button>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-5 col-sm-12">
+                <div class="progress-indicators">
+                    <h4>Progress Indicators</h4>
+                    <canvas id="progressChart"></canvas>
+                    <p>Last Reading: 130 mmHg</p>
+                    <p>First Reading: 120 mmHg</p>
+                    <p>Goal not set</p>
+                </div>
+                <div class="investigations">
+                    <h4>Investigations</h4>
+                    <div class="alert alert-success">Dec-30 <span class="badge badge-primary">CBC</span></div>
+                    <div class="alert alert-warning">Sep-15 <span class="badge badge-primary">CBC</span></div>
+                    <div class="alert alert-danger">Jun-10 <span class="badge badge-primary">CBC</span></div>
+                    <a href="#" class="btn btn-link">See All Investigations</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById('progressChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Start', 'Current'],
+                datasets: [{
+                    label: 'Systolic BP',
+                    backgroundColor: 'transparent',
+                    borderColor: 'orange',
+                    data: [120, 130]
+                }]
+            },
+            options: {}
+        });
+    </script>
+</body>
+</html>
