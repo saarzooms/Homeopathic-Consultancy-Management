@@ -809,6 +809,25 @@ function removeInputFields(button) {
 }
     </script>
         <script>
+            function savelab() {
+                var inputField = document.getElementById("lab-fields");
+                var button = document.getElementById("inputGroupFileAddon04");
+                var option = document.getElementById("option");
+                var file = document.getElementById("file-upload");
+                if (inputField.disabled) {
+                    file.disabled = false;
+                    inputField.disabled = false;
+                    button.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    option.disabled = false;
+                    
+                } else {
+                    inputField.disabled = true;
+                    file.disabled = true;
+                    option.disabled = true;
+                    button.innerHTML = "Edit";
+                }
+                }
+
             function addlab() {
                 const labFields = document.getElementById('lab-fields');
                 const newField = document.createElement('div');
@@ -841,9 +860,6 @@ function removeInputFields(button) {
                 }
             }
     
-            function savelab() {
-                alert('Save functionality not implemented.');
-            }
             
         function removeInputFields() {
             var inputFields = document.getElementById('input-fields').children;
