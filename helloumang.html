@@ -289,24 +289,24 @@
 
             </div>
             <div class="col-md-5 p-2  " style="padding: 0px;">
-                <ul class="nav  rounded-3  " style="border-radius: 20px !important;">
-                    <li class="nav-item  " style="min-width: 25%;padding-left: 0px; padding-right: 3px; ;"><a
-                            style="text-align: center; "
-                            class="p-3 text nav-link rounded-3 right-nav right-nav-item active" data-toggle="tab"
-                            href="#home2">Checkup</a></li>
-                    <li class="nav-item " style="min-width: 25%; padding-left: 3px; padding-right: 3px; ;"><a
-                            style="text-align: center;  " class="p-3 text nav-link rounded-3 right-nav right-nav-item"
-                            data-toggle="tab" href="#menu12">Prescriptions</a></li>
-                    <li class="nav-item " style="min-width: 25%; padding-left: 3px; padding-right: 3px; ;"><a
-                            style="text-align: center;  " class="p-3 text nav-link rounded-3 right-nav right-nav-item"
-                            data-toggle="tab" href="#menu22">Payment</a></li>
-                    <li class="nav-item " style="min-width: 24%; padding-left: 3px; padding-right: 0px; ;"><a
-                            style="text-align: center;  " class="p-3 text nav-link rounded-3 right-nav right-nav-item"
-                            data-toggle="tab" href="#menu32">History</a></li>
+                <ul class="nav  nav-fill rounded-3" style="border-radius: 20px !important;">
+                    <li class="nav-item mb-1" style="padding-left: 3px; padding-right: 3px;">
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item active" data-toggle="tab" href="#home2">Checkup</a>
+                    </li>
+                    <li class="nav-item mb-1" style="padding-left: 3px; padding-right: 3px;">
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item" data-toggle="tab" href="#menu12">Prescriptions</a>
+                    </li>
+                    <li class="nav-item mb-1" style="padding-left: 3px; padding-right: 3px;">
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item" data-toggle="tab" href="#menu22">Payment</a>
+                    </li>
+                    <li class="nav-item mb-1" style="padding-left: 3px; padding-right: 3px;">
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item" data-toggle="tab" href="#menu32">History</a>
+                    </li>
                 </ul>
+                
                 <div class="tab-content  mt-2">
                     <div id="home2" class="tab-pane fade show active">
-                        <div class="rounded-3 p-2 " style="background-color: #d1d3ab;">
+                        <div class="rounded-3 p-2 " style="background-color: #d1d3ab48;">
 
 
 
@@ -320,9 +320,9 @@
 
                             <div class="input-group mt-2">
                                 <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
-                                    style="color: bisque;min-height: 65vh;">Remarks</span>
+                                    style="color: bisque;min-height: 50vh;">Remarks</span>
                                 <div class="form-floating">
-                                    <textarea class="form-control border-0" style="min-height: 65vh;"
+                                    <textarea class="form-control border-0" style="min-height: 56vh;"
                                         placeholder="Enter Remarks (if any)"></textarea>
                                 </div>
                             </div>
@@ -335,6 +335,11 @@
                                     type="file" name="" placeholder="" aria-label="" id="file-upload">
 
                             </div>
+                            <button class="rounded-3 p-3 mt-2 border-0 w-100"
+                            id="save-checkup-button"
+                            style="background-color: #1da453; color: white; font-weight: 500;">SAVE <img
+                            src="Images And Icons/arrow-right-solid (1).svg"
+                            style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt="">/button>
 
 
 
@@ -356,31 +361,35 @@
 
 
 
-                            <div class=" rounded-3" style="max-height: 80vh;overflow-y: auto;">
+                            <div class=" rounded-3" style="max-height: 75vh;overflow-y: auto;">
 
                                 <div id="input-fields">
                                     <div class="input-group" style="max-height: 70vh;">
 
 
-                                        <div class="input-group  input-group-custom">
+                                        <div class="input-group input-group-custom">
                                             <input type="text" class="form-control p-3 border-0 rounded-3 me-1"
                                                 id="medicine-input" name="medicine[]" placeholder="Enter Medicine"
                                                 style="background-color: #ffffff;color: black; min-width: 37% !important">
                                             <input type="text" class="form-control p-3 border-0 rounded-3 ms-1 me-1"
                                                 id="dose-input" name="dose[]" placeholder="Enter Dose"
                                                 style="background-color: #ffffff;color: black; min-width: 37%">
-                                            <button type="button" class="form-control p-3 border-0 rounded-3 me-1 ms-1"
-                                                id="remove" onclick="removeInputFields()"
-                                                style="background-color: rgba(255, 0, 0, 0.654); color: bisque;">-</button>
-                                            <button type="button" class="form-control p-3 border-0 rounded-3 ms-1"
+                                            <button type="button" class="form-control p-2 border-0 rounded-3 me-1 ms-1"
+                                                id="remove" onclick="removeInputFields(this)"
+                                                style="background-color: rgba(255, 0, 0, 0.654); color: bisque;min-width: 5%; text-align:center;">-</button>
+                                            <button type="button" class="form-control p-2 border-0 rounded-3 ms-1"
                                                 onclick="addInputFields()" id="add"
-                                                style="background-color: #1da453;color: bisque;">+</button>
+                                                style="background-color: #1da453;color: bisque;min-width: 5%; text-align:center;">+</button>
                                         </div>
                                     </div>
                                 </div>
 
 
                             </div>
+                            <button id="payment-button" class="rounded-3 p-3 mt-2 border-0 w-100"
+                            style="background-color: #019fdece; color: bisque;">PAYMENT <img
+                                src="Images And Icons/arrow-right-solid (1).svg"
+                                style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt=""></button>
 
 
 
@@ -390,14 +399,14 @@
                     <div id="menu22" class="tab-pane fade w-100">
 
 
-                        <div class="bg-white  rounded-3 text-align-center  p-3 fs-6" style="min-width: 100%;">
+                        <div class="  rounded-3 text-align-center  p-2 fs-6" style="min-width: 100%;background-color: #0e825dc6;;">
 
                             <!-- <div class="input-group mt-3 mb-2"> -->
                                 <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
                                     style="border-top-left-radius:8px;border-bottom-left-radius:8px;background-color: #0b6e4f;color: bisque;">Date</span> -->
                                 <input type="hidden" id="date" class="form-control border-0 right-align"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                                    placeholder="Enter Date" style="background-color: #d1d3ab;">
+                                    placeholder="Enter Date" style="background-color: #d1d3ab3c;">
                             <!-- </div> -->
 
                       
@@ -409,25 +418,25 @@
 
                             <div class="input-group mt-2">
                                 <span class="input-group-text  p-3 border-0" id="inputGroup-sizing-default"
-                                    style="background-color: #0b6e4f1b; color: black;font-weight: 500;">To be paid</span>
+                                    style="background-color: rgb(255, 255, 255); color: black;font-weight: 500; min-width: 26%">To be paid    </span>
                                 <input type="number" class="form-control border-0 right-align"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                                    style="background-color: #0b6e4f1b;" placeholder="Enter Here  ">
+                                    style="background-color: rgba(255, 255, 255, 0.801);" placeholder="Enter Here  ">
                             </div>
-                            <div class="input-group mt-3">
+                            <div class="input-group mt-2">
                                 <span class="input-group-text  p-3 border-0" id="inputGroup-sizing-default"
-                                    style="background-color: #0b6e4f1b; color: black;font-weight: 500;">Amount paid</span>
+                                    style="background-color: rgb(255, 255, 255); color: black;font-weight: 500;min-width: 26%;">Amount paid</span>
                                 <input type="number" class="form-control border-0 right-align"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                                    style="background-color: #0b6e4f1b;" placeholder="Enter Here  ">
+                                    style="background-color: rgba(255, 255, 255, 0.801);" placeholder="Enter Here  ">
                             </div>
 
-                            <div class="justify-content-center form-control align-items-center mb-1 p-3 rounded-3 mt-3 input-group-text-right"
+                            <div class="justify-content-center form-control align-items-center  p-3 rounded-3 mt-2 input-group-text-right"
                                 style="background-color: #ffffff; color: black !important;">
                                 <span class="">Amount that will be left to be paid:</span> <b>₹400.00</b>
                             </div>
 
-                            <button class="rounded-3 p-3 mt-3 border-0 w-100"
+                            <button class="rounded-3 p-3 mt-2 border-0 w-100" id="save-payment-button"
                                 style="background-color: #1da453; color: white; font-weight: 500;">SAVE <i
                                     class="fa-solid fa-check"></i></button>
 
@@ -515,9 +524,22 @@
                 }
             });
         });
-        document.getElementById("payment-button").onclick = function () {
-            location.href = "payment.html";
-        };
+        document.getElementById("payment-button").onclick = function (event) {
+        event.preventDefault(); // Prevent the default behavior
+        var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu22"]'));
+        targetTab.show(); // Show the tab
+    };
+        document.getElementById("save-checkup-button").onclick = function (event) {
+        event.preventDefault(); // Prevent the default behavior
+        var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu12"]'));
+        targetTab.show(); // Show the tab
+    };
+        document.getElementById("save-payment-button").onclick = function (event) {
+        event.preventDefault(); // Prevent the default behavior
+        var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu32"]'));
+        targetTab.show(); // Show the tab
+    };
+
 
         document.getElementById("view-info-button").onclick = function () {
             var infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
@@ -527,44 +549,22 @@
             location.href = "edit.html";
         };
 
-
         function addInputFields() {
-            var container = document.getElementById('input-fields');
-            var newDiv = document.createElement('div');
-            newDiv.classList.add('input-group', 'mt-3', 'input-group-custom');
-            newDiv.innerHTML = `
-                                                    <div class="input-group  input-group-custom">
-                                            <input type="text" class="form-control p-3 border-0 rounded-3 me-1"
-                                                id="medicine-input" name="medicine[]" placeholder="Enter Medicine"
-                                                style="background-color: #ffffff;color: black; min-width: 37% !important">
-                                            <input type="text" class="form-control p-3 border-0 rounded-3 ms-1 me-1"
-                                                id="dose-input" name="dose[]" placeholder="Enter Dose"
-                                                style="background-color: #ffffff;color: black; min-width: 37%">
-                                            <button type="button" class="form-control p-3 border-0 rounded-3 me-1 ms-1"
-                                                id="remove" onclick="removeInputFields()"
-                                                style="background-color: rgba(255, 0, 0, 0.654); color: bisque;">-</button>
-                                            <button type="button" class="form-control p-3 border-0 rounded-3 ms-1"
-                                                onclick="addInputFields()" id="add"
-                                                style="background-color: #1da453;color: bisque;">+</button>
-                                        </div>
+    var container = document.getElementById('input-fields');
+    var newDiv = document.createElement('div');
+    newDiv.classList.add('input-group', 'mt-2', 'input-group-custom');
+    newDiv.innerHTML = `
+        <input type="text" class="form-control p-3 border-0 rounded-3 me-1" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff; color: black; min-width: 37% !important">
+        <input type="text" class="form-control p-3 border-0 rounded-3 ms-1 me-1" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff; color: black; min-width: 37%">
+        <button type="button" class="form-control p-2 border-0 rounded-3 me-1 ms-1" onclick="removeInputFields(this)" style="background-color: rgba(255, 0, 0, 0.654); color: bisque; min-width: 5%; text-align:center;">-</button>
+        <button type="button" class="form-control p-2 border-0 rounded-3 ms-1" onclick="addInputFields()" style="background-color: #1da453; color: bisque; min-width: 5%; text-align:center;">+</button>
+    `;
+    container.appendChild(newDiv);
+}
 
-            `;
-            container.appendChild(newDiv);
-        }
-
-        function removeInputFields(button) {
-            button.parentElement.remove();
-        }
-
-
-        function removeInputFields() {
-            var inputFields = document.getElementById('input-fields').children;
-            var length = inputFields.length;
-
-            if (length > 1) { // There will always be the first input-group, so check length > 1
-                document.getElementById('input-fields').removeChild(inputFields[length - 1]);
-            }
-        }
+function removeInputFields(button) {
+    button.parentElement.remove();
+}
     </script>
 </body>
 
