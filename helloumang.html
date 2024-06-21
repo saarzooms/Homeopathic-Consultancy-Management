@@ -123,7 +123,7 @@
         <div class="row p-3" style="padding: 0px; margin: auto;">
             <div class="col-md-7 p-2 " style="padding: 0px;">
 
-                <div class="min-vh-100  rounded-3" style="background-color: #ffffff;">
+                <div class=" p-2  rounded-3" style="background-color: #ffffff; ">
 
                     <ul class=" nav  rounded-3 ">
 
@@ -136,7 +136,7 @@
                                 <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#lab">Lab Tests</a></li>
                     </ul>
 
-                    <div class="tab-content p-3" id="content">
+                    <div class="tab-content p-3" id="content" style=" max-height: 80vh;overflow-y: scroll;">
                         
                         <div id="personal" class="tab-pane fade show active">
                             <form>
@@ -507,10 +507,10 @@
                                         <option >Blood Test</option>
                                         <option >Biopsy</option>
                                     </select>
-                                    <input type="date" style="min-height: 7vh;" name="dt[]" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+                                    <input type="date" style="min-height: 7vh;" name="dt[]" class="form-control " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
     
-                                    <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control border-0" id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
-                                    <input class="form-control  p-3 bg-light border-0 " style="min-height: 7vh;" style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
+                                    <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control " id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
+                                    <input class="form-control  p-3 bg-light  " style="min-height: 7vh;" style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
                                 
                                     <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
                                     <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
@@ -814,17 +814,22 @@ function removeInputFields(button) {
                 const newField = document.createElement('div');
                 newField.className = 'input-group mb-2';
                 newField.innerHTML = `
-                    <select name="lab[]" class="form-select" aria-label="status-select">
-                        <option selected>Select Lab Test</option>
-                        <option>Blood Test</option>
-                        <option>Biopsy</option>
-                    </select>
-                    <input type="date" name="dt[]" class="form-control border-0" style="min-height: 7vh;" aria-label="Enter Date">
-                    <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control border-0" placeholder="Remarks">
-                    <input class="form-control p-3 bg-light border-0" style="min-height: 7vh;" type="file" name="file[]" aria-label="Upload File">
-                    <button class="btn btn-success" onclick="savelab()" type="button"><i class="fa-solid fa-check"></i></button>
-                    <button class="btn btn-danger" onclick="deletelab(this)" type="button"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-primary" onclick="addlab()" type="button"><i class="fa-solid fa-plus"></i></button>
+
+                <select name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                                        <option selected>Select Lab Test</option>
+                                        <option >Blood Test</option>
+                                        <option >Biopsy</option>
+                                    </select>
+                                    <input type="date" style="min-height: 7vh;" name="dt[]" class="form-control " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+    
+                                    <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control " id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
+                                    <input class="form-control  p-3 bg-light  " style="min-height: 7vh;" style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
+                                
+                                    <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
+                                    <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
+                                    <button class="btn btn-danger" onclick="deletelab(this)" type="button" id=""><i class="fa-solid fa-trash"></i></button>
+                                    <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
+
                 `;
                 labFields.appendChild(newField);
             }
