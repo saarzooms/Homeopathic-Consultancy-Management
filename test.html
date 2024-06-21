@@ -392,26 +392,28 @@
                     </div>
                     <div id="lab" class="tab-pane fade">
                         <form action="">
+                        <div id="lab-fields">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h3>Lab Tests</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
-                            <div class="input-group">
-                                <select  name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                            <div class="input-group mb-2" style="min-height: 7vh;">
+                                <select name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
                                     <option selected>Select Lab Test</option>
                                     <option >Blood Test</option>
                                     <option >Biopsy</option>
                                 </select>
-                                <input type="date" name="dt[]" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+                                <input type="date" style="min-height: 7vh;" name="dt[]" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
 
-                                <input name="remarks[]" type="text" class="form-control border-0" id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
-                                <input class="form-control  p-3 bg-light border-0 " style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
+                                <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control border-0" id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
+                                <input class="form-control  p-3 bg-light border-0 " style="min-height: 7vh;" style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
                             
                                 <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
                                 <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
                                 <button class="btn btn-danger" onclick="deletelab()" type="button" id=""><i class="fa-solid fa-trash"></i></button>
                                 <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
                             </div>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -446,7 +448,40 @@
     </div>
                 
       
+    <script>
+        function addlab() {
+            const labFields = document.getElementById('lab-fields');
+            const newField = document.createElement('div');
+            newField.className = 'input-group mb-2';
+            newField.innerHTML = `
+                <select name="lab[]" class="form-select" aria-label="status-select">
+                    <option selected>Select Lab Test</option>
+                    <option>Blood Test</option>
+                    <option>Biopsy</option>
+                </select>
+                <input type="date" name="dt[]" class="form-control border-0" style="min-height: 7vh;" aria-label="Enter Date">
+                <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control border-0" placeholder="Remarks">
+                <input class="form-control p-3 bg-light border-0" style="min-height: 7vh;" type="file" name="file[]" aria-label="Upload File">
+                <button class="btn btn-success" onclick="savelab()" type="button"><i class="fa-solid fa-check"></i></button>
+                <button class="btn btn-danger" onclick="deletelab(this)" type="button"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-primary" onclick="addlab()" type="button"><i class="fa-solid fa-plus"></i></button>
+            `;
+            labFields.appendChild(newField);
+        }
 
+        function deletelab(element) {
+            const labFields = document.getElementById('lab-fields');
+            if (labFields.children.length > 1) {
+                element.parentElement.remove();
+            }
+        }
+
+        function savelab() {
+            alert('Save functionality not implemented.');
+        }
+    </script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
