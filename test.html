@@ -9,12 +9,26 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Bootstrap Example</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     
     <style>
         
         input{
             /*background-color: #0b6e4f0f !important;*/
         }
+        #content{
+            max-height: 90vh;
+            overflow-y: scroll ;
+            overflow-x: hidden;
+        }
+        #content::-webkit-scrollbar {
+            display: none;
+        }
+        #content{
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+          }
     </style>
 </head>
 <body>
@@ -26,32 +40,29 @@
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history">History</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#measurements">Measurements</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#observations">General Observations</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#vitals">Vitals</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#symptoms">Symptoms and Conditions</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#lab">Lab Tests</a></li>
                 </ul>
-                <div class="tab-content m-4">
+                <div class="tab-content m-4" id="content">
                     <div id="personal" class="tab-pane fade show active">
-                       
-                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
                         <form>
-                            
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h3>Personal Details</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
-                        
-
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="name" placeholder="name">
                                 <label for="name">Name</label>
-                              </div>
-                            
+                            </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="gender">Gender</label>
                                             <br>
-                                            <div class="m-2 ">
-                                                <div class="inline p-3"   style="display: inline;">
+                                            <div class="m-2">
+                                                <div class="inline p-3" style="display: inline;">
                                                     <input type="radio" id="male" name="gender" class="custom-control-input" value="male">
                                                     <label class="custom-control-label" for="male">Male</label>
                                                 </div>
@@ -64,30 +75,27 @@
                                                     <label class="custom-control-label" for="other">Other</label>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
                                             <input type="number" class="form-control" id="age" placeholder="age">
                                             <label for="age">Age</label>
-                                          </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
                                             <input type="date" class="form-control" id="date" placeholder="date">
                                             <label for="date">Date</label>
-                                          </div>
+                                        </div>
                                     </div>
-                                    
                                 </div>
                             </div>
-            
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <select class="form-select" id="marital" aria-label="Marital Status">
-                                            <option selected>Select </option>
+                                            <option selected>Select</option>
                                             <option value="married">Married</option>
                                             <option value="unmarried">Unmarried</option>
                                             <option value="divorced">Divorced</option>
@@ -95,51 +103,49 @@
                                         </select>
                                         <label for="marital">Marital Status</label>
                                     </div>
-                                    
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" id="complexion" placeholder="Complexion">
                                         <label for="complexion">Complexion</label>
-                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" id="constitution" placeholder="constitution">
                                         <label for="constitution">Constitution</label>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
-                            
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Enter address" id="address"></textarea>
                                 <label for="address">Address</label>
-                              </div><br>
+                            </div>
+                            <br>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <input type="number" class="form-control" id="contact" placeholder="contact">
                                         <label for="contact">Contact</label>
-                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" id="occupation" placeholder="occupation">
                                         <label for="occupation">Occupation</label>
-                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating mb-3">
                                         <input type="number" class="form-control" id="child" placeholder="child">
                                         <label for="child">Child</label>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="photo">Patient Image (Optional)</label>
                                 <input type="file" class="form-control" id="photo">
                             </div>
-                            
                         </form>
                     </div>
                     <div id="history" class="tab-pane fade">
@@ -151,103 +157,262 @@
                             <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="Past History" id="past"></textarea>
                                 <label for="past">Past History</label>
-                              </div><br>
-                              <div class="form-floating">
+                            </div>
+                            <br>
+                            <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="Family History" id="family"></textarea>
                                 <label for="family">Family History</label>
-                              </div><br>
-                              <div class="form-floating">
+                            </div>
+                            <br>
+                            <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="Present Complain" id="present"></textarea>
                                 <label for="present">Present Complain</label>
-                              </div><br>
-                              <div class="form-floating">
+                            </div>
+                            <br>
+                            <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="disease" id="disease"></textarea>
                                 <label for="disease">Suffering from other disease</label>
-                              </div><br>
-                              <div class="form-floating">
+                            </div>
+                            <br>
+                            <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="cause" id="cause"></textarea>
                                 <label for="cause">Cause of Disease if any</label>
-                              </div>
-
+                            </div>
                         </form>
-                        <!--<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
                     </div>
                     <div id="measurements" class="tab-pane fade">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h3>Measurements</h3>
-                            <button type="submit" class="btn btn-success ">Save</button>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="height" placeholder="height">
-                                    <label for="height">Height (in Meters)</label>
-                                  </div>
+                        <form action="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Measurements</h3>
+                                <button type="submit" class="btn btn-success ">Save</button>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="weight" placeholder="weight">
-                                    <label for="weight">Weight (in Kgs)</label>
-                                  </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="height" placeholder="height">
+                                        <label for="height">Height (in Meters)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="weight" placeholder="weight">
+                                        <label for="weight">Weight (in Kgs)</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="bp" placeholder="bp">
-                                    <label for="bp">Bloodpressure</label>
-                                  </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="temperature" placeholder="temperature">
+                                        <label for="temperature">Temperature (Fahrenheit)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="pulse" placeholder="pulse">
+                                        <label for="pulse">Pulse</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="pulse" placeholder="pulse">
-                                    <label for="pulse">Pulse</label>
-                                  </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="systolic" placeholder="Systolic">
+                                            <label for="systolic">Systolic (mm Hg)</label>
+                                        </div>
+                                        <span class="input-group-text">/</span>
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="diastolic" placeholder="Diastolic">
+                                            <label for="diastolic">Diastolic (mm Hg)</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="temperature" placeholder="temperature">
-                                    <label for="temperature">Temperature (Fahrenheit)</label>
-                                  </div>
-                            </div>
-                        </div>
-                        <!-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p> -->
+                        </form>
                     </div>
                     <div id="observations" class="tab-pane fade">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h3>General Observations</h3>
-                            <button type="submit" class="btn btn-success ">Save</button>
-                        </div>
-                        
-                        <!-- <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> -->
-                        <div class="form-floating">
-                            <textarea class="form-control" style="min-height: 13vh;" placeholder="head/neck" id="head"></textarea>
-                            <label for="head">Head/Neck</label>
-                          </div><br>
-                          <div class="form-floating">
-                            <textarea class="form-control" style="min-height: 13vh;" placeholder="mouth" id="mouth"></textarea>
-                            <label for="mouth">Mouth/Tongue</label>
-                          </div><br>
-                          <div class="form-floating">
-                            <textarea class="form-control" style="min-height: 13vh;" placeholder="eye" id="eye"></textarea>
-                            <label for="eye">Eye/Ear</label>
-                          </div><br>
-                          <div class="form-floating">
-                            <textarea class="form-control" style="min-height: 13vh;" placeholder="face" id="face"></textarea>
-                            <label for="face">Face/Color</label>
-                          </div><br>
-                          <div class="form-floating">
-                            <textarea class="form-control" style="min-height: 13vh;" placeholder="nose" id="nose"></textarea>
-                            <label for="nose">Nose</label>
-                          </div><br>
-                          <div class="form-floating">
-                            <textarea class="form-control" style="min-height: 13vh;" placeholder="disease" id="disease"></textarea>
-                            <label for="disease">Suffering from other disease</label>
-                          </div><br>
-                          
+                        <form action="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>General Observations</h3>
+                                <button type="submit" class="btn btn-success ">Save</button>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="head/neck" id="head"></textarea>
+                                <label for="head">Head/Neck</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="mouth" id="mouth"></textarea>
+                                <label for="mouth">Mouth/Tongue</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="eye" id="eye"></textarea>
+                                <label for="eye">Eye/Ear</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="face" id="face"></textarea>
+                                <label for="face">Face/Color</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="nose" id="nose"></textarea>
+                                <label for="nose">Nose</label>
+                            </div>
+                            <br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Chest</span>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="respiratory" placeholder="Respiratory"></textarea>
+                                    <label for="respiratory">Respiratory</label>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="cardiac" placeholder="Cardiac"></textarea>
+                                    <label for="cardiac">Cardiac</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="abdomen" id="abdomen"></textarea>
+                                <label for="abdomen">Abdomen/Pelvis</label>
+                            </div>
+                            <br>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Genitalia</span>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="menses" placeholder="Menses"></textarea>
+                                    <label for="menses">Menses</label>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="genitalia" placeholder="Genitalia"></textarea>
+                                    <label for="genitalia">Genitalia</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="limb" id="limb"></textarea>
+                                <label for="limb">Limb</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="back" id="back"></textarea>
+                                <label for="back">Back/Lumber</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 13vh;" placeholder="skin" id="skin"></textarea>
+                                <label for="skin">Skin/Condition/Perspiration</label>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                    <div id="vitals" class="tab-pane fade">
+                        <form action="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Vitals</h3>
+                                <button type="submit" class="btn btn-success ">Save</button>
+                            </div>
+                            
+                                
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="appetite" id="appetite"></textarea>
+                                <label for="appetite">Appetite</label>
+                            </div>
+                            <br>
+                                
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="thirst" id="thirst"></textarea>
+                                <label for="thirst">Thirst</label>
+                            </div>
+                            <br>
+                                
+                                
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="stool" id="stool"></textarea>
+                                <label for="stool">Stool</label>
+                            </div>
+                            <br>
+                                
+                               
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="urine" id="urine"></textarea>
+                                <label for="urine">Urine</label>
+                            </div>
+                            <br>
+                                
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="sleep" id="sleep"></textarea>
+                                <label for="sleep">Sleep/Dream</label>
+                            </div>
+                            <br>
+
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="discharge" id="discharge"></textarea>
+                                <label for="discharge">Discharge (if any)</label>
+                            </div>
+                            <br>
+
+                        </form>
+                    </div>
+                    <div id="symptoms" class="tab-pane fade">
+                        <form action="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Symptoms and Conditions</h3>
+                                <button type="submit" class="btn btn-success ">Save</button>
+                            </div>
+
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="addiction" id="addiction"></textarea>
+                                <label for="addiction">Addiction (if any)</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="desire" id="desire"></textarea>
+                                <label for="desire">Desire</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="aversion" id="aversion"></textarea>
+                                <label for="aversion">Aversion</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="aggravation" id="aggravation"></textarea>
+                                <label for="aggravation">Aggravation</label>
+                            </div>
+                            <br>
+                            <div class="form-floating">
+                                <textarea class="form-control" style="min-height: 10vh;" placeholder="amelioration" id="amelioration"></textarea>
+                                <label for="amelioration">Amelioration</label>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                    <div id="lab" class="tab-pane fade">
+                        <form action="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Lab Tests</h3>
+                                <button type="submit" class="btn btn-success ">Save</button>
+                            </div>
+                            <div class="input-group">
+                                <select  name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                                    <option selected>Select Lab Test</option>
+                                    <option >Blood Test</option>
+                                    <option >Biopsy</option>
+                                </select>
+                                <input type="date" name="dt[]" class="form-control border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+
+                                <input name="remarks[]" type="text" class="form-control border-0" id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
+                                <input class="form-control  p-3 bg-light border-0 " style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
+                            
+                                <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
+                                <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
+                                <button class="btn btn-danger" onclick="deletelab()" type="button" id=""><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -279,6 +444,8 @@
             </div>
         </div>
     </div>
+                
+      
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
