@@ -18,7 +18,7 @@
             /*background-color: #0b6e4f0f !important;*/
         }
         #content{
-            max-height: 90vh;
+            max-height: 70vh;
             overflow-y: scroll ;
             overflow-x: hidden;
         }
@@ -44,13 +44,14 @@
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#symptoms">Symptoms and Conditions</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#lab">Lab Tests</a></li>
                 </ul>
-                <div class="tab-content m-4" id="content">
+                <div class="tab-content m-4">
                     <div id="personal" class="tab-pane fade show active">
                         <form>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h3>Personal Details</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
+                        <div id="content">
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="name" placeholder="name">
                                 <label for="name">Name</label>
@@ -146,6 +147,7 @@
                                 <label for="photo">Patient Image (Optional)</label>
                                 <input type="file" class="form-control" id="photo">
                             </div>
+                        </div>
                         </form>
                     </div>
                     <div id="history" class="tab-pane fade">
@@ -154,7 +156,8 @@
                                 <h3>History</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
-                            <div class="form-floating">
+                            <div id="content">
+                            <div class="form-floating mb-3">
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="Past History" id="past"></textarea>
                                 <label for="past">Past History</label>
                             </div>
@@ -178,6 +181,7 @@
                                 <textarea class="form-control" style="min-height: 13vh;" placeholder="cause" id="cause"></textarea>
                                 <label for="cause">Cause of Disease if any</label>
                             </div>
+                        </div>
                         </form>
                     </div>
                     <div id="measurements" class="tab-pane fade">
@@ -186,6 +190,7 @@
                                 <h3>Measurements</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
+                            <div id="content">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
@@ -229,6 +234,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </form>
                     </div>
                     <div id="observations" class="tab-pane fade">
@@ -237,6 +243,7 @@
                                 <h3>General Observations</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
+                            <div id="content">
                             <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 10vh;" placeholder="head/neck" id="head"></textarea>
                                 <label for="head">Head/Neck</label>
@@ -306,6 +313,7 @@
                                 <label for="skin">Skin/Condition/Perspiration</label>
                             </div>
                             <br>
+                        </div>
                         </form>
                     </div>
                     <div id="vitals" class="tab-pane fade">
@@ -315,7 +323,8 @@
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
                             
-                                
+                            <div id="content">
+            
                             <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 10vh;" placeholder="appetite" id="appetite"></textarea>
                                 <label for="appetite">Appetite</label>
@@ -353,7 +362,7 @@
                                 <label for="discharge">Discharge (if any)</label>
                             </div>
                             <br>
-
+                        </div>
                         </form>
                     </div>
                     <div id="symptoms" class="tab-pane fade">
@@ -362,7 +371,7 @@
                                 <h3>Symptoms and Conditions</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
-
+                            <div id="content">
                             <div class="form-floating">
                                 <textarea class="form-control" style="min-height: 10vh;" placeholder="addiction" id="addiction"></textarea>
                                 <label for="addiction">Addiction (if any)</label>
@@ -388,6 +397,7 @@
                                 <label for="amelioration">Amelioration</label>
                             </div>
                             <br>
+                        </div>
                         </form>
                     </div>
                     <div id="lab" class="tab-pane fade">
@@ -397,6 +407,7 @@
                                 <h3>Lab Tests</h3>
                                 <button type="submit" class="btn btn-success ">Save</button>
                             </div>
+                            <div id="content">
                             <div class="input-group mb-2" style="min-height: 7vh;">
                                 <select name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
                                     <option selected>Select Lab Test</option>
@@ -414,6 +425,7 @@
                                 <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
                             </div>
                         </div>
+                    </div>
                         </form>
                     </div>
                 </div>
