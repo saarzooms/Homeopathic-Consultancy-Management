@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,21 +92,26 @@
     }
 
 
-    input{
-            /*background-color: #0b6e4f0f !important;*/
-        }
-        #content{
-            max-height: 90vh;
-            overflow-y: scroll ;
-            overflow-x: hidden;
-        }
-        #content::-webkit-scrollbar {
-            display: none;
-        }
-        #content{
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-          }
+    input {
+        /*background-color: #0b6e4f0f !important;*/
+    }
+
+    #content {
+        max-height: 90vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    #content::-webkit-scrollbar {
+        display: none;
+    }
+
+    #content {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
 
     a.left-nav-item:hover {
         color: black;
@@ -127,120 +133,140 @@
 
                     <ul class=" nav  rounded-3 ">
 
-                                <li class="nav-item"><a class="nav-link left-nav-item active" data-toggle="tab" href="#personal">Personal Details</a></li>
-                                <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#history">History</a></li>
-                                <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#measurements">Measurements</a></li>
-                                <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#observations">General Observations</a></li>
-                                <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#vitals">Vitals</a></li>
-                                <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#symptoms">Symptoms and Conditions</a></li>
-                                <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#lab">Lab Tests</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item active" data-toggle="tab"
+                                href="#personal">Personal Details</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab"
+                                href="#history">History</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab"
+                                href="#measurements">Measurements</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab"
+                                href="#observations">General Observations</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab"
+                                href="#vitals">Vitals</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab"
+                                href="#symptoms">Symptoms and Conditions</a></li>
+                        <li class="nav-item"><a class="nav-link left-nav-item" data-toggle="tab" href="#lab">Lab
+                                Tests</a></li>
                     </ul>
 
                     <div class="tab-content p-3" id="content" style=" max-height: 80vh;overflow-y: scroll;">
-                        
+
                         <div id="personal" class="tab-pane fade show active">
                             <form>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h3>Personal Details</h3>
                                     <button type="submit" class="btn btn-success ">Save</button>
                                 </div>
-                            <div id="content">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="name" placeholder="name">
-                                    <label for="name">Name</label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="gender">Gender</label>
-                                                <br>
-                                                <div class="m-2">
-                                                    <div class="inline p-3" style="display: inline;">
-                                                        <input type="radio" id="male" name="gender" class="custom-control-input" value="male">
-                                                        <label class="custom-control-label" for="male">Male</label>
-                                                    </div>
-                                                    <div class="inline p-3" style="display: inline;">
-                                                        <input type="radio" id="female" name="gender" class="custom-control-input" value="female">
-                                                        <label class="custom-control-label" for="female">Female</label>
-                                                    </div>
-                                                    <div class="inline p-3" style="display: inline;">
-                                                        <input type="radio" id="other" name="gender" class="custom-control-input" value="other">
-                                                        <label class="custom-control-label" for="other">Other</label>
+                                <div id="content">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="name" placeholder="name">
+                                        <label for="name">Name</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="gender">Gender</label>
+                                                    <br>
+                                                    <div class="m-2">
+                                                        <div class="inline p-3" style="display: inline;">
+                                                            <input type="radio" id="male" name="gender"
+                                                                class="custom-control-input" value="male">
+                                                            <label class="custom-control-label" for="male">Male</label>
+                                                        </div>
+                                                        <div class="inline p-3" style="display: inline;">
+                                                            <input type="radio" id="female" name="gender"
+                                                                class="custom-control-input" value="female">
+                                                            <label class="custom-control-label"
+                                                                for="female">Female</label>
+                                                        </div>
+                                                        <div class="inline p-3" style="display: inline;">
+                                                            <input type="radio" id="other" name="gender"
+                                                                class="custom-control-input" value="other">
+                                                            <label class="custom-control-label"
+                                                                for="other">Other</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" class="form-control" id="age"
+                                                        placeholder="age">
+                                                    <label for="age">Age</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="date" class="form-control" id="date"
+                                                        placeholder="date">
+                                                    <label for="date">Date</label>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-floating mb-3">
-                                                <input type="number" class="form-control" id="age" placeholder="age">
-                                                <label for="age">Age</label>
+                                                <select class="form-select" id="marital" aria-label="Marital Status">
+                                                    <option selected>Select</option>
+                                                    <option value="married">Married</option>
+                                                    <option value="unmarried">Unmarried</option>
+                                                    <option value="divorced">Divorced</option>
+                                                    <option value="widow">Widow</option>
+                                                </select>
+                                                <label for="marital">Marital Status</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-floating mb-3">
-                                                <input type="date" class="form-control" id="date" placeholder="date">
-                                                <label for="date">Date</label>
+                                                <input type="text" class="form-control" id="complexion"
+                                                    placeholder="Complexion">
+                                                <label for="complexion">Complexion</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="constitution"
+                                                    placeholder="constitution">
+                                                <label for="constitution">Constitution</label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <select class="form-select" id="marital" aria-label="Marital Status">
-                                                <option selected>Select</option>
-                                                <option value="married">Married</option>
-                                                <option value="unmarried">Unmarried</option>
-                                                <option value="divorced">Divorced</option>
-                                                <option value="widow">Widow</option>
-                                            </select>
-                                            <label for="marital">Marital Status</label>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Enter address"
+                                            id="address"></textarea>
+                                        <label for="address">Address</label>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="contact"
+                                                    placeholder="contact">
+                                                <label for="contact">Contact</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="occupation"
+                                                    placeholder="occupation">
+                                                <label for="occupation">Occupation</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="child"
+                                                    placeholder="child">
+                                                <label for="child">Child</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="complexion" placeholder="Complexion">
-                                            <label for="complexion">Complexion</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="constitution" placeholder="constitution">
-                                            <label for="constitution">Constitution</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Enter address" id="address"></textarea>
-                                    <label for="address">Address</label>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="contact" placeholder="contact">
-                                            <label for="contact">Contact</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="occupation" placeholder="occupation">
-                                            <label for="occupation">Occupation</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="child" placeholder="child">
-                                            <label for="child">Child</label>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="photo">Patient Image (Optional)</label>
+                                        <input type="file" class="form-control" id="photo">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="photo">Patient Image (Optional)</label>
-                                    <input type="file" class="form-control" id="photo">
-                                </div>
-                            </div>
                             </form>
                         </div>
                         <div id="history" class="tab-pane fade">
@@ -250,31 +276,36 @@
                                     <button type="submit" class="btn btn-success ">Save</button>
                                 </div>
                                 <div id="content">
-                                <div class="form-floating mb-3">
-                                    <textarea class="form-control" style="min-height: 13vh;" placeholder="Past History" id="past"></textarea>
-                                    <label for="past">Past History</label>
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" style="min-height: 13vh;"
+                                            placeholder="Past History" id="past"></textarea>
+                                        <label for="past">Past History</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 13vh;"
+                                            placeholder="Family History" id="family"></textarea>
+                                        <label for="family">Family History</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 13vh;"
+                                            placeholder="Present Complain" id="present"></textarea>
+                                        <label for="present">Present Complain</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 13vh;" placeholder="disease"
+                                            id="disease"></textarea>
+                                        <label for="disease">Suffering from other disease</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 13vh;" placeholder="cause"
+                                            id="cause"></textarea>
+                                        <label for="cause">Cause of Disease if any</label>
+                                    </div>
                                 </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 13vh;" placeholder="Family History" id="family"></textarea>
-                                    <label for="family">Family History</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 13vh;" placeholder="Present Complain" id="present"></textarea>
-                                    <label for="present">Present Complain</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 13vh;" placeholder="disease" id="disease"></textarea>
-                                    <label for="disease">Suffering from other disease</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 13vh;" placeholder="cause" id="cause"></textarea>
-                                    <label for="cause">Cause of Disease if any</label>
-                                </div>
-                            </div>
                             </form>
                         </div>
                         <div id="measurements" class="tab-pane fade">
@@ -284,50 +315,56 @@
                                     <button type="submit" class="btn btn-success ">Save</button>
                                 </div>
                                 <div id="content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="height" placeholder="height">
-                                            <label for="height">Height (in Meters)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="weight" placeholder="weight">
-                                            <label for="weight">Weight (in Kgs)</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="temperature" placeholder="temperature">
-                                            <label for="temperature">Temperature (Fahrenheit)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="pulse" placeholder="pulse">
-                                            <label for="pulse">Pulse</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="input-group mb-3">
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="systolic" placeholder="Systolic">
-                                                <label for="systolic">Systolic (mm Hg)</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="height"
+                                                    placeholder="height">
+                                                <label for="height">Height (in Meters)</label>
                                             </div>
-                                            <span class="input-group-text">/</span>
-                                            <div class="form-floating">
-                                                <input type="number" class="form-control" id="diastolic" placeholder="Diastolic">
-                                                <label for="diastolic">Diastolic (mm Hg)</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="weight"
+                                                    placeholder="weight">
+                                                <label for="weight">Weight (in Kgs)</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="temperature"
+                                                    placeholder="temperature">
+                                                <label for="temperature">Temperature (Fahrenheit)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="pulse"
+                                                    placeholder="pulse">
+                                                <label for="pulse">Pulse</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <div class="form-floating">
+                                                    <input type="number" class="form-control" id="systolic"
+                                                        placeholder="Systolic">
+                                                    <label for="systolic">Systolic (mm Hg)</label>
+                                                </div>
+                                                <span class="input-group-text">/</span>
+                                                <div class="form-floating">
+                                                    <input type="number" class="form-control" id="diastolic"
+                                                        placeholder="Diastolic">
+                                                    <label for="diastolic">Diastolic (mm Hg)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
                             </form>
                         </div>
                         <div id="observations" class="tab-pane fade">
@@ -337,76 +374,88 @@
                                     <button type="submit" class="btn btn-success ">Save</button>
                                 </div>
                                 <div id="content">
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="head/neck" id="head"></textarea>
-                                    <label for="head">Head/Neck</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="mouth" id="mouth"></textarea>
-                                    <label for="mouth">Mouth/Tongue</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="eye" id="eye"></textarea>
-                                    <label for="eye">Eye/Ear</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="face" id="face"></textarea>
-                                    <label for="face">Face/Color</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="nose" id="nose"></textarea>
-                                    <label for="nose">Nose</label>
-                                </div>
-                                <br>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Chest</span>
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="respiratory" placeholder="Respiratory"></textarea>
-                                        <label for="respiratory">Respiratory</label>
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="head/neck"
+                                            id="head"></textarea>
+                                        <label for="head">Head/Neck</label>
                                     </div>
+                                    <br>
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="cardiac" placeholder="Cardiac"></textarea>
-                                        <label for="cardiac">Cardiac</label>
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="mouth"
+                                            id="mouth"></textarea>
+                                        <label for="mouth">Mouth/Tongue</label>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="abdomen" id="abdomen"></textarea>
-                                    <label for="abdomen">Abdomen/Pelvis</label>
-                                </div>
-                                <br>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Genitalia</span>
+                                    <br>
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="menses" placeholder="Menses"></textarea>
-                                        <label for="menses">Menses</label>
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="eye"
+                                            id="eye"></textarea>
+                                        <label for="eye">Eye/Ear</label>
                                     </div>
+                                    <br>
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="genitalia" placeholder="Genitalia"></textarea>
-                                        <label for="genitalia">Genitalia</label>
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="face"
+                                            id="face"></textarea>
+                                        <label for="face">Face/Color</label>
                                     </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="nose"
+                                            id="nose"></textarea>
+                                        <label for="nose">Nose</label>
+                                    </div>
+                                    <br>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Chest</span>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="respiratory"
+                                                placeholder="Respiratory"></textarea>
+                                            <label for="respiratory">Respiratory</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="cardiac"
+                                                placeholder="Cardiac"></textarea>
+                                            <label for="cardiac">Cardiac</label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="abdomen"
+                                            id="abdomen"></textarea>
+                                        <label for="abdomen">Abdomen/Pelvis</label>
+                                    </div>
+                                    <br>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Genitalia</span>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="menses" placeholder="Menses"></textarea>
+                                            <label for="menses">Menses</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="genitalia"
+                                                placeholder="Genitalia"></textarea>
+                                            <label for="genitalia">Genitalia</label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="limb"
+                                            id="limb"></textarea>
+                                        <label for="limb">Limb</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="back"
+                                            id="back"></textarea>
+                                        <label for="back">Back/Lumber</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 13vh;" placeholder="skin"
+                                            id="skin"></textarea>
+                                        <label for="skin">Skin/Condition/Perspiration</label>
+                                    </div>
+                                    <br>
                                 </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="limb" id="limb"></textarea>
-                                    <label for="limb">Limb</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="back" id="back"></textarea>
-                                    <label for="back">Back/Lumber</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 13vh;" placeholder="skin" id="skin"></textarea>
-                                    <label for="skin">Skin/Condition/Perspiration</label>
-                                </div>
-                                <br>
-                            </div>
                             </form>
                         </div>
                         <div id="vitals" class="tab-pane fade">
@@ -415,47 +464,53 @@
                                     <h3>Vitals</h3>
                                     <button type="submit" class="btn btn-success ">Save</button>
                                 </div>
-                                
+
                                 <div id="content">
-                
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="appetite" id="appetite"></textarea>
-                                    <label for="appetite">Appetite</label>
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="appetite"
+                                            id="appetite"></textarea>
+                                        <label for="appetite">Appetite</label>
+                                    </div>
+                                    <br>
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="thirst"
+                                            id="thirst"></textarea>
+                                        <label for="thirst">Thirst</label>
+                                    </div>
+                                    <br>
+
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="stool"
+                                            id="stool"></textarea>
+                                        <label for="stool">Stool</label>
+                                    </div>
+                                    <br>
+
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="urine"
+                                            id="urine"></textarea>
+                                        <label for="urine">Urine</label>
+                                    </div>
+                                    <br>
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="sleep"
+                                            id="sleep"></textarea>
+                                        <label for="sleep">Sleep/Dream</label>
+                                    </div>
+                                    <br>
+
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="discharge"
+                                            id="discharge"></textarea>
+                                        <label for="discharge">Discharge (if any)</label>
+                                    </div>
+                                    <br>
                                 </div>
-                                <br>
-                                    
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="thirst" id="thirst"></textarea>
-                                    <label for="thirst">Thirst</label>
-                                </div>
-                                <br>
-                                    
-                                    
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="stool" id="stool"></textarea>
-                                    <label for="stool">Stool</label>
-                                </div>
-                                <br>
-                                    
-                                   
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="urine" id="urine"></textarea>
-                                    <label for="urine">Urine</label>
-                                </div>
-                                <br>
-                                    
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="sleep" id="sleep"></textarea>
-                                    <label for="sleep">Sleep/Dream</label>
-                                </div>
-                                <br>
-    
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="discharge" id="discharge"></textarea>
-                                    <label for="discharge">Discharge (if any)</label>
-                                </div>
-                                <br>
-                            </div>
                             </form>
                         </div>
                         <div id="symptoms" class="tab-pane fade">
@@ -465,60 +520,77 @@
                                     <button type="submit" class="btn btn-success ">Save</button>
                                 </div>
                                 <div id="content">
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="addiction" id="addiction"></textarea>
-                                    <label for="addiction">Addiction (if any)</label>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="addiction"
+                                            id="addiction"></textarea>
+                                        <label for="addiction">Addiction (if any)</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="desire"
+                                            id="desire"></textarea>
+                                        <label for="desire">Desire</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;" placeholder="aversion"
+                                            id="aversion"></textarea>
+                                        <label for="aversion">Aversion</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;"
+                                            placeholder="aggravation" id="aggravation"></textarea>
+                                        <label for="aggravation">Aggravation</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" style="min-height: 10vh;"
+                                            placeholder="amelioration" id="amelioration"></textarea>
+                                        <label for="amelioration">Amelioration</label>
+                                    </div>
+                                    <br>
                                 </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="desire" id="desire"></textarea>
-                                    <label for="desire">Desire</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="aversion" id="aversion"></textarea>
-                                    <label for="aversion">Aversion</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="aggravation" id="aggravation"></textarea>
-                                    <label for="aggravation">Aggravation</label>
-                                </div>
-                                <br>
-                                <div class="form-floating">
-                                    <textarea class="form-control" style="min-height: 10vh;" placeholder="amelioration" id="amelioration"></textarea>
-                                    <label for="amelioration">Amelioration</label>
-                                </div>
-                                <br>
-                            </div>
                             </form>
                         </div>
                         <div id="lab" class="tab-pane fade">
                             <form action="">
-                            <div id="lab-fields">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h3>Lab Tests</h3>
-                                    <button type="submit" class="btn btn-success ">Save</button>
+                                <div id="lab-fields">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h3>Lab Tests</h3>
+                                        <button type="submit" class="btn btn-success ">Save</button>
+                                    </div>
+                                    <div id="content">
+                                        <div class="input-group mb-2" style="min-height: 7vh;">
+                                            <select name="lab[]" id="option" class="form-select"
+                                                aria-label="status-select"
+                                                style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                                                <option selected>Select Lab Test</option>
+                                                <option>Blood Test</option>
+                                                <option>Biopsy</option>
+                                            </select>
+                                            <input type="date" style="min-height: 7vh;" name="dt[]"
+                                                class="form-control " aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
+
+                                            <input name="remarks[]" style="min-height: 7vh;" type="text"
+                                                class="form-control " id="lab_remarks" style="width: 400px;"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
+                                            <input class="form-control  p-3 bg-light  " style="min-height: 7vh;"
+                                                style="width: 50px;" type="file" name="file[]" placeholder=""
+                                                aria-label="" id="file-upload">
+
+                                            <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
+                                            <button class="btn btn-success" onclick="savelab()" type="button"
+                                                id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
+                                            <button class="btn btn-danger" onclick="deletelab(this)" type="button"
+                                                id=""><i class="fa-solid fa-trash"></i></button>
+                                            <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i
+                                                    class="fa-solid fa-plus"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="content">
-                                <div class="input-group mb-2" style="min-height: 7vh;">
-                                    <select name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-                                        <option selected>Select Lab Test</option>
-                                        <option >Blood Test</option>
-                                        <option >Biopsy</option>
-                                    </select>
-                                    <input type="date" style="min-height: 7vh;" name="dt[]" class="form-control " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter DOB">
-    
-                                    <input name="remarks[]" style="min-height: 7vh;" type="text" class="form-control " id="lab_remarks" style="width: 400px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Remarks">
-                                    <input class="form-control  p-3 bg-light  " style="min-height: 7vh;" style="width: 50px;" type="file" name="file[]" placeholder="" aria-label="" id="file-upload">
-                                
-                                    <!-- <input type="file" class="form-control border-0 vh-10" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"> -->
-                                    <button class="btn btn-success" onclick="savelab()" type="button" id="inputGroupFileAddon04"><i class="fa-solid fa-check"></i></button>
-                                    <button class="btn btn-danger" onclick="deletelab(this)" type="button" id=""><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
                             </form>
                         </div>
                     </div>
@@ -532,19 +604,24 @@
             <div class="col-md-5 p-2  " style="padding: 0px;">
                 <ul class="nav  nav-fill rounded-3" style="border-radius: 20px !important;">
                     <li class="nav-item mb-2" style="padding-left: 3px; padding-right: 3px;">
-                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item active" data-toggle="tab" href="#home2">Checkup</a>
+                        <a style="text-align: center;"
+                            class="p-3 text nav-link rounded-3 right-nav right-nav-item active" data-toggle="tab"
+                            href="#home2">Checkup</a>
                     </li>
                     <li class="nav-item mb-2" style="padding-left: 3px; padding-right: 3px;">
-                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item" data-toggle="tab" href="#menu12">Prescriptions</a>
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item"
+                            data-toggle="tab" href="#menu12">Prescriptions</a>
                     </li>
                     <li class="nav-item mb-2" style="padding-left: 3px; padding-right: 3px;">
-                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item" data-toggle="tab" href="#menu22">Payment</a>
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item"
+                            data-toggle="tab" href="#menu22">Payment</a>
                     </li>
                     <li class="nav-item mb-2" style="padding-left: 3px; padding-right: 3px;">
-                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item" data-toggle="tab" href="#menu32">History</a>
+                        <a style="text-align: center;" class="p-3 text nav-link rounded-3 right-nav right-nav-item"
+                            data-toggle="tab" href="#menu32">History</a>
                     </li>
                 </ul>
-                
+
                 <div class="tab-content  ">
                     <div id="home2" class="tab-pane fade show active">
                         <div class="rounded-3 p-2 " style="background-color: #d1d3ab21;">
@@ -576,11 +653,10 @@
                                     type="file" name="" placeholder="" aria-label="" id="file-upload">
 
                             </div>
-                            <button class="rounded-3 p-3 mt-2 border-0 w-100"
-                            id="save-checkup-button"
-                            style="background-color: #1da453; color: white; font-weight: 500;">SAVE <img
-                            src="Images And Icons/arrow-right-solid (1).svg"
-                            style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt="">
+                            <button class="rounded-3 p-3 mt-2 border-0 w-100" id="save-checkup-button"
+                                style="background-color: #1da453; color: white; font-weight: 500;">SAVE <img
+                                    src="Images And Icons/arrow-right-solid (1).svg"
+                                    style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt="">
 
 
 
@@ -591,12 +667,12 @@
                         <div class="rounded-3 p-2 " style="background-color: #0e825dc6;">
 
 
- 
-                                <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
+
+                            <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
                                     style="border-top-left-radius:8px;border-bottom-left-radius:8px; color: bisque;">Date</span> -->
-                                <input type="hidden" id="date" class="form-control border-0"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                                    placeholder="Enter Date">
+                            <input type="hidden" id="date" class="form-control border-0"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                placeholder="Enter Date">
 
 
 
@@ -628,9 +704,9 @@
 
                             </div>
                             <button id="payment-button" class="rounded-3 p-3 mt-2 border-0 w-100"
-                            style="background-color: #019fdece; color: bisque;">PAYMENT <img
-                                src="Images And Icons/arrow-right-solid (1).svg"
-                                style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt=""></button>
+                                style="background-color: #019fdece; color: bisque;">PAYMENT <img
+                                    src="Images And Icons/arrow-right-solid (1).svg"
+                                    style="height: 10px; opacity: 100%; transform: translateY(-15%);" alt=""></button>
 
 
 
@@ -640,17 +716,18 @@
                     <div id="menu22" class="tab-pane fade w-100">
 
 
-                        <div class="  rounded-3 text-align-center  p-2 fs-6" style="min-width: 100%;background-color: #0e825dc6;;">
+                        <div class="  rounded-3 text-align-center  p-2 fs-6"
+                            style="min-width: 100%;background-color: #0e825dc6;;">
 
                             <!-- <div class="input-group mt-3 mb-2"> -->
-                                <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
+                            <!-- <span class="input-group-text fixed-width p-3 border-0" id="inputGroup-sizing-default"
                                     style="border-top-left-radius:8px;border-bottom-left-radius:8px;background-color: #0b6e4f;color: bisque;">Date</span> -->
-                                <input type="hidden" id="date" class="form-control border-0 right-align"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                                    placeholder="Enter Date" style="background-color: #d1d3ab3c;">
+                            <input type="hidden" id="date" class="form-control border-0 right-align"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                placeholder="Enter Date" style="background-color: #d1d3ab3c;">
                             <!-- </div> -->
 
-                      
+
 
                             <div class="justify-content-center align-items-center form-control  p-3 rounded-3 input-group-text-right"
                                 style="background-color: #ffffff; color: black !important;">
@@ -659,14 +736,16 @@
 
                             <div class="input-group mt-2">
                                 <span class="input-group-text  p-3 border-0" id="inputGroup-sizing-default"
-                                    style="background-color: rgb(255, 255, 255); color: black;font-weight: 500; min-width: 26%">To be paid    </span>
+                                    style="background-color: rgb(255, 255, 255); color: black;font-weight: 500; min-width: 26%">To
+                                    be paid </span>
                                 <input type="number" class="form-control border-0 right-align"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
                                     style="background-color: rgba(255, 255, 255, 0.801);" placeholder="Enter Here  ">
                             </div>
                             <div class="input-group mt-2">
                                 <span class="input-group-text  p-3 border-0" id="inputGroup-sizing-default"
-                                    style="background-color: rgb(255, 255, 255); color: black;font-weight: 500;min-width: 26%;">Amount paid</span>
+                                    style="background-color: rgb(255, 255, 255); color: black;font-weight: 500;min-width: 26%;">Amount
+                                    paid</span>
                                 <input type="number" class="form-control border-0 right-align"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
                                     style="background-color: rgba(255, 255, 255, 0.801);" placeholder="Enter Here  ">
@@ -712,7 +791,7 @@
                                             <p>Medicine No. 1 x 3 Doze</p>
                                             <p>Medicine No. 1 x 3 Doze</p>
                                             <p>Medicine No. 1 x 3 Doze</p>
-                                            </span>
+                                        </span>
                                     </div>
                                 </div>
 
@@ -767,20 +846,20 @@
             });
         });
         document.getElementById("payment-button").onclick = function (event) {
-        event.preventDefault(); // Prevent the default behavior
-        var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu22"]'));
-        targetTab.show(); // Show the tab
-    };
+            event.preventDefault(); // Prevent the default behavior
+            var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu22"]'));
+            targetTab.show(); // Show the tab
+        };
         document.getElementById("save-checkup-button").onclick = function (event) {
-        event.preventDefault(); // Prevent the default behavior
-        var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu12"]'));
-        targetTab.show(); // Show the tab
-    };
+            event.preventDefault(); // Prevent the default behavior
+            var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu12"]'));
+            targetTab.show(); // Show the tab
+        };
         document.getElementById("save-payment-button").onclick = function (event) {
-        event.preventDefault(); // Prevent the default behavior
-        var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu32"]'));
-        targetTab.show(); // Show the tab
-    };
+            event.preventDefault(); // Prevent the default behavior
+            var targetTab = new bootstrap.Tab(document.querySelector('a[href="#menu32"]'));
+            targetTab.show(); // Show the tab
+        };
 
 
         document.getElementById("view-info-button").onclick = function () {
@@ -792,22 +871,23 @@
         };
 
         function addInputFields() {
-    var container = document.getElementById('input-fields');
-    var newDiv = document.createElement('div');
-    newDiv.classList.add('input-group', 'mt-2', 'input-group-custom');
-    newDiv.innerHTML = `
+            var container = document.getElementById('input-fields');
+            var newDiv = document.createElement('div');
+            newDiv.classList.add('input-group', 'mt-2', 'input-group-custom');
+            newDiv.innerHTML = `
         <input type="text" class="form-control p-3 border-0 rounded-3 me-1" name="medicine[]" placeholder="Enter Medicine" style="background-color: #ffffff; color: black; min-width: 37% !important">
         <input type="text" class="form-control p-3 border-0 rounded-3 ms-1 me-1" name="dose[]" placeholder="Enter Dose" style="background-color: #ffffff; color: black; min-width: 37%">
         <button type="button" class="form-control p-2 border-0 rounded-3 me-1 ms-1" onclick="removeInputFields(this)" style="background-color: rgba(255, 0, 0, 0.654); color: bisque; min-width: 5%; text-align:center;">-</button>
         <button type="button" class="form-control p-2 border-0 rounded-3 ms-1" onclick="addInputFields()" style="background-color: #1da453; color: bisque; min-width: 5%; text-align:center;">+</button>
     `;
-    container.appendChild(newDiv);
-}
+            container.appendChild(newDiv);
+        }
 
-function removeInputFields(button) {
-    button.parentElement.remove();
-}
+        function removeInputFields(button) {
+            button.parentElement.remove();
+        }
     </script>
+<<<<<<< Updated upstream
         <script>
             function savelab() {
                 var inputField = document.getElementById("lab-fields");
@@ -833,6 +913,14 @@ function removeInputFields(button) {
                 const newField = document.createElement('div');
                 newField.className = 'input-group mb-2';
                 newField.innerHTML = `
+=======
+    <script>
+        function addlab() {
+            const labFields = document.getElementById('lab-fields');
+            const newField = document.createElement('div');
+            newField.className = 'input-group mb-2';
+            newField.innerHTML = `
+>>>>>>> Stashed changes
 
                 <select name="lab[]" id="option" class="form-select" aria-label="status-select" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
                                         <option selected>Select Lab Test</option>
@@ -850,8 +938,15 @@ function removeInputFields(button) {
                                     <button class="btn btn-primary" onclick="addlab()" type="button" id=""><i class="fa-solid fa-plus"></i></button>
 
                 `;
-                labFields.appendChild(newField);
+            labFields.appendChild(newField);
+        }
+
+        function deletelab(element) {
+            const labFields = document.getElementById('lab-fields');
+            if (labFields.children.length > 2) {
+                element.parentElement.remove();
             }
+<<<<<<< Updated upstream
     
             function deletelab(element) {
                 const labFields = document.getElementById('lab-fields');
@@ -861,6 +956,14 @@ function removeInputFields(button) {
             }
     
             
+=======
+        }
+
+        function savelab() {
+            alert('Save functionality not implemented.');
+        }
+
+>>>>>>> Stashed changes
         function removeInputFields() {
             var inputFields = document.getElementById('input-fields').children;
             var length = inputFields.length;
@@ -869,12 +972,12 @@ function removeInputFields(button) {
                 document.getElementById('input-fields').removeChild(inputFields[length - 1]);
             }
         }
-        </script>
-    
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
