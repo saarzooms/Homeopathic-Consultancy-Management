@@ -154,7 +154,7 @@ if (isset($_GET['caseno'])) {
                 </div>
 
                 <div class="justify-content-center align-items-center mb-1 p-3 rounded-3 input-group-text-right" style="background-color: #d1d3ab; color: black !important;">
-                    <span>Amount Previously Left to be paid:</span> <b id="prev_amt"><?php echo $row['prev_amt'].".00" ?></b>
+                    <span>Amount Previously Left to be paid:</span> <b id="prev_amt"><?php echo $row['future_amt'].".00" ?></b>
                     <input type="hidden" name="prev_amt" value="<?php echo $row['prev_amt']; ?>">
                 </div>
 
